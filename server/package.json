@@ -1,14 +1,25 @@
 {
-  "name": "Project",
+  "name": "geocatch",
   "version": "1.0.0",
-  "description": "",
+  "description": "Location-based photo game",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "MERN",
+    "React",
+    "Express",
+    "MongoDB",
+    "Mongoose",
+    "Node",
+    "Apollo",
+    "Stripe",
+    "GraphQL",
+    "Full-stack"
+  ],
+  "author": "Nathan Howes, Rakibul Islam, Trent Dickson",
   "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^3.6.2",

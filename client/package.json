@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "geocatch",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001",
@@ -7,13 +7,21 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.27.2",
     "bootstrap": "^4.4.1",
+    "dotenv": "^16.0.1",
+    "jquery": "^3.6.0",
     "jwt-decode": "^2.2.0",
-    "react": "^16.13.1",
-    "react-bootstrap": "^1.0.1",
-    "react-dom": "^16.13.1",
-    "react-router-dom": "^6.2.1",
-    "react-scripts": "^4.0.2"
+    "mapbox-gl": "^2.9.2",
+    "popper.js": "^1.16.1",
+    "pretty": "^2.0.0",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.4.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

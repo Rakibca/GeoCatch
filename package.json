@@ -1,5 +1,5 @@
 {
-  "name": "googlebooks-app",
+  "name": "geocatch",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
@@ -10,13 +10,21 @@
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "MERN",
+    "React",
+    "Express",
+    "MongoDB",
+    "Mongoose",
+    "Node",
+    "Apollo",
+    "Stripe",
+    "GraphQL",
+    "Full-stack"
+  ],
+  "author": "Nathan Howes, Rakibul Islam, Trent Dickson",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.1"
   }
 }
