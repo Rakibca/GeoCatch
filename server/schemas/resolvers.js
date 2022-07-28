@@ -5,11 +5,39 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    images: async (parent, { latitude, longitude }) => {
-      const params = {latitude: latitude, longitude: longitude};
+    imageArea: async (parent, { latitude, longitude, radius }) => {
+      //lat and long in XX.XXXXXXXX format, radius in m so needs to be converted)
+      const params = {latitude: latitude, longitude: longitude, radius: radius};
 
+//       //This function takes in latitude and longitude of two locations
+// // and returns the distance between them as the crow flies (in meters)
+// function calcCrow(coords1, coords2)
+// {
+//   // var R = 6.371; // km
+//   var R = radius/1000000;
+//   var dLat = toRad(coords2.lat-coords1.lat);
+//   var dLon = toRad(coords2.lng-coords1.lng);
+//   var lat1 = toRad(coords1.lat);
+//   var lat2 = toRad(coords2.lat);
 
-      return await Images.find(params);
+//   var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+//     Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+//   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+//   var d = R * c;
+//   return d;
+// }
+
+// // Converts numeric degrees to radians (not needed for GeoCatch)
+// function toRad(Value)
+// {
+//     return Value * Math.PI / 180;
+// }
+
+let latlow = 
+      return await Image.find(params);
+    },
+    images: async () => {
+      return await Image.find({}).populate('users');
     },
     image: async (parent, { _id }) => {
       return await Image.findById(_id);
@@ -18,7 +46,7 @@ const resolvers = {
       if (context.user) {
         const user = await User.findById(context.user._id).populate('images');
 
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        user.images.sort((a, b) => b.dateTaken - a.dateTaken);
 
         return user;
       }

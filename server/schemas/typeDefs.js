@@ -14,8 +14,8 @@ const typeDefs = gql`
     image: String
     title: String
     latitude: Float
-    latitude: Float
-    dateTaken: Date
+    longitude: Float
+    dateTaken: String
     user: User
   }
 
@@ -25,8 +25,9 @@ const typeDefs = gql`
   }
 
   type Query {
-    image: [Image]
+    images: [Image]
     image(_id: ID!): Image
+    imageArea(latitude: Float, longitude: Float, radius: Int): [Image]
     user(_id: ID!): User
   }
 
