@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 // import schema from Image.js
-const imageSchema = require('./Image');
+const Image = require('./Image');
 
 const userSchema = new Schema(
   {
@@ -22,7 +22,7 @@ const userSchema = new Schema(
       required: true,
     },
     // set savedImages to be an array of data that adheres to the imageSchema
-    savedImages: [imageSchema],
+    savedImages: [Image.schema],
   },
   // set this to use virtual below
   {
