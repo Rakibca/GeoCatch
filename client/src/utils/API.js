@@ -1,4 +1,8 @@
-// route to get logged in user's info (needs the token)
+/* 
+  API for book search engine
+  route to get logged in user's info (needs the token)
+*/
+
 export const getMe = (token) => {
   return fetch('/api/users/me', {
     headers: {
@@ -28,21 +32,21 @@ export const loginUser = (userData) => {
   });
 };
 
-// save book data for a logged in user
-export const saveBook = (bookData, token) => {
+// save image data for a logged in user
+export const saveImage = (imageData, token) => {
   return fetch('/api/users', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(bookData),
+    body: JSON.stringify(imageData),
   });
 };
 
-// remove saved book data for a logged in user
-export const deleteBook = (bookId, token) => {
-  return fetch(`/api/users/books/${bookId}`, {
+// remove saved image data for a logged in user
+export const deleteImage = (imageId, token) => {
+  return fetch(`/api/users/images/${imageId}`, {
     method: 'DELETE',
     headers: {
       authorization: `Bearer ${token}`,
@@ -50,8 +54,8 @@ export const deleteBook = (bookId, token) => {
   });
 };
 
-// make a search to google books api
-// https://www.googleapis.com/books/v1/volumes?q=harry+potter
-export const searchGoogleBooks = (query) => {
-  return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
+// make a search to google images api
+// https://www.googleapis.com/images/v1/volumes?q=harry+potter
+export const searchAllImages = (query) => {
+  return fetch(`API?`);
 };
