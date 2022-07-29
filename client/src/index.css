@@ -120,7 +120,7 @@ a:hover {
   cursor: pointer;
   height: 56px;
   width: 56px;
-  background-image: url(marker.png);
+  /* background-image: url(marker.png); */
 }
 
 /* Marker tweaks */
@@ -178,3 +178,7 @@ a:hover {
   min-width: 100%;
   margin-left: 0;
 }
+
+.map-container {
+  height: 400px;
+  }
