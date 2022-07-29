@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
-import { getMe, deleteBook } from '../utils/API';
+import { getMe, deleteImage } from '../utils/API';
 import Auth from '../utils/auth';
-import { removeBookId } from '../utils/localStorage';
+import { removeImageId } from '../utils/localStorage';
 
-const SavedBooks = () => {
+const SavedImages = () => {
   const [userData, setUserData] = useState({});
 
   // use this to determine if `useEffect()` hook needs to run again
@@ -36,8 +36,8 @@ const SavedBooks = () => {
     getUserData();
   }, [userDataLength]);
 
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleDeleteBook = async (bookId) => {
+  // create function that accepts the image's mongo _id value as param and deletes the image from the database
+  const handleDeleteImage = async (imageId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -45,7 +45,7 @@ const SavedBooks = () => {
     }
 
     try {
-      const response = await deleteBook(bookId, token);
+      const response = await deleteImage(imageId, token);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
@@ -53,8 +53,8 @@ const SavedBooks = () => {
 
       const updatedUser = await response.json();
       setUserData(updatedUser);
-      // upon success, remove book's id from localStorage
-      removeBookId(bookId);
+      // upon success, remove image's id from localStorage
+      removeImageId(imageId);
     } catch (err) {
       console.error(err);
     }
@@ -69,26 +69,26 @@ const SavedBooks = () => {
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
-          <h1>Viewing saved books!</h1>
+          <h1>Viewing saved images!</h1>
         </Container>
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
-            : 'You have no saved books!'}
+          {userData.savedImages.length
+            ? `Viewing ${userData.savedImages.length} saved ${userData.savedImages.length === 1 ? 'image' : 'images'}:`
+            : 'You have no saved images!'}
         </h2>
         <CardColumns>
-          {userData.savedBooks.map((book) => {
+          {userData.savedImages.map((image) => {
             return (
-              <Card key={book.bookId} border='dark'>
-                {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+              <Card key={image.imageId} border='dark'>
+                {image.image ? <Card.Img src={image.image} alt={`The photo for ${image.title}`} variant='top' /> : null}
                 <Card.Body>
-                  <Card.Title>{book.title}</Card.Title>
-                  <p className='small'>Authors: {book.authors}</p>
-                  <Card.Text>{book.description}</Card.Text>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
-                    Delete this Book!
+                  <Card.Title>{image.title}</Card.Title>
+                  <p className='small'>Authors: {image.authors}</p>
+                  <Card.Text>{image.description}</Card.Text>
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteImage(image.imageId)}>
+                    Delete this image!
                   </Button>
                 </Card.Body>
               </Card>
@@ -100,4 +100,4 @@ const SavedBooks = () => {
   );
 };
 
-export default SavedBooks;
+export default SavedImages;
