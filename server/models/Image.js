@@ -14,14 +14,10 @@ const imageSchema = new Schema({
     type: String,
     required: true,
   },
-  latitude: {
+  location: [{
     type: Number,
     required: true,
-  },
-  longitude: {
-    type: Number,
-    required: true,
-  },
+  }],
   dateTaken: {
     type: Date,
     default: Date.now,

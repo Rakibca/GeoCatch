@@ -6,35 +6,9 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     imageArea: async (parent, { latitude, longitude, radius }) => {
-      //lat and long in XX.XXXXXXXX format, radius in m so needs to be converted)
-      const params = {latitude: latitude, longitude: longitude, radius: radius};
+      // const params = {latitude: latitude, longitude: longitude, radius: radius};
 
-//       //This function takes in latitude and longitude of two locations
-// // and returns the distance between them as the crow flies (in meters)
-// function calcCrow(coords1, coords2)
-// {
-//   // var R = 6.371; // km
-//   var R = radius/1000000;
-//   var dLat = toRad(coords2.lat-coords1.lat);
-//   var dLon = toRad(coords2.lng-coords1.lng);
-//   var lat1 = toRad(coords1.lat);
-//   var lat2 = toRad(coords2.lat);
-
-//   var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-//     Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
-//   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-//   var d = R * c;
-//   return d;
-// }
-
-// // Converts numeric degrees to radians (not needed for GeoCatch)
-// function toRad(Value)
-// {
-//     return Value * Math.PI / 180;
-// }
-
-let latlow = 
-      return await Image.find(params);
+      return await Image.find( {location: { $geoWithin: { $center: [ [latitude, longitude], radius/1000]}}});
     },
     images: async () => {
       return await Image.find({}).populate('users');
@@ -98,16 +72,13 @@ let latlow =
 
       return { token, user };
     },
-    addImage: async (parent, { image }, context) => {
-      console.log(context);
-
+    addImage: async (parent, { image, title, location }, context) => {
 
       if (context.user) {
-        const order = new Order({ products });
+        const image = await Image.Create({image, title, location});
+        await User.findByIdAndUpdate(context.user._id, { $push: { images: image } });
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
-
-        return order;
+        return image;
       }
 
       throw new AuthenticationError('Not logged in');
@@ -119,16 +90,14 @@ let latlow =
 
       throw new AuthenticationError('Not logged in');
     },
-    updateImage: async (parent, { image }, context) => {
-      console.log(context);
-
-
+    updateImage: async (parent, args, context) => {
+ 
       if (context.user) {
-        const order = new Order({ products });
+  
+        const image = await Image.findByIdAndUpdate(args);
+        await User.findByIdAndUpdate(context.user._id, { $push: { images: image } });
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
-
-        return order;
+        return image;
       }
 
       throw new AuthenticationError('Not logged in');
@@ -136,6 +105,15 @@ let latlow =
     deleteUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndDelete(context.user._id, args, { new: true });
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+    deleteImage: async (parent, args, context) => {
+      if (context.user) {
+        const image = await Image.findByIdAndDelete(args, { new: true });
+        return await User.findByIdAndUpdate(context.user._id, { $pull: { images: args } });
+
       }
 
       throw new AuthenticationError('Not logged in');
