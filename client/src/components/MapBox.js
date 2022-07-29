@@ -4,3 +4,37 @@ Click on markers to see the GeoCatch image
 Scroll in to see the marker change from marker to radius
 See a radius that can be explored
 */
+
+import React, { useRef, useEffect, useState } from 'react';
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import '../index.css';
+
+
+
+export default function MapBox() {
+    mapboxgl.accessToken = 'pk.eyJ1IjoicmFraWJjYSIsImEiOiJjbDY1Njd1OWsyeTU0M2tvMXpwZmM1MXJkIn0.h4GFYIIYYATzua87c7_EAw';
+
+
+    const mapContainer = useRef(null);
+    const map = useRef(null);
+    const [lng, setLng] = useState(-70.9);
+    const [lat, setLat] = useState(42.35);
+    const [zoom, setZoom] = useState(9);
+    
+    useEffect(() => {
+        if (map.current) return; // initialize map only once
+        map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [lng, lat],
+        zoom: zoom
+        });
+        });
+
+
+        return (
+            <div>
+            <div ref={mapContainer} className="map-container" />
+            </div>
+            );
+}
