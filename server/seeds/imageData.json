@@ -1,9 +1,32 @@
 [
     {
         "image": "Cat.jpg",
-        "user": "Trenty",
+        "user": "62e2daeda656ec21bcc08559",
         "title": "GeoCatch me if you can!",
-        "latitude": 43.711564,
-        "longitude": -79.384410
+        "location": [43.711564,-79.384410]
+    },
+    {
+        "image": "dog.jpg",
+        "user": "62e2daeda656ec21bcc0855a",
+        "title": "GeoCatch me if you can 2!",
+        "location": [43.700757,-79.246707]
+    },
+    {
+        "image": "bird.jpg",
+        "user": "62e2daeda656ec21bcc0855b",
+        "title": "GeoCatch me if you can 3!",
+        "location": [43.755578, -79.289478]
+    },
+    {
+        "image": "house.jpg",
+        "user": "62e2daeda656ec21bcc0855c",
+        "title": "GeoCatch me if you can 4!",
+        "location": [43.680896,-79.448869]
+    },
+    {
+        "image": "waterfall.jpg",
+        "user": "62e2daeda656ec21bcc0855c",
+        "title": "GeoCatch me if you can 5!",
+        "location": [43.727991,-79.428184]
     }
 ]

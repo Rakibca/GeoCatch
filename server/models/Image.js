@@ -1,24 +1,30 @@
 const { Schema, model } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
-// This is a subdocument schema, it won't become its own model but we'll use it as the schema for the User's `savedImages` array in User.js
 const imageSchema = new Schema({
   image: {
     type: String,
     required: true,
   },
-  user: {
-      type: String,
+  user:       {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   },
   title: {
     type: String,
     required: true,
   },
-  latitude: {
+  location: [{
     type: Number,
+    required: true,
+  }],
+  dateTaken: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
   },
-  longitude: {
-    type: Number,
-  }
+  
+
 });
 
 const Image = model('Image', imageSchema);
