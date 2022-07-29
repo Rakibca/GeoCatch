@@ -34,9 +34,9 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String!, email: String!, password: String!): User
     deleteUser(image: String!, l: String!, password: String!): Image
-    addImage(image: String!, ): Image
-    updateImage(image: String!, l: String!, password: String!): Image
-    deleteImage(image: String!, l: String!, password: String!): Image
+    addImage(image: String!, location: [Float]!, title: String ): Image
+    updateImage(_id: ID!, image: String, location: [Float], title: String): Image
+    deleteImage(_id: ID!): Image
 
     login(email: String!, password: String!): Auth
   }
