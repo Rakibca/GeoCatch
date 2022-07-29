@@ -15,7 +15,7 @@ body {
 }
 
 
-.sidebar {
+/* .sidebar {
   position: absolute;
   width: 33.3333%;
   height: 100%;
@@ -23,7 +23,25 @@ body {
   left: 0;
   overflow: hidden;
   border-right: 1px solid rgba(0, 0, 0, 0.25);
+} */
+
+.map-container {
+  height: 400px;
 }
+
+.sidebar {
+  background-color: rgba(35, 55, 75, 0.9);
+  color: #fff;
+  padding: 6px 12px;
+  font-family: monospace;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 12px;
+  border-radius: 4px;
+}
+
 
 .pad2 {
   padding: 20px;
@@ -178,7 +196,3 @@ a:hover {
   min-width: 100%;
   margin-left: 0;
 }
-
-.map-container {
-  height: 400px;
-  }
