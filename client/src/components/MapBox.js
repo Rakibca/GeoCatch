@@ -1,0 +1,6 @@
+/*
+Component that holds the interactive map where users can see nearby GeoCatches
+Click on markers to see the GeoCatch image
+Scroll in to see the marker change from marker to radius
+See a radius that can be explored
+*/

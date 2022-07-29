@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import {extendTheme, ChakraProvider} from '@chakra-ui/react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import './index.css';
@@ -335,6 +335,7 @@ function App() {
       const popup = new mapboxgl.Popup({closeOnClick: false}).setLngLat(currentFeature.geometry.coordinates).setHTML(`<h3>Location</h3><h4>${currentFeature.properties.address}</h4>`).addTo(map);
     }
   })
+>>>>>>> 3d1ab503b33e1da0aaa48f97086e19a60e1111a4
 }
 
 export default App;

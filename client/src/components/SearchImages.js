@@ -1,3 +1,4 @@
+// May not be necessary to search for GeoCatches as the user will need to be in the area to capture GeoCatches
 import React, {useState, useEffect} from 'react';
 import {
   Jumbotron,

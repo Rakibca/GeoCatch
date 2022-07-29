@@ -1,5 +1,4 @@
 /* 
-TRENT
 User profile includes:
     - saved/liked image card array of GeoCatches
     - completed/posted image card array of Geocatches

@@ -1,4 +1,5 @@
 // see SignupForm.js for comments
+// Will appear when you click login button at top right of application/browser header
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 

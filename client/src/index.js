@@ -1,13 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom/client";
+// Custom CSS
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+// React Routes
+import { BrowserRouter } from "react-router-dom";
+// Styling
+import { ChakraProvider } from "@chakra-ui/react";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
-import App from './App';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
+	<React.StrictMode>
+		<BrowserRouter>
+			<ChakraProvider>
+				<App />
+			</ChakraProvider>
+		</BrowserRouter>
+	</React.StrictMode>
 );
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
