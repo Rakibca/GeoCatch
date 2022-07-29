@@ -1,14 +1,20 @@
+/*
+NavBar is the footer with three icons/buttons: GeoCatch map, GeoCatch upload image, and User Profile
+GeoCatch map has the map with active markers and an array of active GeoCatch cards beneath the map
+GeoCatch upload image brings up a modal or renders to ask for: Title, Image file, and location
+User profile shows caught/captured GeoCatches and saved/liked GeoCatches to hunt 
+*/
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import { SearchIcon, DownloadIcon, ViewIcon } from '@chakra-ui/icons';
-import SignUpForm from './SignupForm';
-import LoginForm from './LoginForm';
+import SignUpForm from './Signup';
+import LoginForm from './Login';
 
 
 import Auth from '../utils/auth';
 
-const AppNavbar = () => {
+const NavBar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
 
@@ -17,7 +23,7 @@ const AppNavbar = () => {
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            Google Images Search
+            GeoCatch
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
@@ -76,4 +82,4 @@ const AppNavbar = () => {
   );
 };
 
-export default AppNavbar;
+export default NavBar;

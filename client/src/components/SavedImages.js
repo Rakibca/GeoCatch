@@ -1,3 +1,5 @@
+// Use a Saved Image array to allow the user to save GeoCatches and check them in their User Profile
+
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
