@@ -10,6 +10,37 @@ export function pluralize(name, count) {
   return name + 's';
 }
 
+export function getExif() {
+    var img1 = document.getElementById("img1");
+    //update image1 reference to cover the uploaded image
+    EXIF.getData(img1, function() {
+      let allData = EXIF.getAllTags(this);
+
+      let latdegrees = (allData.GPSLatitude[0].numerator)/(allData.GPSLatitude[0].denominator);
+      let latminutes = (allData.GPSLatitude[1].numerator)/(allData.GPSLatitude[1].denominator);
+      let latseconds = (allData.GPSLatitude[2].numerator)/(allData.GPSLatitude[2].denominator);
+
+      let latitude = latdegrees + (latminutes/60) + (latseconds/3600);
+
+      if (EXIF.getTag(this, "GPSLatitudeRef") === "S") {
+        latitude = -latitude
+      }
+
+      let longdegrees = (allData.GPSLongitude[0].numerator)/(allData.GPSLongitude[0].denominator);
+      let longminutes = (allData.GPSLongitude[1].numerator)/(allData.GPSLongitude[1].denominator);
+      let longseconds = (allData.GPSLongitude[2].numerator)/(allData.GPSLongitude[2].denominator);
+
+      let longitude = longdegrees + (longminutes/60) + (longseconds/3600);
+
+      if (EXIF.getTag(this, "GPSLongitudeRef") === "W") {
+        longitude = -longitude
+      }
+      console.log(latitude + ", " + longitude)
+
+      return [latitude, longitude];
+ 
+})}
+
 export function idbPromise(storeName, method, object) {
   return new Promise((resolve, reject) => {
     const request = window.indexedDB.open('shop-shop', 1);
