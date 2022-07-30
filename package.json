@@ -1,7 +1,7 @@
 {
   "name": "geocatch",
   "version": "1.0.0",
-  "description": "",
+  "description": "Location-based photography game",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js --ignore client",
@@ -9,6 +9,10 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdickson96/GeoCatch.git"
   },
   "keywords": [
     "MERN",
@@ -25,10 +29,7 @@
   "author": "Nathan Howes, Rakibul Islam, Trent Dickson",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^5.1.0"
-  },
-  "dependencies": {
-    "apollo-server-express": "^3.10.0",
+    "concurrently": "^5.1.0",
     "graphql": "^16.5.0"
   }
 }
