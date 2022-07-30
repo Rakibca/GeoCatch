@@ -13,14 +13,13 @@ FEATURES:
 */
 
 import React, { useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+// import { useQuery } from '@apollo/client';
+import MapBox from '../../components/MapBox';
 
 const Home = () => {
-    const [markerList, setMarkerList] = useState([]);
-
-    useEffect(() => {
-        const getMarkerList = async () => {
-            
-        }
-    })
+    return (
+        <MapBox />
+    )
 }
+
+export default Home;

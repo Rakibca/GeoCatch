@@ -11,8 +11,6 @@ import '../index.css';
 import { ADD_IMAGE } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 
-
-
 export default function PhotoUpload() {
 
     const [addImage, { error }] = useMutation(ADD_IMAGE);
