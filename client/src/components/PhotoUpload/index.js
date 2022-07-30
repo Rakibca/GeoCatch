@@ -8,7 +8,7 @@ import React, { useRef, useState } from 'react';
 // import { useStudentContext } from '../utils/StudentContext';
 import EXIF from 'exif-js';
 import '../index.css';
-import { ADD_IMAGE } from '../utils/mutations';
+import { ADD_IMAGE } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 
 

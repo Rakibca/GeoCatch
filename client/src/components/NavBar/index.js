@@ -8,11 +8,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import { SearchIcon, DownloadIcon, ViewIcon } from '@chakra-ui/icons';
-import SignUpForm from './Signup';
-import LoginForm from './Login';
+import SignUpForm from '../Signup';
+import LoginForm from '../Login';
 
 
-import Auth from '../utils/auth';
+import Auth from '../../utils/auth';
 
 const NavBar = () => {
   // set modal display state
