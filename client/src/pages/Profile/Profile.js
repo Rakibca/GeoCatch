@@ -5,15 +5,12 @@ User profile includes:
     - Subscription button, opens modal to pay through Stripe
 */
 
-import NavBar from '../components/NavBar'
-import Header from '../components/Header'
-
 const Profile = () => {
   return (
     <div className="container">
-      <Header />
-        {/* User Profile Content */}
-      <NavBar />
+
+<p>This will be the user's profile.</p>
+
     </div>
   );
 };

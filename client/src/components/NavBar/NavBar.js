@@ -14,12 +14,14 @@ import {
 } from "react-router-dom";
 import './navbar.css';
 
-
 const NavBar = () => {
   return(
       <div className="background">
           <ReactBootStrap.Navbar collapseOnSelect expand="xl" bg="warning" variant="light">
-        <ReactBootStrap.Navbar.Brand href="#home">GeoCatch</ReactBootStrap.Navbar.Brand>
+          <Link to="/">
+        <ReactBootStrap.Navbar.Brand href="/">GeoCatch</ReactBootStrap.Navbar.Brand>
+        </Link>
+
         <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
           <ReactBootStrap.Nav className="mr-auto"> 
@@ -28,13 +30,18 @@ const NavBar = () => {
           </Link>
           <Link to="/upload">
           <ReactBootStrap.Nav.Link href="#pricing">GeoCatch Upload</ReactBootStrap.Nav.Link>
+          </Link>
           <Link to="/profile">
           <ReactBootStrap.Nav.Link href="#profile">Profile</ReactBootStrap.Nav.Link>
           </Link>
-          </Link>
             <ReactBootStrap.NavDropdown title="User" id="collasible-nav-dropdown">
+            <Link to="/signup">
               <ReactBootStrap.NavDropdown.Item href="#signup">Signup</ReactBootStrap.NavDropdown.Item>
+              </Link>
+              <Link to="/login">
               <ReactBootStrap.NavDropdown.Item href="#login">Login</ReactBootStrap.NavDropdown.Item>
+              </Link>
+
               <ReactBootStrap.NavDropdown.Item href="#logout">Logout</ReactBootStrap.NavDropdown.Item>
               <ReactBootStrap.NavDropdown.Divider />
               <ReactBootStrap.NavDropdown.Item href="#subscribe">Subscribe</ReactBootStrap.NavDropdown.Item>

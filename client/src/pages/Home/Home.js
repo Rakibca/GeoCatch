@@ -12,9 +12,9 @@ FEATURES:
     - DUMMY DATABASE OF USER GEOCATCHES
 */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 // import { useQuery } from '@apollo/client';
-import MapBox from '../../components/MapBox';
+import MapBox from '../../components/MapBox/MapBox';
 
 const Home = () => {
     return (

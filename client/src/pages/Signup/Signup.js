@@ -4,8 +4,8 @@ Signup form that will appear as a modal on login component to sign up
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
-import Auth from '../utils/auth';
-import { ADD_USER } from '../utils/mutations';
+import Auth from '../../utils/auth';
+import { ADD_USER } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 
 
