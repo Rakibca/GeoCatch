@@ -2,14 +2,15 @@
 
 ![badmath](https://img.shields.io/github/languages/top/tdickson96/GeoCatch)
 ![deployed](https://img.shields.io/badge/Heroku-Deployed-blueviolet)
+![react](https://img.shields.io/badge/-ReactJs-8d61fb?logo=react)
 
 ## Description
 
-A location-based photo game where you can challenge other users to try and locate where you took a photo. A second user must take a separate photo in that area and try to get as close as possible to the GeoCatch photo challenge original post.
+A location-based photo game where you can challenge other users to locate where you took a photo. A second user must take a separate photo in the first photo's area and try to get as close as possible to the GeoCatch photo challenge original post.
 
 - What was your motivation?
 
-We felt as though many active applications were coming to life as the sedentary existence of phones and technologies could be overwhelming. A phenomenon such as Pokemon Go shows that there are many people who enjoy using their phones to be active. 
+We felt as though many active applications were coming to life as the sedentary existence of phones and technologies can be viewed as unhealthy. A phenomenon such as Pokemon Go shows that there are many people who enjoy using their phones to be active. 
 
 - Why did you build this project? 
 
@@ -17,11 +18,11 @@ We felt the need to push our full-stack skills and toolkit. Adding Mapbox, Chakr
 
 - What problem does it solve?
 
-This app tries to blend active phone use, physical activity, and photography passions into a gameified advenure photo game. A real-life Pokemon Snap, if you will.
+This app tries to blend active phone use, physical activity, and photography passions into a gameified adventure photo game. A real-life Pokemon Snap, if you will.
 
 - What did you learn?
 
-We learned that React has plenty of single-page purpose, modals are useful, geospatial data and geojsons are super cool, and that we can apply our full-stack technologies and skills towards any project, so long as we appropriately plan for the complex logic and design standards. 
+We learned that React has plenty of single-page purposes, modals are useful, geospatial data and geojsons are super cool, and that we can apply our full-stack technologies and skills towards any project, so long as we appropriately plan for the complex logic and design standards. We dipped into new technologies: Exif.js to extract photo metadata and Turf.js to work on maps with geojson data.
 
 ## Table of Contents (Optional)
 
@@ -32,7 +33,7 @@ We learned that React has plenty of single-page purpose, modals are useful, geos
 
 ## Installation
 
-Heroku deployed link can be found here.
+Heroku deployed link can be [found here](https://geocatch.herokuapp.com/).
 
 GitHub repository link can be [found here](https://github.com/tdickson96/GeoCatch).
 

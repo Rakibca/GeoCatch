@@ -1,5 +1,5 @@
 {
-  "name": "geocatch",
+  "name": "server",
   "version": "1.0.0",
   "description": "Location-based photo game",
   "main": "server.js",
@@ -26,13 +26,10 @@
     "apollo-server-express": "^3.6.2",
     "bcrypt": "^4.0.1",
     "express": "^4.17.1",
-    "gh-pages": "^4.0.0",
     "graphql": "^16.3.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.10",
+    "nodemon": "^2.0.19",
     "stripe": "^8.67.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.3"
   }
 }
