@@ -9,8 +9,6 @@ import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import '../../index.css';
 
-
-
 export default function MapBox() {
     mapboxgl.accessToken = 'pk.eyJ1IjoicmFraWJjYSIsImEiOiJjbDY1Njd1OWsyeTU0M2tvMXpwZmM1MXJkIn0.h4GFYIIYYATzua87c7_EAw';
 
@@ -45,12 +43,12 @@ export default function MapBox() {
         return (
             <div>
 
-
             <div ref={mapContainer} className="map-container" />
             <div className="space" />
        {/*}     <div className="sidebar">
                     Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>*/}
+
             </div>
             );
 }

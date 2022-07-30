@@ -6,6 +6,7 @@ import {ChakraProvider} from '@chakra-ui/react';
 // import MapBox from './components/MapBox/MapBox';
 import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
+
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Home from './pages/Home/Home';

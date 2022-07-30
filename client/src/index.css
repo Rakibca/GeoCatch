@@ -20,7 +20,8 @@ code {
   box-sizing: border-box;
 }
 
-.sidebar {
+
+/* .sidebar {
   position: absolute;
   width: 33.3333%;
   height: 35px;

@@ -14,8 +14,6 @@ import {
 } from "react-router-dom";
 import './navbar.css';
 
-
-
 const NavBar = () => {
   return(
       <div className="background">
@@ -23,6 +21,7 @@ const NavBar = () => {
           <Link to="/">
         <ReactBootStrap.Navbar.Brand href="/">GeoCatch</ReactBootStrap.Navbar.Brand>
         </Link>
+
         <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
           <ReactBootStrap.Nav className="mr-auto"> 
@@ -42,6 +41,7 @@ const NavBar = () => {
               <Link to="/login">
               <ReactBootStrap.NavDropdown.Item href="#login">Login</ReactBootStrap.NavDropdown.Item>
               </Link>
+
               <ReactBootStrap.NavDropdown.Item href="#logout">Logout</ReactBootStrap.NavDropdown.Item>
               <ReactBootStrap.NavDropdown.Divider />
               <ReactBootStrap.NavDropdown.Item href="#subscribe">Subscribe</ReactBootStrap.NavDropdown.Item>
