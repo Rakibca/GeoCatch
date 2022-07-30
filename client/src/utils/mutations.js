@@ -28,7 +28,7 @@ export const ADD_IMAGE = gql`
 `;
 
 export const UPDATE_IMAGE = gql`
-  mutation updateImage(_id:ID!, $image: String, $location: [Float], $title: String) {
+  mutation updateImage($_id:ID!, $image: String, $location: [Float], $title: String) {
     updateImage(_id: $_id, image: $image, location: $location, title: $title) {
       _id
     image
@@ -44,7 +44,7 @@ export const UPDATE_IMAGE = gql`
 `;
 
 export const DELETE_IMAGE = gql`
-  mutation deleteImage(_id:ID!) {
+  mutation deleteImage($_id:ID!) {
     deleteImage(_id: $_id) {
       _id
 

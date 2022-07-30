@@ -12,15 +12,14 @@ FEATURES:
     - DUMMY DATABASE OF USER GEOCATCHES
 */
 
-import React, { useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+import React from 'react';
+// import { useQuery } from '@apollo/client';
+import MapBox from '../../components/MapBox/MapBox';
 
 const Home = () => {
-    const [markerList, setMarkerList] = useState([]);
-
-    useEffect(() => {
-        const getMarkerList = async () => {
-            
-        }
-    })
+    return (
+        <MapBox />
+    )
 }
+
+export default Home;
