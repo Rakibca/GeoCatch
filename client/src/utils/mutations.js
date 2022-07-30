@@ -46,11 +46,8 @@ export const UPDATE_IMAGE = gql`
 export const DELETE_IMAGE = gql`
   mutation deleteImage(_id:ID!) {
     deleteImage(_id: $_id) {
-
-    user {
       _id
-      username
-    }
+
     }
   }
 `;
@@ -76,22 +73,21 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_USER = gql`
+export const UPDATE_USER = gql`
   mutation addUser(
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-    $password: String!
+    $_id: ID!
+    $username: String
+    $email: String
+    $password: String
   ) {
-    addUser(
-      firstName: $firstName
-      lastName: $lastName
+    updateUser(
+      userName: $username
       email: $email
       password: $password
     ) {
-      token
       user {
         _id
+        username
       }
     }
   }
@@ -101,9 +97,9 @@ export const DELETE_USER = gql`
   mutation deleteUser(
     $_id: ID!
   ) {
-    deleteUser()
+    deleteUser(_id: $_id) {
+      _id
 
- 
     }
-
+  }
 `;

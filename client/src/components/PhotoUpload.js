@@ -4,7 +4,7 @@ The photo upload updates the image database and the map database with a new mark
 Photo upload should be able to be found on map and active GeoCatches after upload and sync
 */
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 // import { useStudentContext } from '../utils/StudentContext';
 import EXIF from 'exif-js';
 import '../index.css';
@@ -71,9 +71,6 @@ export default function PhotoUpload() {
     const [newImage, setNewImage] = useState("");
     const ref = useRef(null);
     const ref2 = useRef(null);
-
-
-
 
         const imgInput = ref.current;
         let uploadedImage ="";
