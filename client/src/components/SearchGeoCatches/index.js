@@ -10,9 +10,9 @@ import {
   CardColumns
 } from 'react-bootstrap';
 
-import Auth from '../utils/auth';
-import {saveImage, searchGoogleImages} from '../utils/API';
-import {saveImageIds, getSavedImageIds} from '../utils/localStorage';
+import Auth from '../../utils/auth';
+import {saveImage, searchGoogleImages} from '../../utils/API';
+import {saveImageIds, getSavedImageIds} from '../../utils/localStorage';
 
 const SearchImages = () => {
   // create state for holding returned google api data
