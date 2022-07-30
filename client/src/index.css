@@ -3,21 +3,22 @@
 @tailwind utilities;
 
 body {
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #404040;
-  font: 400 15px/22px 'Source Sans Pro', 'Rubik Mono One', sans-serif;
-  margin: 0;
-  padding: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 * {
   box-sizing: border-box;
 }
-
 
 /* .sidebar {
   position: absolute;
