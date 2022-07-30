@@ -37,6 +37,9 @@ const NavBar = () => {
                   <Nav.Link as={Link} to='/saved'>
                     See Your images
                   </Nav.Link>
+                  <Nav.Link as={Link} to='/upload'>
+                    Upload a new image
+                  </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (

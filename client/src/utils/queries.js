@@ -1,70 +1,63 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_PRODUCTS = gql`
-  query getProducts($category: ID) {
-    products(category: $category) {
+export const QUERY_IMAGE = gql`
+  query getImages($id: ID!) {
+  image(_id: $id) {
+    _id
+    image
+    title
+    location
+    dateTaken
+    user {
       _id
-      name
-      description
-      price
-      quantity
-      image
-      category {
-        _id
-      }
+      username
     }
   }
+}
 `;
 
-export const QUERY_CHECKOUT = gql`
-  query getCheckout($products: [ID]!) {
-    checkout(products: $products) {
-      session
+export const QUERY_IMAGES = gql`
+  query getImages{
+  images {
+    _id
+    image
+    title
+    location
+    dateTaken
+    user {
+      _id
+      username
     }
   }
+}
 `;
 
-export const QUERY_ALL_PRODUCTS = gql`
-  {
-    products {
-      _id
-      name
-      description
-      price
-      quantity
-      category {
-        name
-      }
+export const QUERY_IMAGEAREA = gql`
+  query getImages($latitude: Float!, $longitude: Float!, $radius: Float!) {
+  imageArea(latitude: $latitude, longitude: $longitude, radius: $radius) {
+    location
+    title
+    user {
+      username
     }
   }
-`;
-
-export const QUERY_CATEGORIES = gql`
-  {
-    categories {
-      _id
-      name
-    }
   }
 `;
 
 export const QUERY_USER = gql`
   {
     user {
-      firstName
-      lastName
-      orders {
-        _id
-        purchaseDate
-        products {
-          _id
-          name
-          description
-          price
-          quantity
-          image
-        }
-      }
+      _id
+    username
+    email
+    password
+    savedImages {
+      _id
+      image
+      title
+      location
+      dateTaken
     }
   }
+}
 `;

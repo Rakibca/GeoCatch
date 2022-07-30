@@ -5,10 +5,9 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    imageArea: async (parent, { latitude, longitude, radius }) => {
-      // const params = {latitude: latitude, longitude: longitude, radius: radius};
+    imageArea: async (parent, { location, radius }) => {
 
-      return await Image.find( {location: { $geoWithin: { $center: [ [latitude, longitude], radius/1000]}}});
+      return await Image.find( {location: { $geoWithin: { $center: [ [location], radius/1000]}}});
     },
     images: async () => {
       return await Image.find({}).populate('users');
@@ -72,10 +71,10 @@ const resolvers = {
 
       return { token, user };
     },
-    addImage: async (parent, { image, title, location }, context) => {
+    addImage: async (parent, { imageURL, location, title }, context) => {
 
       if (context.user) {
-        const image = await Image.Create({image, title, location});
+        const image = await Image.Create({imageURL, location, title});
         await User.findByIdAndUpdate(context.user._id, { $push: { images: image } });
 
         return image;

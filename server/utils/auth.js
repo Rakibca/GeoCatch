@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { isValidObjectId } = require('mongoose');
 
 // set token secret and expiration date
 const secret = 'mysecrets';
@@ -8,12 +9,12 @@ module.exports = {
   // function for our authenticated routes
   authMiddleware: function (req, res, next) {
     req.user = {
-      _id: 123,
-      email:"nathanh635@gmail.com",
-      password: "123456"
+      username: "Nate",
+      email:"nate@gmail.com",
+      _id: "62e2daeda656ec21bcc0855a",
     }
-    next();
-    return;
+    return req;
+
     // allows token to be sent via  req.query or headers
     let token = req.query.token || req.headers.authorization;
 
