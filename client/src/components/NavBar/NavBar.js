@@ -16,6 +16,10 @@ import './navbar.css';
 import Auth from '../../utils/auth';
 
 const NavBar = () => {
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
   return(
       <div className="background">
           <ReactBootStrap.Navbar collapseOnSelect expand="xl" bg="warning" variant="light">
@@ -34,7 +38,7 @@ const NavBar = () => {
           <Link to="/upload">
           <ReactBootStrap.Nav.Link href="#upload">GeoCatch Upload</ReactBootStrap.Nav.Link>
           </Link>
-          <Link to="/profile">
+          <Link to="/me">
           <ReactBootStrap.Nav.Link href="#profile">Profile</ReactBootStrap.Nav.Link>
           </Link>
           </div>
@@ -47,7 +51,7 @@ const NavBar = () => {
               <ReactBootStrap.NavDropdown.Item href="#login">Login</ReactBootStrap.NavDropdown.Item>
               </Link>
 
-              <ReactBootStrap.NavDropdown.Item href="#logout">Logout</ReactBootStrap.NavDropdown.Item>
+              <ReactBootStrap.NavDropdown.Item onClick={logout}>Logout</ReactBootStrap.NavDropdown.Item>
               <ReactBootStrap.NavDropdown.Divider />
               <ReactBootStrap.NavDropdown.Item href="#subscribe">Subscribe</ReactBootStrap.NavDropdown.Item>
             </ReactBootStrap.NavDropdown>

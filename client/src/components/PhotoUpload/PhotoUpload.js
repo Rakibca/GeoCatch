@@ -2,50 +2,79 @@
 The photo upload updates the image database and the map database with a new marker
 Photo upload should be able to be found on map and active GeoCatches after upload and sync */
 
-import React, {useRef, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 // import { useStudentContext } from '../utils/StudentContext';
 import EXIF from 'exif-js';
-import '../index.css';
+import '../../index.css';
 import {ADD_IMAGE} from '../../utils/mutations';
 import {useMutation} from '@apollo/client';
+import ImageMeta from './ImageMeta';
 
 export default function PhotoUpload() {
+
 
   const [addImage, {
       error
     }
   ] = useMutation(ADD_IMAGE);
 
-  function getExif(img1) {
 
-    EXIF.getData(img1, function() {
-      let allData = EXIF.getAllTags(this);
 
-      let latdegrees = (allData.GPSLatitude[0].numerator) / (allData.GPSLatitude[0].denominator);
-      let latminutes = (allData.GPSLatitude[1].numerator) / (allData.GPSLatitude[1].denominator);
-      let latseconds = (allData.GPSLatitude[2].numerator) / (allData.GPSLatitude[2].denominator);
+//   function waitForElm(selector) {
+//     return new Promise(resolve => {
+//         if (document.querySelector(selector)) {
+//             return resolve(document.querySelector(selector));
+//         }
 
-      let latitude = latdegrees + (latminutes / 60) + (latseconds / 3600);
+//         const observer = new MutationObserver(mutations => {
+//             if (document.querySelector(selector)) {
+//                 resolve(document.querySelector(selector));
+//                 observer.disconnect();
+//             }
+//         });
 
-      if (EXIF.getTag(this, "GPSLatitudeRef") === "S") {
-        latitude = -latitude
-      }
+//         observer.observe(document.body, {
+//             childList: true,
+//             subtree: true
+//         });
+//     });
+// }
 
-      let longdegrees = (allData.GPSLongitude[0].numerator) / (allData.GPSLongitude[0].denominator);
-      let longminutes = (allData.GPSLongitude[1].numerator) / (allData.GPSLongitude[1].denominator);
-      let longseconds = (allData.GPSLongitude[2].numerator) / (allData.GPSLongitude[2].denominator);
 
-      let longitude = longdegrees + (longminutes / 60) + (longseconds / 3600);
 
-      if (EXIF.getTag(this, "GPSLongitudeRef") === "W") {
-        longitude = -longitude
-      }
-      console.log(latitude + ", " + longitude)
+// function getExif(img1) {
 
-      return [latitude, longitude];
+//     EXIF.getData(img1, function() {
+//       let myData = this;
 
-    })
-  }
+//       console.log(myData.exifdata)
+
+//       // let latdegrees = (exifdata.GPSLatitude[0].numerator) / (exifdata.GPSLatitude[0].denominator);
+//       // let latminutes = (exifdata.GPSLatitude[1].numerator) / (exifdata.GPSLatitude[1].denominator);
+//       // let latseconds = (exifdata.GPSLatitude[2].numerator) / (exifdata.GPSLatitude[2].denominator);
+
+//       // let latitude = latdegrees + (latminutes / 60) + (latseconds / 3600);
+
+//       // if (exifdata.GPSLatitudeRef === "S") {
+//       //   latitude = -latitude
+//       // }
+
+//       // let longdegrees = (exifdata.GPSLongitude[0].numerator) / (exifdata.GPSLongitude[0].denominator);
+//       // let longminutes = (exifdata.GPSLongitude[1].numerator) / (exifdata.GPSLongitude[1].denominator);
+//       // let longseconds = (exifdata.GPSLongitude[2].numerator) / (exifdata.GPSLongitude[2].denominator);
+
+//       // let longitude = longdegrees + (longminutes / 60) + (longseconds / 3600);
+
+//       // if (exifdata.GPSLongitudeRef === "W") {
+//       //   longitude = -longitude
+//       // }
+//       // console.log(latitude + ", " + longitude)
+
+//       // return [latitude, longitude];
+
+//     })
+//   }
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -56,13 +85,17 @@ export default function PhotoUpload() {
       const {data} = addImage({
         variables: {
           newImage,
-          newLocation,
+          newLatitude, newLongitude,
           newTitle
         }
       });
 
-      window.location.reload();
-      console.log("Image added successfully!")
+
+      console.log(newImage);
+      console.log(newLatitude);
+      console.log(newLongitude);
+      console.log(newTitle);
+      //window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -71,42 +104,49 @@ export default function PhotoUpload() {
   // const { students, addStudent, removeStudent, majors } = useStudentContext();
 
   const [newTitle, setNewTitle] = useState('');
-  const [newLocation, setNewLocation] = useState([]);
-  const [newImage, setNewImage] = useState("");
-  const ref = useRef(null);
-  const ref2 = useRef(null);
+  const [newLatitude, setNewLatitude] = useState();
+  const [newLongitude, setNewLongitude] = useState();
+  const [newImage, setNewImage] = useState(null);
+  // getExif(document.getElementById("the-img"));
+  
+  // useEffect(() => {
+  //   getExif(document.getElementById("the-img"));
+  // }, [newImage]);
 
-  const imgInput = ref.current;
-  let uploadedImage = "";
-  const display = ref2.current;
+  // const imgInput = document.querySelector("image_input");
+  // let uploadedImage = "";
+  // const display = document.querySelector("display");
 
-  imgInput.addEventListener("change", function() {
-    const reader = new FileReader();
-    reader.addEventListener("load", () => {
-      uploadedImage = reader.result;
-      display.style.backgroundImage = `url(${uploadedImage})`;
-    });
-    reader.readAsDataURL(this.files[0]);
-    setNewImage(uploadedImage);
-    let location = getExif(uploadedImage);
+  // if (imgInput) {
 
-    setNewLocation(location[0], location[1]);
+  // imgInput.addEventListener("change", function() {
+  //   const reader = new FileReader();
+  //   reader.addEventListener("load", () => {
+  //     uploadedImage = reader.result;
+  //     display.style.backgroundImage = `url(${uploadedImage})`;
+  //   });
+  //   reader.readAsDataURL(this.files[0]);
+  //   setNewImage(uploadedImage);
+  //   let location = getExif(uploadedImage);
 
-  });
+  //   setNewLatitude(location[0])
+  //   setNewLongitude(location[1]);
+
+  // })  };
 
   return (<div>
     <form onSubmit={handleFormSubmit}>
       <h4>Upload a photo:</h4>
-      <input ref={ref} type="file" id="image_input" accept="image/png, image/jpg, image/jpeg"></input>
 
-      <div ref={ref2} id="display"></div>
+      <ImageMeta setLat={setNewLatitude} setLong={setNewLongitude}/>
 
       <div className="photo-upload">
+        <label>Title:</label>
         <input onChange={(e) => setNewTitle(e.target.value)} placeholder="Title" type="text" value={newTitle}/>
-
-        <input onChange={(e) => setNewLocation[0](e.target.value)} placeholder="Enter latitude" type="number" value={newLocation[0]}/>
-
-        <input onChange={(e) => setNewLocation[1](e.target.value)} placeholder="Enter longitude" type="number" value={newLocation[1]}/>
+        <label>latitude:</label>
+        <input onChange={(e) => setNewLatitude(e.target.value)} placeholder="Enter latitude" type="number" value={newLatitude}/>
+        <label>longitude:</label>
+        <input onChange={(e) => setNewLongitude(e.target.value)} placeholder="Enter longitude" type="number" value={newLongitude}/>
 
         <button type="submit">
           Add Geocatch
