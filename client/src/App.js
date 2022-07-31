@@ -6,7 +6,7 @@ import {ChakraProvider} from '@chakra-ui/react';
 // import MapBox from './components/MapBox/MapBox';
 import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
-
+import Geocatch from './pages/Geocatch/Geocatch';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Home from './pages/Home/Home';
@@ -15,34 +15,74 @@ import Profile from './pages/Profile/Profile';
 import './index.css';
 import './App.css';
 
-import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
-const client = new ApolloClient({uri: '/graphql', cache: new InMemoryCache()});
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('id_token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 function App() {
-  return (<ChakraProvider>
+  return (
     <ApolloProvider client={client}>
+    <ChakraProvider>
+    <Router>
+      <NavBar />
+      <div className="page-container">
+        <div className="content-wrap">
+      <Routes>
 
-      <Router>
-        <NavBar/>
-        <div className="page-container">
-          <div className="content-wrap">
-            <Routes>
+        <Route 
+                path="/" 
+                element={<Home />} 
+              />
+              {/* Define a route that will take in variable data */}
+        <Route 
+                path="/users/:userId" 
+                element={<Profile />} 
+              />
+                            <Route 
+                path="/login" 
+                element={<Login />} 
+              />
 
-              <Route path="/" element={<Home />}/> {/* Define a route that will take in variable data */}
-              <Route path="/profiles/:profileId" element={<Profile />}/>
-              <Route path="/login" element={<Login />}/>
-              <Route path="/signup" element={<Signup />}/>
+        <Route 
+                path="/signup" 
+                element={<Signup />} 
+              />
 
-            </Routes>
-          </div>
-          <Footer/>
-        </div>
-      </Router>
+        <Route 
+                path="/geocatches/:geocatchId" 
+                element={<Geocatch />} 
+              />
+    </Routes>
+    </div>
+      <Footer />
+    </div>
+    </Router>
 
-    </ApolloProvider>
-  </ChakraProvider>);
+
+        </ChakraProvider>
+        </ApolloProvider>);
 }
 
 export default App;

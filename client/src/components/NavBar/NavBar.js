@@ -13,6 +13,7 @@ import {
     Link
 } from "react-router-dom";
 import './navbar.css';
+import Auth from '../../utils/auth';
 
 const NavBar = () => {
   return(
@@ -28,12 +29,16 @@ const NavBar = () => {
           <Link to="/map">
           <ReactBootStrap.Nav.Link href="#map">GeoCatch Map</ReactBootStrap.Nav.Link>
           </Link>
+          {Auth.loggedIn() ? (
+<div>
           <Link to="/upload">
-          <ReactBootStrap.Nav.Link href="#pricing">GeoCatch Upload</ReactBootStrap.Nav.Link>
+          <ReactBootStrap.Nav.Link href="#upload">GeoCatch Upload</ReactBootStrap.Nav.Link>
           </Link>
           <Link to="/profile">
           <ReactBootStrap.Nav.Link href="#profile">Profile</ReactBootStrap.Nav.Link>
           </Link>
+          </div>
+):(<span />)}
             <ReactBootStrap.NavDropdown title="User" id="collasible-nav-dropdown">
             <Link to="/signup">
               <ReactBootStrap.NavDropdown.Item href="#signup">Signup</ReactBootStrap.NavDropdown.Item>

@@ -31,5 +31,8 @@
   "devDependencies": {
     "concurrently": "^5.1.0",
     "graphql": "^16.5.0"
+  },
+  "dependencies": {
+    "exif-js": "^2.3.0"
   }
 }

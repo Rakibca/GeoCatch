@@ -13,6 +13,7 @@ const imageSchema = new Schema({
   title: {
     type: String,
     required: true,
+    default: ""
   },
   location: [{
     type: Number,
@@ -23,7 +24,6 @@ const imageSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  
 
 });
 

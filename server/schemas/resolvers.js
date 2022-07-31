@@ -74,8 +74,8 @@ const resolvers = {
     addImage: async (parent, { imageURL, location, title }, context) => {
 
       if (context.user) {
-        const image = await Image.Create({imageURL, location, title});
-        await User.findByIdAndUpdate(context.user._id, { $push: { images: image } });
+        const image = await Image.create({imageURL, location, title});
+        await User.findByIdAndUpdate(context.user._id, { $push: { posts: image } });
 
         return image;
       }
