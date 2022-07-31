@@ -15,54 +15,34 @@ import Profile from './pages/Profile/Profile';
 import './index.css';
 import './App.css';
 
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
-const client = new ApolloClient({
-  uri: '/graphql',
-  cache: new InMemoryCache(),
-});
+const client = new ApolloClient({uri: '/graphql', cache: new InMemoryCache()});
 
 function App() {
-  return (
-    <ChakraProvider>
+  return (<ChakraProvider>
     <ApolloProvider client={client}>
 
-    <Router>
-      <NavBar />
-      <div className="page-container">
-        <div className="content-wrap">
-      <Routes>
+      <Router>
+        <NavBar/>
+        <div className="page-container">
+          <div className="content-wrap">
+            <Routes>
 
-        <Route 
-                path="/" 
-                element={<Home />} 
-              />
-              {/* Define a route that will take in variable data */}
-              <Route 
-                path="/profiles/:profileId" 
-                element={<Profile />} 
-              />
-                            <Route 
-                path="/login" 
-                element={<Login />} 
-              />
+              <Route path="/" element={<Home />}/> {/* Define a route that will take in variable data */}
+              <Route path="/profiles/:profileId" element={<Profile />}/>
+              <Route path="/login" element={<Login />}/>
+              <Route path="/signup" element={<Signup />}/>
 
-<Route 
-                path="/signup" 
-                element={<Signup />} 
-              />
+            </Routes>
+          </div>
+          <Footer/>
+        </div>
+      </Router>
 
-
-
-    </Routes>
-    </div>
-      <Footer />
-    </div>
-    </Router>
-
-        </ApolloProvider>
-        </ChakraProvider>);
+    </ApolloProvider>
+  </ChakraProvider>);
 }
 
 export default App;
