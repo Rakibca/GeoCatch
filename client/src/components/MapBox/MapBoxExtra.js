@@ -1,5 +1,3 @@
-
-
 // import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 // import Geocoder from 'react-mapbox-gl-geocoder'
 // import stores from './map/GeoJSON'
@@ -26,7 +24,7 @@
   //     /////////////////////Call GeoJSON.js file///////////////////
   // stores.features.forEach((store, i) => {
   //   store.properties.id = i;
-  // });  
+  // });
 
   //   /**
   //    * Assign a unique id to each store. You'll use this `id`
@@ -291,7 +289,7 @@
 
   //     const popup = new mapboxgl.Popup({closeOnClick: false}).setLngLat(currentFeature.geometry.coordinates).setHTML(`<h3>Location</h3><h4>${currentFeature.properties.address}</h4>`).addTo(map);
   //   }
-  
+
 
 //   return (<div>
 //     <div>
