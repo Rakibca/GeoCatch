@@ -16,6 +16,17 @@ export const QUERY_IMAGE = gql`
 }
 `;
 
+export const QUERY_ME = gql`
+  query me {
+    me {
+      _id
+      username
+      posts
+      catches
+    }
+  }
+`;
+
 export const QUERY_IMAGES = gql`
   query getImages{
   images {

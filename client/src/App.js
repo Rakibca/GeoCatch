@@ -12,6 +12,7 @@ import Signup from './pages/Signup/Signup';
 import Home from './pages/Home/Home';
 // import PhotoUpload from './components/PhotoUpload/PhotoUpload';
 import Profile from './pages/Profile/Profile';
+import PhotoUpload from './components/PhotoUpload/PhotoUpload';
 import './index.css';
 import './App.css';
 
@@ -57,7 +58,7 @@ function App() {
               />
               {/* Define a route that will take in variable data */}
         <Route 
-                path="/users/:userId" 
+                path="/me" 
                 element={<Profile />} 
               />
                             <Route 
@@ -69,10 +70,18 @@ function App() {
                 path="/signup" 
                 element={<Signup />} 
               />
+                      <Route 
+                path="/upload" 
+                element={<PhotoUpload />} 
+              />
 
         <Route 
                 path="/geocatches/:geocatchId" 
                 element={<Geocatch />} 
+              />
+        <Route 
+                path="/users/:userId"
+                element={<Profile />}
               />
     </Routes>
     </div>

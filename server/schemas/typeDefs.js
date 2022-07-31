@@ -29,6 +29,7 @@ const typeDefs = gql`
     image(_id: ID!): Image
     imageArea(latitude: Float!, longitude: Float!, radius: Float!): [Image]
     user(_id: ID!): User
+    me: User
   }
 
   type Mutation {

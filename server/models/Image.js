@@ -3,8 +3,8 @@ const dateFormat = require('../utils/dateFormat');
 
 const imageSchema = new Schema({
   image: {
-    type: String,
-    required: true,
+    data: Buffer,
+    contentType: String
   },
   user:       {
     type: Schema.Types.ObjectId,
