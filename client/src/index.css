@@ -144,8 +144,8 @@ a:hover {
   cursor: pointer;
   height: 56px;
   width: 56px;
-  /* background-image: url(marker.png); */
-}
+  /* background-image: url(marker.png); 
+}*/
 
 /* Marker tweaks */
 .mapboxgl-popup {

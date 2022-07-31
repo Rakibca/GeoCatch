@@ -54,14 +54,12 @@ export const DELETE_IMAGE = gql`
 
 export const ADD_USER = gql`
   mutation addUser(
-    $firstName: String!
-    $lastName: String!
+    $username: String!
     $email: String!
     $password: String!
   ) {
     addUser(
-      firstName: $firstName
-      lastName: $lastName
+      username: $username
       email: $email
       password: $password
     ) {
@@ -74,8 +72,7 @@ export const ADD_USER = gql`
 `;
 
 export const UPDATE_USER = gql`
-  mutation addUser(
-    $_id: ID!
+  mutation updateUser(
     $username: String
     $email: String
     $password: String
