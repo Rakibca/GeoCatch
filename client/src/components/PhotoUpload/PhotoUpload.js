@@ -8,7 +8,7 @@ import EXIF from 'exif-js';
 import '../../index.css';
 import {ADD_IMAGE} from '../../utils/mutations';
 import {useMutation} from '@apollo/client';
-import baseImage from '../../assets/PXL_20220717_150849466.jpg'
+import ImageMeta from './ImageMeta';
 
 export default function PhotoUpload() {
 
@@ -42,38 +42,38 @@ export default function PhotoUpload() {
 
 
 
-function getExif(img1) {
+// function getExif(img1) {
 
-    EXIF.getData(img1, function() {
-      let myData = this;
+//     EXIF.getData(img1, function() {
+//       let myData = this;
 
-      console.log(myData.exifdata)
+//       console.log(myData.exifdata)
 
-      // let latdegrees = (exifdata.GPSLatitude[0].numerator) / (exifdata.GPSLatitude[0].denominator);
-      // let latminutes = (exifdata.GPSLatitude[1].numerator) / (exifdata.GPSLatitude[1].denominator);
-      // let latseconds = (exifdata.GPSLatitude[2].numerator) / (exifdata.GPSLatitude[2].denominator);
+//       // let latdegrees = (exifdata.GPSLatitude[0].numerator) / (exifdata.GPSLatitude[0].denominator);
+//       // let latminutes = (exifdata.GPSLatitude[1].numerator) / (exifdata.GPSLatitude[1].denominator);
+//       // let latseconds = (exifdata.GPSLatitude[2].numerator) / (exifdata.GPSLatitude[2].denominator);
 
-      // let latitude = latdegrees + (latminutes / 60) + (latseconds / 3600);
+//       // let latitude = latdegrees + (latminutes / 60) + (latseconds / 3600);
 
-      // if (exifdata.GPSLatitudeRef === "S") {
-      //   latitude = -latitude
-      // }
+//       // if (exifdata.GPSLatitudeRef === "S") {
+//       //   latitude = -latitude
+//       // }
 
-      // let longdegrees = (exifdata.GPSLongitude[0].numerator) / (exifdata.GPSLongitude[0].denominator);
-      // let longminutes = (exifdata.GPSLongitude[1].numerator) / (exifdata.GPSLongitude[1].denominator);
-      // let longseconds = (exifdata.GPSLongitude[2].numerator) / (exifdata.GPSLongitude[2].denominator);
+//       // let longdegrees = (exifdata.GPSLongitude[0].numerator) / (exifdata.GPSLongitude[0].denominator);
+//       // let longminutes = (exifdata.GPSLongitude[1].numerator) / (exifdata.GPSLongitude[1].denominator);
+//       // let longseconds = (exifdata.GPSLongitude[2].numerator) / (exifdata.GPSLongitude[2].denominator);
 
-      // let longitude = longdegrees + (longminutes / 60) + (longseconds / 3600);
+//       // let longitude = longdegrees + (longminutes / 60) + (longseconds / 3600);
 
-      // if (exifdata.GPSLongitudeRef === "W") {
-      //   longitude = -longitude
-      // }
-      // console.log(latitude + ", " + longitude)
+//       // if (exifdata.GPSLongitudeRef === "W") {
+//       //   longitude = -longitude
+//       // }
+//       // console.log(latitude + ", " + longitude)
 
-      // return [latitude, longitude];
+//       // return [latitude, longitude];
 
-    })
-  }
+//     })
+//   }
 
 
   const handleFormSubmit = async (event) => {
@@ -107,11 +107,11 @@ function getExif(img1) {
   const [newLatitude, setNewLatitude] = useState();
   const [newLongitude, setNewLongitude] = useState();
   const [newImage, setNewImage] = useState(null);
-  getExif(document.getElementById("the-img"));
+  // getExif(document.getElementById("the-img"));
   
-  useEffect(() => {
-    getExif(document.getElementById("the-img"));
-  }, [newImage]);
+  // useEffect(() => {
+  //   getExif(document.getElementById("the-img"));
+  // }, [newImage]);
 
   // const imgInput = document.querySelector("image_input");
   // let uploadedImage = "";
@@ -138,29 +138,7 @@ function getExif(img1) {
     <form onSubmit={handleFormSubmit}>
       <h4>Upload a photo:</h4>
 
-        <div>
-        <img id="the-img" alt="not found" width={"500px"} src={require("../../assets/PXL_20220717_150849466.jpg")}/>
-        <br />
-        <button onClick={()=>setNewImage(null)}>Remove</button>
-        </div>
-
-      <br />
-     
-      <br /> 
-      <input
-        type="file"
-        name="myImage"
-        class
-        onChange={(event) => {
-          console.log(event.target.files);
-          setNewImage(event.target.files[0]);
-          
-
-          // let location = getExif(newImage);
-          // setNewLatitude(location[0])
-          // setNewLongitude(location[1]);
-        }}
-      />
+      <ImageMeta setLat={setNewLatitude} setLong={setNewLongitude}/>
 
       <div className="photo-upload">
         <label>Title:</label>
