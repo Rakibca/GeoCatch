@@ -15,6 +15,7 @@ import Profile from './pages/Profile/Profile';
 import './index.css';
 import './App.css';
 
+
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
