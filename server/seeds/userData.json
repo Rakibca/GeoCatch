@@ -2,27 +2,37 @@
     {
         "username": "Trenty",
         "email": "trenty@gmail.com",
-        "password": "123456abc"
+        "password": "123456abc",
+        "posts": [],
+        "catches": []
     },
     {
         "username": "Nate",
         "email": "nate@gmail.com",
-        "password": "123456abc"
+        "password": "123456abc",
+        "posts": [],
+        "catches": []
     },
     {
 
         "username": "Rakibul",
         "email": "rakibul@gmail.com",
-        "password": "123456abc"
+        "password": "123456abc",
+        "posts": [],
+        "catches": []
     },
     {
         "username": "Bugs",
         "email": "bugs@gmail.com",
-        "password": "123456abc"
+        "password": "123456abc",
+        "posts": [],
+        "catches": []
     },
     {
         "username": "Daffy",
         "email": "daffy@gmail.com",
-        "password": "123456abc"
+        "password": "123456abc",
+        "posts": [],
+        "catches": []
     }
 ]

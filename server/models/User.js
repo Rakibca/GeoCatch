@@ -22,7 +22,8 @@ const userSchema = new Schema(
       required: true,
     },
     // set savedImages to be an array of data that adheres to the imageSchema
-    savedImages: [Image.schema],
+    posts: [Image.schema],
+    catches: [Image.schema],
   },
   // set this to use virtual below
   {

@@ -6,7 +6,8 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    savedImages: [Image]
+    posts: [Image]
+    catches: [Image]
   }
 
   type Image {
@@ -32,7 +33,7 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    updateUser(_id: ID!, username: String, email: String, password: String): User
+    updateUser(username: String, email: String, password: String): User
     deleteUser(_id: ID!): User
     addImage(image: String!, location: [Float]!, title: String ): Image
     updateImage(_id: ID!, image: String, location: [Float], title: String): Image
