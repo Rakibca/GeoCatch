@@ -18,7 +18,10 @@ import MapBox from '../../components/MapBox/MapBox';
 
 const Home = () => {
     return (
+        <div>
+        <h3>Who will you Geocatch?</h3>
         <MapBox />
+        </div>
     )
 }
 

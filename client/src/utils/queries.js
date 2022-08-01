@@ -47,6 +47,7 @@ export const QUERY_IMAGEAREA = gql`
   query getImages($latitude: Float!, $longitude: Float!, $radius: Float!) {
   imageArea(latitude: $latitude, longitude: $longitude, radius: $radius) {
     location
+    image
     title
     user {
       username
