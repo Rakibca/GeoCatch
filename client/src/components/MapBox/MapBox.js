@@ -10,9 +10,32 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import * as turf from '@turf/turf'
 import '../../index.css';
+import MapList from '.././MapList/MapList';
+import { useQuery } from '@apollo/client';
+import { QUERY_IMAGES } from '../../utils/queries';
 //import './GeoJSON.js';
 
 export default function MapBox() {
+
+  const { loading, data } = useQuery(QUERY_IMAGES);
+  let images = data?.images || [];
+
+  var myGeoJSON = {};
+  myGeoJSON.type = "FeatureCollection";
+  myGeoJSON.features = [];
+  for (let i = 0; i<images.length;i++) {
+    myGeoJSON.features[i] = {
+      type: "Feature",
+      properties: {
+        ID: i+1,
+        photoTaken: "yes"
+      },
+      geometry: {
+        type: "Point",
+        coordinates: [images[i].location[1], images[i].location[0]]
+      }
+    }
+  }
 
  useEffect(() => {
   mapboxgl.accessToken = 'pk.eyJ1IjoicmFraWJjYSIsImEiOiJjbDY5YzZmcGQwcjlnM2tyenJneG9lZTU2In0.e1P3M69Z9tvm0uMWghC1xA';
@@ -191,15 +214,19 @@ export default function MapBox() {
   map.on('click', function(e) {
     var eventLngLat = [e.lngLat.lng, e.lngLat.lat];
     console.log(eventLngLat)
-    var searchRadius = makeRadius(eventLngLat, 5000);
+    let radius = 5000
+    var searchRadius = makeRadius(eventLngLat, radius);
     map.getSource('search-radius').setData(searchRadius);
-    var featuresInBuffer = spatialJoin(photos, searchRadius);
+    var featuresInBuffer = spatialJoin(myGeoJSON, searchRadius);
     map.getSource('photo-truth').setData(turf.featureCollection(featuresInBuffer));
     //console.log(turf.featureCollection(featuresInBuffer));
     //console.log(featuresInBuffer.length);
     if (featuresInBuffer.length > 0) {
-      alert('You are near to my photo location');
+      alert(`There are ${featuresInBuffer.length} geocatches within ${radius/1000} km!`);
+    } else {
+      alert(`There are no geocatches in the area yet!`);
     }
+
   });
 
   //makeRadius function goes here!
@@ -211,6 +238,7 @@ export default function MapBox() {
 
   //spatialJoin function goes here!
   function spatialJoin(sourceGeoJSON, filterFeature) {
+    console.log(sourceGeoJSON)
     // Loop through all the features in the source geojson and return the ones that
     // are inside the filter feature (buffered radius) and are confirmed landing sites
     var joined = sourceGeoJSON.features.filter(function(feature) {

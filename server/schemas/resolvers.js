@@ -5,9 +5,9 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    imageArea: async (parent, { location, radius }) => {
+    imageArea: async (parent, { latitude, longitude, radius }) => {
 
-      return await Image.find( {location: { $geoWithin: { $center: [ [location], radius/1000]}}});
+      return await Image.find( {location: { $geoWithin: { $center: [ [latitude, longitude], radius/1000]}}});
     },
     images: async () => {
       return await Image.find({}).populate('users');
