@@ -7,7 +7,7 @@ import {ChakraProvider} from '@chakra-ui/react';
 import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
 import Geocatch from './pages/Geocatch/Geocatch';
-import Login from './pages/Login/Login';
+import Login from './components/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Home from './pages/Home/Home';
 // import PhotoUpload from './components/PhotoUpload/PhotoUpload';
