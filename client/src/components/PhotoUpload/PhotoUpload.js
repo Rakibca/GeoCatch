@@ -70,9 +70,11 @@ const handleChange = async ({
   console.log(data);
   let location = parseData(data);
   console.log(location)
+  console.log(file)
 
   setNewLongitude(location[1]);
   setNewLatitude(location[0])
+  setNewImage(file);
 
   }
 }
@@ -103,37 +105,7 @@ const handleChange = async ({
     }
   };
 
-  // const { students, addStudent, removeStudent, majors } = useStudentContext();
-
-
-
-  // getExif(document.getElementById("the-img"));
-  
-  // useEffect(() => {
-  //   getExif(document.getElementById("the-img"));
-  // }, [newImage]);
-
-  // const imgInput = document.querySelector("image_input");
-  // let uploadedImage = "";
-  // const display = document.querySelector("display");
-
-  // if (imgInput) {
-
-  // imgInput.addEventListener("change", function() {
-  //   const reader = new FileReader();
-  //   reader.addEventListener("load", () => {
-  //     uploadedImage = reader.result;
-  //     display.style.backgroundImage = `url(${uploadedImage})`;
-  //   });
-  //   reader.readAsDataURL(this.files[0]);
-  //   setNewImage(uploadedImage);
-  //   let location = getExif(uploadedImage);
-
-  //   setNewLatitude(location[0])
-  //   setNewLongitude(location[1]);
-
-  // })  };
-
+ 
   return (<div>
     <form onSubmit={handleFormSubmit}>
       <h4>Upload a photo:</h4>
@@ -146,9 +118,13 @@ const handleChange = async ({
       onChange={handleChange}
     />
     <br/>
-    {/* <pre style={{width:'100%'}}>{
-      JSON.stringify(data, null, 2)
-      }</pre> */}
+    {newImage && (
+    <div>
+        <img alt="not found" width={"500px"} src={URL.createObjectURL(newImage)} />
+        <br />
+   
+        </div>
+             )}
 
       <div className="photo-upload">
         <label>Title:</label>
