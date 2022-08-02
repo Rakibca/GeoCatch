@@ -33,6 +33,7 @@ Can you find {image.user}?
           ))}
       </div>
       </div>
+
   );
 };
 

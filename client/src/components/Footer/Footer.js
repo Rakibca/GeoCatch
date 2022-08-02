@@ -2,45 +2,74 @@
 NavBar is the Footer with three icons/buttons: GeoCatch map, GeoCatch upload image, and User Profile
 GeoCatch map has the map with active markers and an array of active GeoCatch cards beneath the map
 GeoCatch upload image brings up a modal or renders to ask for: Title, Image file, and location
-User profile shows caught/captured GeoCatches and saved/liked GeoCatches to hunt 
+User profile shows caught/captured GeoCatches and saved/liked GeoCatches 
 */
-import React from 'react';
-import "./footer.css";
-import { GoGitBranch } from "react-icons/go";
+import { ButtonGroup, Container, IconButton, Stack, Text } from '@chakra-ui/react';
+import * as React from 'react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import './footer.css';
+import { Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
-const Footer = () => {
-  return (
-    <div className='main-footer'>
-      <div className='container'>
-        <div className='row'>
-          {/* Columns */}
-          <div>
-            <h4>GeoCatch</h4>
-            <ul className='list-unstyled'>
-              <li>Nathan Howes</li>
-              <li>Rakibul Islam</li>
-              <li>Trent Dickson</li>
-            </ul>
-          </div>
-          <div className='col'>
-            <h4>Made With</h4>
-            <ul className='list-unstyled'>
-              <li>MapBox</li>
-              <li>React</li>
-              <li>Apollo-GraphQL</li>
-            </ul>
-          </div>
-        </div>
-        <hr />
-        <div className='row'>
-          <p className='col-sm'>
-            <GoGitBranch/>
-            2022 GeoCatch | All rights reserved | Terms of Service | Privacy
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}
+
+export const Footer = () => (
+<Flex
+  align="center"
+  justify={["center", "space-between", "flex-end", "flex-end"]}
+  direction={["column", "row", "row", "row"]}
+  pt={[4, 4, 0, 0]}
+>
+<Box width="full" height={10}>
+  <Container className="main-footer" as="footer" role="contentinfo" py={{ base: '12', md: '16' }}>
+    <Stack spacing={{ base: '2', md: '5' }}>
+      <Stack width="100%" justify="space-between" direction="row" align="center" className='col-sm'>
+        <ButtonGroup variant="ghost">
+          <IconButton
+            as="a"
+            href="https://www.linkedin.com/in/rakibul-islam-5719451aa/"
+            aria-label="LinkedIn"
+            icon={<FaLinkedin fontSize="1.25rem" />}
+          />
+          <IconButton 
+            as="a" 
+            href="https://github.com/Rakibca" 
+            aria-label="GitHub" 
+            icon={<FaGithub fontSize="1.25rem" />} />
+        </ButtonGroup>
+        <ButtonGroup variant="ghost">
+          <IconButton
+            as="a" 
+            href="https://www.linkedin.com/in/nathan-howes1/"
+            aria-label="LinkedIn"
+            icon={<FaLinkedin fontSize="1.25rem" />}
+          />
+          <IconButton 
+            as="a" 
+            href="https://github.com/nathanh635" 
+            aria-label="GitHub" 
+            icon={<FaGithub fontSize="1.25rem" />} />
+        </ButtonGroup>
+        <ButtonGroup variant="ghost">
+          <IconButton
+            as="a"
+            href="https://www.linkedin.com/in/tad96/"
+            aria-label="LinkedIn"
+            icon={<FaLinkedin fontSize="1.25rem" />}
+          />
+          <IconButton 
+            as="a" 
+            href="https://github.com/tdickson96" 
+            aria-label="GitHub" 
+            icon={<FaGithub fontSize="1.25rem" />} />
+        </ButtonGroup>
+      </Stack>
+      <Text fontSize="md" color="subtle">
+        &copy; {new Date().getFullYear()} Howes, Islam, and Dickson. All rights reserved.
+      </Text>
+    </Stack>
+  </Container>
+</Box>
+</Flex>
+)
 
 export default Footer;
