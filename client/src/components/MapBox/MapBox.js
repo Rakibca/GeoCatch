@@ -18,12 +18,12 @@ import { QUERY_IMAGES } from '../../utils/queries';
 export default function MapBox() {
 
   const { loading, data } = useQuery(QUERY_IMAGES);
-  let images = data?.images || [];
+  let posts = data?.posts || [];
 
   var myGeoJSON = {};
   myGeoJSON.type = "FeatureCollection";
   myGeoJSON.features = [];
-  for (let i = 0; i<images.length;i++) {
+  for (let i = 0; i<posts.length;i++) {
     myGeoJSON.features[i] = {
       type: "Feature",
       properties: {
@@ -32,7 +32,7 @@ export default function MapBox() {
       },
       geometry: {
         type: "Point",
-        coordinates: [images[i].location[1], images[i].location[0]]
+        coordinates: [posts[i].location[1], posts[i].location[0]]
       }
     }
   }
@@ -214,7 +214,7 @@ export default function MapBox() {
   map.on('click', function(e) {
     var eventLngLat = [e.lngLat.lng, e.lngLat.lat];
     console.log(eventLngLat)
-    let radius = 5000
+    let radius = 50000
     var searchRadius = makeRadius(eventLngLat, radius);
     map.getSource('search-radius').setData(searchRadius);
     var featuresInBuffer = spatialJoin(myGeoJSON, searchRadius);

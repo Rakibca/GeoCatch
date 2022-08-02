@@ -2,7 +2,8 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 // import schema from Image.js
-const Image = require('./Image');
+const Post = require('./Post');
+const Catch = require('./Catch');
 
 const userSchema = new Schema(
   {
@@ -22,8 +23,8 @@ const userSchema = new Schema(
       required: true,
     },
     // set savedImages to be an array of data that adheres to the imageSchema
-    posts: [Image.schema],
-    catches: [Image.schema],
+    posts: [Post.schema],
+    catches: [Catch.schema],
   },
   // set this to use virtual below
   {
@@ -49,9 +50,9 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 // when we query a user, we'll also get another field called `imageCount` with the number of saved images we have
-userSchema.virtual('imageCount').get(function () {
-  return this.savedImages.length;
-});
+// userSchema.virtual('imageCount').get(function () {
+//   return this.savedImages.length;
+// });
 
 const User = model('User', userSchema);
 
