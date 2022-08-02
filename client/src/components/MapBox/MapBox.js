@@ -16,13 +16,14 @@ import {QUERY_IMAGES} from '../../utils/queries';
 
 export default function MapBox() {
 
-  const { loading, data } = useQuery(QUERY_IMAGES);
-  let posts = data?.posts || [];
+  const {loading, data} = useQuery(QUERY_IMAGES);
+  let posts = data
+    ?.posts || [];
 
   var myGeoJSON = {};
   myGeoJSON.type = "FeatureCollection";
   myGeoJSON.features = [];
-  for (let i = 0; i<posts.length;i++) {
+  for (let i = 0; i < posts.length; i++) {
     myGeoJSON.features[i] = {
       type: "Feature",
       properties: {
@@ -30,7 +31,10 @@ export default function MapBox() {
       },
       geometry: {
         type: "Point",
-        coordinates: [posts[i].location[1], posts[i].location[0]]
+        coordinates: [
+          posts[i].location[1],
+          posts[i].location[0]
+        ]
       }
     }
   }
@@ -97,37 +101,6 @@ export default function MapBox() {
       }
     ]
   };
-
-  // buildLocationList(photos);
-  //
-  // function buildLocationList(data) {
-  //    Iterate through the list of phtots
-  //   for (var i = 0; i < data.features.length; i++) {
-  //     var currentFeature = data.features[i];
-  //      Shorten data.feature.properties to just 'prop' so we are not
-  //      writing this long form again and again.
-  //     var prop = currentFeature.properties;
-  //      Select the location listing container in the HTML and append a div
-  //      with the class 'item' for each photo
-  //     var listings = document.getElementById('listings');
-  //     var listing = listings.appendChild(document.createElement('div'));
-  //     listing.className = 'item';
-  //     listing.id = 'listing-' + i;
-  //
-  //      Create a new link with the class 'title' for each photo
-  //      and fill it with the title of the GeoCatch location
-  //     var link = listing.appendChild(document.createElement('a'));
-  //     link.href = '#';
-  //     link.className = 'title';
-  //     link.dataPosition = i;
-  //     link.innerHTML = prop.title;
-  //
-  //      Create a new div with the class 'details' for each photo
-  //      and fill it with the image
-  //     var details = listing.appendChild(document.createElement('div'));
-  //     details.innerHTML = prop.image;
-  //   }
-  // }
 
   useEffect(() => {
     mapboxgl.accessToken = 'pk.eyJ1IjoicmFraWJjYSIsImEiOiJjbDY5YzZmcGQwcjlnM2tyenJneG9lZTU2In0.e1P3M69Z9tvm0uMWghC1xA';
@@ -261,9 +234,22 @@ export default function MapBox() {
     <div>
       <div class='sidebar'>
         <div class='heading'>
-          <h1>GeoCatch Locations</h1>
+          <h1>GeoCatch Game Instructions</h1>
         </div>
-        <div id='listings' class='listings'></div>
+        <div class="rules">
+          <div>
+            <p>Signup / Login to play the game.</p>
+          </div>
+          <div>
+            <p>Create a GeoCatch: browse to upload a photo from your computer.</p>
+          </div>
+          <div>
+            <p>In the map choose a GeoCatch area within 5 Km radius.</p>
+          </div>
+          <div>
+            <p>Click on that point in the map. A marker and popup will indicate you are near.</p>
+          </div>
+        </div>
       </div>
       <div id="map"></div>
       <div id="instructions">

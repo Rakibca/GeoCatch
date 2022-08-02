@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   margin: 0;
@@ -12,15 +12,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  }
+}
 
 h1 {
   font-size: 22px;
@@ -30,36 +26,22 @@ h1 {
   padding: 20px 2px;
 }
 
-a {
-  color: #404040;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #101010;
-}
-
 /*The page is split between map and sidebar - the sidebar gets 20%, map
 gets 80% of the page. */
- .sidebar {
+.sidebar {
   position: absolute;
   width: 20%;
-  height: 100%;
+  height: 786px;
   top: 50px;
   left: 0;
   overflow: hidden;
   background-color: #79d1ef;
-}
-
-.pad2 {
-  padding: 20px;
+  z-index: 1;
 }
 
 .heading {
   background: yellow;
   border-bottom: 1px solid #eee;
-  /* height: 60px;
-  line-height: 60px; */
   padding: 0 10px;
   font-size: 28px;
   font-weight: bolder;
@@ -72,7 +54,7 @@ gets 80% of the page. */
   bottom: 0;
   left: 20%;
   width: 80%;
-  height: 805px;
+  height: 786px;
 }
 
 #instructions {
@@ -87,44 +69,18 @@ gets 80% of the page. */
   font-family: sans-serif;
 }
 
-.listings {
+.rules p {
   height: 100%;
-  overflow: auto;
-  padding-bottom: 60px;
-  text-align-last: left;
-}
-
-.listings .item {
-  border-bottom: 1px solid yellow;
-  padding: 10px;
-  text-decoration: none;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: left;
   font-variant: small-caps;
-  color: black;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 15px;
 }
 
-.listings .item:last-child {
-  border-bottom: none;
-}
-
-.listings .item .title {
-  display: block;
-  color: #2C3333;
-  font-weight: 700;
-}
-
-.listings .item .title small {
-  font-weight: 400;
-}
-
-.listings .item.active .title,
-.listings .item .title:hover {
+.rules :hover {
   color: #D61C4E;
-}
-
-.listings .item.active {
-  background-color: #f8f8f8;
 }
 
 ::-webkit-scrollbar {
@@ -161,16 +117,4 @@ gets 80% of the page. */
   font-size: 30px;
   font-weight: bolder;
   font-variant: small-caps;
-}
-
-.clearfix {
-  display: block;
-}
-
-.clearfix::after {
-  content: '.';
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
 }
