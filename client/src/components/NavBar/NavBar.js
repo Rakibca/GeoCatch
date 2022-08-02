@@ -80,6 +80,8 @@ export default function NavBar() {
                   </Link>
                 </MenuItem>
                 
+                {!Auth.loggedIn() ? (
+                <div>
                 <MenuItem>
                   <Link to="/signup">
                     <ReactBootStrap.NavDropdown.Item href="/signup">Signup</ReactBootStrap.NavDropdown.Item>
@@ -91,6 +93,8 @@ export default function NavBar() {
                     <ReactBootStrap.NavDropdown.Item href="/login">Login</ReactBootStrap.NavDropdown.Item>
                   </Link>
                 </MenuItem>
+                </div>
+):("")}  
 
                 {Auth.loggedIn() ? (
                 <div>
@@ -105,13 +109,12 @@ export default function NavBar() {
                     <ReactBootStrap.NavDropdown.Item href="/upload">GeoCatch Uploads</ReactBootStrap.NavDropdown.Item>
                   </Link>
                 </MenuItem>
-                </div>
-):("")}  
-
                 <MenuDivider />
                 <MenuItem>
                   <ReactBootStrap.NavDropdown.Item onClick={logout}><Logout /></ReactBootStrap.NavDropdown.Item>
                 </MenuItem>
+                </div>
+):("")}  
               </MenuList>
             </Menu>
           </Flex>
