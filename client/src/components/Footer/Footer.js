@@ -27,27 +27,40 @@ export const Footer = () => (
           <IconButton
             as="a"
             href="https://www.linkedin.com/in/rakibul-islam-5719451aa/"
-            src=""
             aria-label="LinkedIn"
             icon={<FaLinkedin fontSize="1.25rem" />}
           />
-          <IconButton as="a" href="https://github.com/Rakibca" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
+          <IconButton 
+            as="a" 
+            href="https://github.com/Rakibca" 
+            aria-label="GitHub" 
+            icon={<FaGithub fontSize="1.25rem" />} />
         </ButtonGroup>
         <ButtonGroup variant="ghost">
           <IconButton
+            as="a" 
             href="https://www.linkedin.com/in/nathan-howes1/"
             aria-label="LinkedIn"
             icon={<FaLinkedin fontSize="1.25rem" />}
           />
-          <IconButton as="a" href="https://github.com/nathanh635" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
+          <IconButton 
+            as="a" 
+            href="https://github.com/nathanh635" 
+            aria-label="GitHub" 
+            icon={<FaGithub fontSize="1.25rem" />} />
         </ButtonGroup>
         <ButtonGroup variant="ghost">
           <IconButton
+            as="a"
             href="https://www.linkedin.com/in/tad96/"
             aria-label="LinkedIn"
             icon={<FaLinkedin fontSize="1.25rem" />}
           />
-          <IconButton as="a" href="https://github.com/tdickson96" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
+          <IconButton 
+            as="a" 
+            href="https://github.com/tdickson96" 
+            aria-label="GitHub" 
+            icon={<FaGithub fontSize="1.25rem" />} />
         </ButtonGroup>
       </Stack>
       <Text fontSize="md" color="subtle">
