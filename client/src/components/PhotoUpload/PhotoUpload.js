@@ -7,7 +7,6 @@ import EXIF from 'exif-js';
 import '../../index.css';
 import {ADD_POST} from '../../utils/mutations';
 import {useMutation} from '@apollo/client';
-import { readFile } from 'fs';
 
 export default function PhotoUpload() {
 
@@ -92,14 +91,14 @@ const handleChange = async ({
     try {
       const {data} = addPost({
         variables: {
-          pic,
+          // pic,
           location,
           newTitle
         }
       });
 
 
-      console.log(pic);
+      // console.log(pic);
       console.log(location);
       console.log(newTitle);
       //window.location.reload();

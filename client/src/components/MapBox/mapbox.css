@@ -1,0 +1,8 @@
+#map {
+        width:100%;
+        z-index: 0;
+        top: 0; 
+        bottom: 0;
+        border-color: #0078AA;
+        border-bottom: 1.5px;
+}
