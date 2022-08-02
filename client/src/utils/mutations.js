@@ -19,10 +19,6 @@ export const ADD_POST = gql`
     title
     location
     dateTaken
-    user {
-      _id
-      username
-    }
     }
   }
 `;
@@ -35,11 +31,7 @@ export const UPDATE_POST = gql`
     title
     location
     dateTaken
-    user {
-      _id
-      username
-    }
-    }
+  }
   }
 `;
 

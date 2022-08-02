@@ -5,8 +5,10 @@ Photo upload should be able to be found on map and active GeoCatches after uploa
 import React, {useState, useEffect} from 'react';
 import EXIF from 'exif-js';
 import '../../index.css';
+import './photoupload.css';
 import {ADD_POST} from '../../utils/mutations';
-import {useMutation} from '@apollo/client';
+import {QUERY_POSTS} from '../../utils/queries';
+import {useMutation, useQuery} from '@apollo/client';
 
 export default function PhotoUpload() {
 
@@ -21,6 +23,11 @@ export default function PhotoUpload() {
   ] = useMutation(ADD_POST);
 
 
+    console.log("query")
+
+  const { loading, data } = useQuery(QUERY_POSTS);
+  console.log(data)
+  
 function parseData(data) {
   let latdegrees = (data.GPSLatitude[0].numerator) / (data.GPSLatitude[0].denominator);
   let latminutes = (data.GPSLatitude[1].numerator) / (data.GPSLatitude[1].denominator);
@@ -76,29 +83,47 @@ const handleChange = async ({
   }
 }
 
+let imageURL;
+
+   
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(newLatitude)
     console.log(newLongitude)
     let location = [newLatitude, newLongitude];
+    imageURL = "tester"
 
-
-
-
-
-    // On form submit, perform mutation and pass in form data object as arguments
-    // It is important that the object fields are match the defined parameters in `ADD_THOUGHT` mutation
+    // let formData = new FormData();
+    // formData.append('image', newImage);
+    // formData.append('album', 'IGz16LwsI5wKtZ7');
+    // await fetch('https://api.imgur.com/3/image', {
+    //   method: 'POST',
+    //   headers: new Headers({ Authorization: 'Client-ID d8752bc55bea5ea'}),
+      
+    //   body: formData
+    //   }).then(response => {
+    //   if (response.ok) {
+    //     alert('Image uploaded'); console.log(response.JSON)
+    //     return imageURL = response.JSON;      
+    //   }
+    //   }).catch(error => {
+    //   console.error(JSON.stringify(error));
+    //   alert('Upload failed: ' + error);
+    //   });
+       
+    
     try {
       const {data} = addPost({
         variables: {
-          // pic,
-          location,
-          newTitle
+          image: imageURL,
+          location: location,
+          title: newTitle
         }
       });
 
 
-      // console.log(pic);
+      console.log(imageURL);
       console.log(location);
       console.log(newTitle);
       //window.location.reload();
@@ -121,25 +146,28 @@ const handleChange = async ({
     />
     <br/>
     {newImage && (
-    <div>
-        <img alt="not found" width={"500px"} src={URL.createObjectURL(newImage)} />
+    <div className="imagedisplay">
+        <img className="imagedisplay" alt="not found" width={"500px"} src={URL.createObjectURL(newImage)} />
         <br />
    
         </div>
              )}
 
       <div className="photo-upload">
-        <label>Title:</label>
-        <input onChange={(e) => setNewTitle(e.target.value)} placeholder="Title" type="text" value={newTitle}/>
-        <label>Latitude:</label>
-        <input onChange={(e) => setNewLatitude(e.target.value)} placeholder="Enter latitude" type="number" value={newLatitude}/>
-        <label>Longitude:</label>
-        <input onChange={(e) => setNewLongitude(e.target.value)} placeholder="Enter longitude" type="number" value={newLongitude}/>
+        <label className="catchlabel">Title:</label>
+        <input className="inputbox" onChange={(e) => setNewTitle(e.target.value)} placeholder="Title" type="text" value={newTitle}/>
+        <label className="catchlabel">Latitude:</label>
+        <input className="inputbox" onChange={(e) => setNewLatitude(e.target.value)} placeholder="Enter latitude" type="number" value={newLatitude}/>
+        <label className="catchlabel">Longitude:</label>
+        <input className="inputbox" onChange={(e) => setNewLongitude(e.target.value)} placeholder="Enter longitude" type="number" value={newLongitude}/>
 
-        <button type="submit">
+        <button className="boxbutton" type="submit">
+  
           Add Geocatch
         </button>
+       
       </div>
     </form>
+    {/* <button onClick={query}>Click this</button> */}
   </div>);
 }

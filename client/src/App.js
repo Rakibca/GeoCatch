@@ -1,16 +1,11 @@
 import React from 'react';
-// import {Switch, Route} from 'react-router-dom';
 import {ChakraProvider} from '@chakra-ui/react';
-// import SearchImages from './components/SearchImages';
-// import SavedGeoCatches from './components/SavedGeoCatches';
-// import MapBox from './components/MapBox/MapBox';
 import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
-import Geocatch from './pages/Geocatch/Geocatch';
+import Geocatch from './components/Geocatch/Geocatch';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Home from './pages/Home/Home';
-// import PhotoUpload from './components/PhotoUpload/PhotoUpload';
 import Profile from './pages/Profile/Profile';
 import PhotoUpload from './components/PhotoUpload/PhotoUpload';
 import './index.css';

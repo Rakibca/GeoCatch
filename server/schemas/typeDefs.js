@@ -16,7 +16,6 @@ const typeDefs = gql`
     title: String
     location: [Float]
     dateTaken: String
-    user: User
     catches: [Catch]
 
   }

@@ -1,17 +1,13 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_IMAGE = gql`
-  query getImages($id: ID!) {
-  image(_id: $id) {
+export const QUERY_POST = gql`
+  query post($postId: ID!) {
+  post(postId: $postId) {
     _id
     image
     title
     location
     dateTaken
-    user {
-      _id
-      username
-    }
   }
 }
 `;
@@ -27,31 +23,24 @@ export const QUERY_ME = gql`
   }
 `;
 
-export const QUERY_IMAGES = gql`
-  query getImages{
-  images {
+export const QUERY_POSTS = gql`
+  query posts{
+  posts {
     _id
     image
     title
     location
     dateTaken
-    user {
-      _id
-      username
-    }
   }
 }
 `;
 
-export const QUERY_IMAGEAREA = gql`
-  query getImages($latitude: Float!, $longitude: Float!, $radius: Float!) {
-  imageArea(latitude: $latitude, longitude: $longitude, radius: $radius) {
+export const QUERY_POSTAREA = gql`
+  query postArea($latitude: Float!, $longitude: Float!, $radius: Float!) {
+  postArea(latitude: $latitude, longitude: $longitude, radius: $radius) {
     location
     image
     title
-    user {
-      username
-    }
   }
   }
 `;
@@ -63,7 +52,7 @@ export const QUERY_USER = gql`
     username
     email
     password
-    savedImages {
+    posts {
       _id
       image
       title
