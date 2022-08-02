@@ -3,12 +3,11 @@ The photo upload updates the image database and the map database with a new mark
 Photo upload should be able to be found on map and active GeoCatches after upload and sync */
 
 import React, {useState, useEffect} from 'react';
-// import { useStudentContext } from '../utils/StudentContext';
 import EXIF from 'exif-js';
 import '../../index.css';
 import {ADD_POST} from '../../utils/mutations';
 import {useMutation} from '@apollo/client';
-
+import { readFile } from 'fs';
 
 export default function PhotoUpload() {
 
@@ -78,7 +77,6 @@ const handleChange = async ({
   }
 }
 
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(newLatitude)
@@ -87,19 +85,21 @@ const handleChange = async ({
 
 
 
+
+
     // On form submit, perform mutation and pass in form data object as arguments
     // It is important that the object fields are match the defined parameters in `ADD_THOUGHT` mutation
     try {
       const {data} = addPost({
         variables: {
-          newImage,
+          pic,
           location,
           newTitle
         }
       });
 
 
-      console.log(newImage);
+      console.log(pic);
       console.log(location);
       console.log(newTitle);
       //window.location.reload();
