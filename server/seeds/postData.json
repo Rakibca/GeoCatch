@@ -3,7 +3,7 @@
   "properties": {
     "image": "Cat.jpg",
     "user": "62e2daeda656ec21bcc08559",
-    "title": "GeoCatch me if you can - 1!"
+    "title": "GeoCatch title 1"
   },
   "geometry": {
     "type": "Point",
@@ -14,7 +14,7 @@
   "properties": {
     "image": "dog.jpg",
     "user": "62e2daeda656ec21bcc0855a",
-    "title": "GeoCatch me if you can - 2!"
+    "title": "GeoCatch title 2"
   },
   "geometry": {
     "type": "Point",
@@ -25,7 +25,7 @@
   "properties": {
     "image": "bird.jpg",
     "user": "62e2daeda656ec21bcc0855b",
-    "title": "GeoCatch me if you can - 3!"
+    "title": "GeoCatch title 3"
   },
   "geometry": {
     "type": "Point",
@@ -36,7 +36,7 @@
   "properties": {
     "image": "house.jpg",
     "user": "62e2daeda656ec21bcc0855c",
-    "title": "GeoCatch me if you can - 4!"
+    "title": "GeoCatch title 4"
   },
   "geometry": {
     "type": "Point",
@@ -47,7 +47,7 @@
   "properties": {
     "image": "waterfall.jpg",
     "user": "62e2daeda656ec21bcc0855c",
-    "title": "GeoCatch me if you can - 5!"
+    "title": "GeoCatch title 5"
   },
   "geometry": {
     "type": "Point",
