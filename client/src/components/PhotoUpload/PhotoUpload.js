@@ -7,7 +7,7 @@ import EXIF from 'exif-js';
 import '../../index.css';
 import './photoupload.css';
 import {ADD_POST} from '../../utils/mutations';
-import {QUERY_POSTS} from '../../utils/queries';
+import {QUERY_POSTS, QUERY_POST} from '../../utils/queries';
 import {useMutation, useQuery} from '@apollo/client';
 
 export default function PhotoUpload() {
@@ -27,6 +27,12 @@ export default function PhotoUpload() {
 
   const { loading, data } = useQuery(QUERY_POSTS);
   console.log(data)
+
+  const { loading2, data2 } = useQuery(QUERY_POST, {
+    // Pass the `postId` URL parameter into query to retrieve this data
+    variables: {_id: "62e994308efbc82c8c2d7db3" },
+  });
+  console.log(data2)
   
 function parseData(data) {
   let latdegrees = (data.GPSLatitude[0].numerator) / (data.GPSLatitude[0].denominator);

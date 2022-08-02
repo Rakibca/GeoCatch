@@ -13,10 +13,10 @@ const resolvers = {
       console.log("here")
       return await Post.find({});
     },
-    post: async (parent, { postId }) => {
+    post: async (parent, { _id }) => {
 
       console.log("querypost")
-      return await Post.findOne({_id: postId});
+      return await Post.findOne({_id: _id});
     },
     user: async (parent, args, context) => {
       if (context.user) {

@@ -118,3 +118,7 @@ gets 80% of the page. */
   font-weight: bolder;
   font-variant: small-caps;
 }
+
+.full {
+  min-height: calc(100vh - 70px);
+}

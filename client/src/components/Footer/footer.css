@@ -1,9 +1,9 @@
 .main-footer {
     color: white;
     background-color: #0078AA;
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
-    right: 0;
-    z-index: -1;
+  height: 70px;
+    z-index: 0;
   }

@@ -1,11 +1,11 @@
 [
   {
-      "image": "https://imgur.com/t/cat/mC3iDOY",
+      "image": "https://i.imgur.com/stQXoSI.jpeg",
       "title": "GeoCatch me if you can!",
       "location": [43.711564,-79.384410]
   },
   {
-      "image": "https://imgur.com/t/dog/A2qRopJ",
+      "image": "https://i.imgur.com/bWZl4zn.jpeg",
       "title": "GeoCatch me if you can 2!",
       "location": [43.700757,-79.246707]
   },
@@ -23,5 +23,17 @@
       "image": "https://i.imgur.com/aox7xPE.jpeg",
       "title": "GeoCatch me if you can 5!",
       "location": [43.727991,-79.428184]
-  }
+  },
+
+  {
+    "image": "https://i.imgur.com/WwdWlUb.jpg",
+    "title": "Bet you don't know where this is...",
+    "location": [50.92346388888889,-113.94628611111112]
+},
+
+{
+    "image": "https://i.imgur.com/eEnvHsM.jpg",
+    "title": "This is one of my favourite places!",
+    "location": [51.027969444444444,-114.00876944444444]
+}
 ]

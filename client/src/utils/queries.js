@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_POST = gql`
-  query post($postId: ID!) {
-  post(postId: $postId) {
+  query post($_id: ID!) {
+  post(_id: $_id) {
     _id
     image
     title

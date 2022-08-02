@@ -123,8 +123,9 @@ export default function MapBox() {
       const el = document.createElement('div');
       el.className = 'marker';
       // create a marker for each feature and add to the map
+      console.log(feature.properties.user)
       new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).setPopup(new mapboxgl.Popup({offset: 25}). // add popups
-          setHTML(`<h3>${feature.properties.title}</h3><p>${feature.properties.image}</p>`)).addTo(map);
+          setHTML(`<a href="/geocatches/${feature.properties.user}"><h3>${feature.properties.title}</h3></a><a href=${feature.properties.image}><img src=${feature.properties.image} /></a>`)).addTo(map);
     }
 
     //Assign a unique ID to each store

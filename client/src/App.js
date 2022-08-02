@@ -3,6 +3,7 @@ import {ChakraProvider} from '@chakra-ui/react';
 import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
 import Geocatch from './components/Geocatch/Geocatch';
+import CatchForm from './components/CatchForm/CatchForm';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Home from './pages/Home/Home';
@@ -42,6 +43,7 @@ function App() {
     <ApolloProvider client={client}>
     <ChakraProvider>
     <Router>
+      <div className="full">
       <NavBar />
       <Routes>
 
@@ -69,14 +71,19 @@ function App() {
               />
 
         <Route
-                path="/geocatches/:geocatchId"
+                path="/geocatches/:_id"
                 element={<Geocatch />}
+              />
+                      <Route
+                path="/geocatches/:_id/catchform"
+                element={<CatchForm />}
               />
         <Route
                 path="/users/:userId"
                 element={<Profile />}
               />
         </Routes>
+        </div>
       <Footer />
       </Router>
     </ChakraProvider>

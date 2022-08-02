@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Link} from "react-router-dom";
 
-const CatchList = ({ catches }) => {
+const CatchList = ({ catches = [] }) => {
   console.log(catches);
   if (!catches.length) {
     return <h3>None yet...</h3>;
@@ -14,7 +14,7 @@ const CatchList = ({ catches }) => {
         className="p-5 display-inline-block"
         style={{ borderBottom: '1px dotted #1a1a1a' }}
       >
-        Comments
+        Catches
       </h3>
       {/* <div className="flex-row my-4">
         {catches && catches.map((catch) => (
