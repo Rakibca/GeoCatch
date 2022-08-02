@@ -1,32 +1,56 @@
-[
-    {
-        "image": "Cat.jpg",
-        "user": "62e2daeda656ec21bcc08559",
-        "title": "GeoCatch me if you can!",
-        "location": [43.711564,-79.384410]
-    },
-    {
-        "image": "dog.jpg",
-        "user": "62e2daeda656ec21bcc0855a",
-        "title": "GeoCatch me if you can 2!",
-        "location": [43.700757,-79.246707]
-    },
-    {
-        "image": "bird.jpg",
-        "user": "62e2daeda656ec21bcc0855b",
-        "title": "GeoCatch me if you can 3!",
-        "location": [43.755578, -79.289478]
-    },
-    {
-        "image": "house.jpg",
-        "user": "62e2daeda656ec21bcc0855c",
-        "title": "GeoCatch me if you can 4!",
-        "location": [43.680896,-79.448869]
-    },
-    {
-        "image": "waterfall.jpg",
-        "user": "62e2daeda656ec21bcc0855c",
-        "title": "GeoCatch me if you can 5!",
-        "location": [43.727991,-79.428184]
-    }
-]
+[{
+  "type": "Feature",
+  "properties": {
+    "image": "Cat.jpg",
+    "user": "62e2daeda656ec21bcc08559",
+    "title": "GeoCatch me if you can - 1!"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-79.395380, 43.663790]
+  }
+}, {
+  "type": "Feature",
+  "properties": {
+    "image": "dog.jpg",
+    "user": "62e2daeda656ec21bcc0855a",
+    "title": "GeoCatch me if you can - 2!"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-79.433020, 43.675820]
+  }
+}, {
+  "type": "Feature",
+  "properties": {
+    "image": "bird.jpg",
+    "user": "62e2daeda656ec21bcc0855b",
+    "title": "GeoCatch me if you can - 3!"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-79.380699, 43.654438]
+  }
+}, {
+  "type": "Feature",
+  "properties": {
+    "image": "house.jpg",
+    "user": "62e2daeda656ec21bcc0855c",
+    "title": "GeoCatch me if you can - 4!"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-79.389144, 43.641780]
+  }
+}, {
+  "type": "Feature",
+  "properties": {
+    "image": "waterfall.jpg",
+    "user": "62e2daeda656ec21bcc0855c",
+    "title": "GeoCatch me if you can - 5!"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-79.625062, 43.682342]
+  }
+}]
