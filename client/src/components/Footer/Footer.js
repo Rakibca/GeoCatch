@@ -19,10 +19,10 @@ export const Footer = () => (
   direction={["column", "row", "row", "row"]}
   pt={[4, 4, 0, 0]}
 >
-<Box width="full" height={10}>
-  <Container className="main-footer" as="footer" role="contentinfo" py={{ base: '12', md: '16' }}>
-    <Stack spacing={{ base: '2', md: '5' }}>
-      <Stack width="100%" justify="space-between" direction="row" align="center" className='col-sm'>
+<Box width="100%">
+  <Container className="main-footer" as="footer" role="contentinfo">
+    <Stack>
+      <Stack width="100%" justify="space-between" direction="row" className='col-sm'>
         <ButtonGroup variant="ghost">
           <IconButton
             as="a"

@@ -48,8 +48,6 @@ function App() {
     <ChakraProvider>
     <Router>
       <NavBar />
-      <div className="page-container">
-        <div className="content-wrap">
       <Routes>
 
         <Route
@@ -83,15 +81,11 @@ function App() {
                 path="/users/:userId"
                 element={<Profile />}
               />
-    </Routes>
-    </div>
+        </Routes>
       <Footer />
-    </div>
-    </Router>
-
-
-        </ChakraProvider>
-        </ApolloProvider>);
+      </Router>
+    </ChakraProvider>
+  </ApolloProvider>);
 }
 
 export default App;

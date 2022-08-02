@@ -22,5 +22,5 @@ body {
 }
 
 .content-wrap {
-  flex: 1;
+  flex: auto;
 }
