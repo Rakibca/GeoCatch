@@ -6,7 +6,7 @@ User profile shows caught/captured GeoCatches and saved/liked GeoCatches to hunt
 */
 import { ButtonGroup, Container, IconButton, Stack, Text } from '@chakra-ui/react';
 import * as React from 'react';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import './footer.css';
 import { Flex } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
@@ -19,7 +19,7 @@ export const Footer = () => (
   direction={["column", "row", "row", "row"]}
   pt={[4, 4, 0, 0]}
 >
-<Box width="full" height={160}>
+<Box width="full" height={10}>
   <Container className="main-footer" as="footer" role="contentinfo" py={{ base: '12', md: '16' }}>
     <Stack spacing={{ base: '2', md: '5' }}>
       <Stack width="100%" justify="space-between" direction="row" align="center" className='col-sm'>
