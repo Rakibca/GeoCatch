@@ -12,10 +12,10 @@ db.once('open', async () => {
 
   console.log('Images seeded!');
 
-  // await User.deleteMany({});
+  await User.deleteMany({});
 
-  // const users = await User.insertMany(userData);
+  const users = await User.insertMany(userData);
 
-  // console.log('Users seeded!');
+  console.log('Users seeded!');
   process.exit(0);
 });

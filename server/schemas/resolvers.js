@@ -10,10 +10,13 @@ const resolvers = {
       return await Post.find( {location: { $geoWithin: { $center: [ [latitude, longitude], radius/1000]}}});
     },
     posts: async () => {
-      return await Post.find({}).populate('catches');
+      console.log("here")
+      return await Post.find({});
     },
-    post: async (parent, { _id }) => {
-      return await Post.findById(_id).populate('catches');
+    post: async (parent, { postId }) => {
+
+      console.log("querypost")
+      return await Post.findOne({_id: postId});
     },
     user: async (parent, args, context) => {
       if (context.user) {
@@ -79,14 +82,16 @@ const resolvers = {
     },
     addPost: async (parent, { image, location, title }, context) => {
 
-      if (context.user) {
+      console.log("here")
+
+      // if (context.user) {
         const post = await Post.create({image, location, title});
-        await User.findByIdAndUpdate(context.user._id, { $push: { posts: post } });
+        // await User.findByIdAndUpdate(context.user._id, { $push: { posts: post } });
 
         return post;
-      }
+      // }
 
-      throw new AuthenticationError('Not logged in');
+      // throw new AuthenticationError('Not logged in');
     },
     updateUser: async (parent, args, context) => {
       if (context.user) {

@@ -12,11 +12,11 @@ import * as turf from '@turf/turf'
 import '../../index.css';
 import MapList from '.././MapList/MapList';
 import {useQuery} from '@apollo/client';
-import {QUERY_IMAGES} from '../../utils/queries';
+import {QUERY_POSTS} from '../../utils/queries';
 
 export default function MapBox() {
 
-  const {loading, data} = useQuery(QUERY_IMAGES);
+  const {loading, data} = useQuery(QUERY_POSTS);
   let posts = data
     ?.posts || [];
 
@@ -27,7 +27,10 @@ export default function MapBox() {
     myGeoJSON.features[i] = {
       type: "Feature",
       properties: {
-        id: i + 1
+        image: posts[i].image,
+        user: posts[i]._id,
+        title: posts[i].title
+
       },
       geometry: {
         type: "Point",
@@ -115,7 +118,7 @@ export default function MapBox() {
     //const marker1 = new mapboxgl.Marker().setLngLat([-79.07584417094174, 43.08912611480924]).addTo(map);
 
     // add markers to map
-    for (const feature of photos.features) {
+    for (const feature of myGeoJSON.features) {
       // create a HTML element for each location
       const el = document.createElement('div');
       el.className = 'marker';
@@ -125,7 +128,7 @@ export default function MapBox() {
     }
 
     //Assign a unique ID to each store
-    photos.features.forEach(function(photo, i) {
+    myGeoJSON.features.forEach(function(photo, i) {
       photo.properties.id = i;
     });
 
@@ -144,7 +147,7 @@ export default function MapBox() {
           id: 'locations',
           source: {
             type: 'geojson',
-            data: photos
+            data: myGeoJSON
           },
           type: 'circle',
           paint: {
@@ -199,7 +202,7 @@ export default function MapBox() {
       let radius = 5000;
       var searchRadius = makeRadius(eventLngLat, radius);
       map.getSource('search-radius').setData(searchRadius);
-      var featuresInBuffer = spatialJoin(photos, searchRadius);
+      var featuresInBuffer = spatialJoin(myGeoJSON, searchRadius);
       //var featuresInBuffer = spatialJoin(myGeoJSON, searchRadius);
       map.getSource('photo-area').setData(turf.featureCollection(featuresInBuffer));
       //console.log(turf.featureCollection(featuresInBuffer));
