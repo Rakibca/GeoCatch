@@ -2,7 +2,7 @@
 NavBar is the Footer with three icons/buttons: GeoCatch map, GeoCatch upload image, and User Profile
 GeoCatch map has the map with active markers and an array of active GeoCatch cards beneath the map
 GeoCatch upload image brings up a modal or renders to ask for: Title, Image file, and location
-User profile shows caught/captured GeoCatches and saved/liked GeoCatches to hunt 
+User profile shows caught/captured GeoCatches and saved/liked GeoCatches 
 */
 import { ButtonGroup, Container, IconButton, Stack, Text } from '@chakra-ui/react';
 import * as React from 'react';
