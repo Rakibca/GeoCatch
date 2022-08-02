@@ -6,9 +6,9 @@ import React, {useState, useEffect} from 'react';
 // import { useStudentContext } from '../utils/StudentContext';
 import EXIF from 'exif-js';
 import '../../index.css';
-import {ADD_IMAGE} from '../../utils/mutations';
+import {ADD_POST} from '../../utils/mutations';
 import {useMutation} from '@apollo/client';
-import ImageMeta from './ImageMeta';
+
 
 export default function PhotoUpload() {
 
@@ -16,13 +16,11 @@ export default function PhotoUpload() {
   const [newLatitude, setNewLatitude] = useState(0);
   const [newLongitude, setNewLongitude] = useState(0);
   const [newImage, setNewImage] = useState(null);
-  const [newFile, setNewFile] = useState("No file uploaded");
 
-
-  const [addImage, {
+  const [addPost, {
       error
     }
-  ] = useMutation(ADD_IMAGE);
+  ] = useMutation(ADD_POST);
 
 
 function parseData(data) {
@@ -74,6 +72,7 @@ const handleChange = async ({
 
   setNewLongitude(location[1]);
   setNewLatitude(location[0])
+
   setNewImage(file);
 
   }
@@ -82,22 +81,26 @@ const handleChange = async ({
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log(newLatitude)
+    console.log(newLongitude)
+    let location = [newLatitude, newLongitude];
+
+
 
     // On form submit, perform mutation and pass in form data object as arguments
     // It is important that the object fields are match the defined parameters in `ADD_THOUGHT` mutation
     try {
-      const {data} = addImage({
+      const {data} = addPost({
         variables: {
           newImage,
-          newLatitude, newLongitude,
+          location,
           newTitle
         }
       });
 
 
       console.log(newImage);
-      console.log(newLatitude);
-      console.log(newLongitude);
+      console.log(location);
       console.log(newTitle);
       //window.location.reload();
     } catch (err) {
@@ -129,9 +132,9 @@ const handleChange = async ({
       <div className="photo-upload">
         <label>Title:</label>
         <input onChange={(e) => setNewTitle(e.target.value)} placeholder="Title" type="text" value={newTitle}/>
-        <label>latitude:</label>
+        <label>Latitude:</label>
         <input onChange={(e) => setNewLatitude(e.target.value)} placeholder="Enter latitude" type="number" value={newLatitude}/>
-        <label>longitude:</label>
+        <label>Longitude:</label>
         <input onChange={(e) => setNewLongitude(e.target.value)} placeholder="Enter longitude" type="number" value={newLongitude}/>
 
         <button type="submit">

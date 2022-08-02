@@ -2,11 +2,11 @@ import React, { useRef, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import EXIF from 'exif-js';
 
-import { ADD_IMAGE } from '../../utils/mutations';
+import { ADD_POST } from '../../utils/mutations';
 
 const CatchForm = ({ parent }) => {
 
-  const [addImage, { error }] = useMutation(ADD_IMAGE);
+  const [addPost, { error }] = useMutation(ADD_POST);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -53,7 +53,7 @@ const handleFormSubmit = async (event) => {
   // On form submit, perform mutation and pass in form data object as arguments
   // It is important that the object fields are match the defined parameters in `ADD_THOUGHT` mutation
   try {
-    const { data } = addImage({
+    const { data } = addPost({
       variables: { newImage, newLocation, newTitle },
     });
 
