@@ -60,7 +60,7 @@ console.log(userFormData)
         </Alert>
 
         <Form.Group>
-          <Form.Label htmlFor='username'>Username</Form.Label>
+          <Form.Label htmlFor='username' className=''>Username</Form.Label>
           <Form.Control
             type='text'
             placeholder='Your username'

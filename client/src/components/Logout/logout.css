@@ -1,0 +1,12 @@
+#logout-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+  }
+  
+  #logout-button[disabled] {
+    background-color: lightgray;
+    color: gray;
+  }
+  
