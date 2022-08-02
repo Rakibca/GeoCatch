@@ -6,93 +6,93 @@ import { ADD_POST } from '../../utils/mutations';
 
 const CatchForm = ({ parent }) => {
 
-  const [addPost, { error }] = useMutation(ADD_POST);
+//   const [addPost, { error }] = useMutation(ADD_POST);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+//   const handleChange = (event) => {
+//     const { name, value } = event.target;
 
-    if (name === 'commentText' && value.length <= 280) {
-      // setCommentText(value);
-      // setCharacterCount(value.length);
-    }
-  };
+//     if (name === 'commentText' && value.length <= 280) {
+//       // setCommentText(value);
+//       // setCharacterCount(value.length);
+//     }
+//   };
 
-  function getExif(img1) {
+//   function getExif(img1) {
 
-      EXIF.getData(img1, function() {
-        let allData = EXIF.getAllTags(this);
+//       EXIF.getData(img1, function() {
+//         let allData = EXIF.getAllTags(this);
   
-        let latdegrees = (allData.GPSLatitude[0].numerator)/(allData.GPSLatitude[0].denominator);
-        let latminutes = (allData.GPSLatitude[1].numerator)/(allData.GPSLatitude[1].denominator);
-        let latseconds = (allData.GPSLatitude[2].numerator)/(allData.GPSLatitude[2].denominator);
+//         let latdegrees = (allData.GPSLatitude[0].numerator)/(allData.GPSLatitude[0].denominator);
+//         let latminutes = (allData.GPSLatitude[1].numerator)/(allData.GPSLatitude[1].denominator);
+//         let latseconds = (allData.GPSLatitude[2].numerator)/(allData.GPSLatitude[2].denominator);
   
-        let latitude = latdegrees + (latminutes/60) + (latseconds/3600);
+//         let latitude = latdegrees + (latminutes/60) + (latseconds/3600);
   
-        if (EXIF.getTag(this, "GPSLatitudeRef") === "S") {
-          latitude = -latitude
-        }
+//         if (EXIF.getTag(this, "GPSLatitudeRef") === "S") {
+//           latitude = -latitude
+//         }
   
-        let longdegrees = (allData.GPSLongitude[0].numerator)/(allData.GPSLongitude[0].denominator);
-        let longminutes = (allData.GPSLongitude[1].numerator)/(allData.GPSLongitude[1].denominator);
-        let longseconds = (allData.GPSLongitude[2].numerator)/(allData.GPSLongitude[2].denominator);
+//         let longdegrees = (allData.GPSLongitude[0].numerator)/(allData.GPSLongitude[0].denominator);
+//         let longminutes = (allData.GPSLongitude[1].numerator)/(allData.GPSLongitude[1].denominator);
+//         let longseconds = (allData.GPSLongitude[2].numerator)/(allData.GPSLongitude[2].denominator);
   
-        let longitude = longdegrees + (longminutes/60) + (longseconds/3600);
+//         let longitude = longdegrees + (longminutes/60) + (longseconds/3600);
   
-        if (EXIF.getTag(this, "GPSLongitudeRef") === "W") {
-          longitude = -longitude
-        }
-        console.log(latitude + ", " + longitude)
+//         if (EXIF.getTag(this, "GPSLongitudeRef") === "W") {
+//           longitude = -longitude
+//         }
+//         console.log(latitude + ", " + longitude)
   
-        return [latitude, longitude];
+//         return [latitude, longitude];
    
-  })}
+//   })}
   
-const handleFormSubmit = async (event) => {
-  event.preventDefault();
+// const handleFormSubmit = async (event) => {
+//   event.preventDefault();
 
-  // On form submit, perform mutation and pass in form data object as arguments
-  // It is important that the object fields are match the defined parameters in `ADD_THOUGHT` mutation
-  try {
-    const { data } = addPost({
-      variables: { newImage, newLocation, newTitle },
-    });
+//   // On form submit, perform mutation and pass in form data object as arguments
+//   // It is important that the object fields are match the defined parameters in `ADD_THOUGHT` mutation
+//   try {
+//     const { data } = addPost({
+//       variables: { newImage, newLocation, newTitle },
+//     });
 
-    window.location.reload();
-    console.log("Image added successfully!")
-  } catch (err) {
-    console.error(err);
-  }
-};
+//     window.location.reload();
+//     console.log("Image added successfully!")
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
 
-  // const { students, addStudent, removeStudent, majors } = useStudentContext();
+//   // const { students, addStudent, removeStudent, majors } = useStudentContext();
 
-  const [newTitle, setNewTitle] = useState('');
-  const [newLocation, setNewLocation] = useState([]);
-  const [newImage, setNewImage] = useState("");
-  const ref = useRef(null);
-  const ref2 = useRef(null);
+//   const [newTitle, setNewTitle] = useState('');
+//   const [newLocation, setNewLocation] = useState([]);
+//   const [newImage, setNewImage] = useState("");
+//   const ref = useRef(null);
+//   const ref2 = useRef(null);
 
-      const imgInput = ref.current;
-      let uploadedImage ="";
-      const display = ref2.current;
+//       const imgInput = ref.current;
+//       let uploadedImage ="";
+//       const display = ref2.current;
 
-      imgInput.addEventListener("change", function(){
-          const reader = new FileReader();
-          reader.addEventListener("load", () => {
-              uploadedImage = reader.result;
-              display.style.backgroundImage = `url(${uploadedImage})`;
-          });
-          reader.readAsDataURL(this.files[0]);
-          setNewImage(uploadedImage);
-          let location = getExif(uploadedImage);
+//       imgInput.addEventListener("change", function(){
+//           const reader = new FileReader();
+//           reader.addEventListener("load", () => {
+//               uploadedImage = reader.result;
+//               display.style.backgroundImage = `url(${uploadedImage})`;
+//           });
+//           reader.readAsDataURL(this.files[0]);
+//           setNewImage(uploadedImage);
+//           let location = getExif(uploadedImage);
 
-          setNewLocation(location[0], location[1]);
+//           setNewLocation(location[0], location[1]);
 
-      });
+//       });
 
   return (
       <div>
-                <form
+                {/* <form
               onSubmit={handleFormSubmit}
     >
           <h4>Upload a photo:</h4>
@@ -128,7 +128,7 @@ const handleFormSubmit = async (event) => {
               Add Geocatch
             </button>
           </div>
-          </form>
+          </form> */}
       </div>
       );
 }

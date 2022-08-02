@@ -21,22 +21,21 @@ import { QUERY_POST, QUERY_POSTS } from '../../utils/queries';
 
 export default function Geocatch() {
 
-const { postId } = useParams();
+const { _id } = useParams();
 
-// const { loading2, data2 } = useQuery(QUERY_POSTS);
-// console.log(data2);
-
-const { loading, data2 } = useQuery(QUERY_POST, {
+const { loading, data } = useQuery(QUERY_POST, {
   // Pass the `postId` URL parameter into query to retrieve this data
-  variables: {_id: postId },
+  variables: {_id: _id },
 });
-console.log(data2)
+console.log(data)
 
-const post = data2?.post || {};
+const post = data?.post || {};
 
 if (loading) {
   return <div>Loading...</div>;
 }
+console.log(post.image)
+
 return (
   <div className="my-3">
     <h3 className="card-header bg-dark text-light p-2 m-0">
@@ -50,18 +49,16 @@ return (
       </span>
     </h3>
     <div className="imagedisplay">
-        <img className="imagedisplay" alt="not found" width={"500px"} src={post.image} />
+      <a href={post.image}></a>
+        <img className="imagedisplay" alt="not found" width={"60%"} src={post.image} />
         <br />
-   
-        </div>
+           </div>
 
-
-    {/* <div className="my-5">
+    <div className="my-5">
       <CatchList catches={post.catches} />
     </div>
-    <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-      <CatchForm parent={post._id} />
-    </div> */}
+    <a href= "/catchform">Upload a new catch!</a>
+
   </div>
 );
 };
