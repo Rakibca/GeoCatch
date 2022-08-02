@@ -5,7 +5,8 @@ GeoCatch upload image brings up a modal or renders to ask for: Title, Image file
 User profile shows caught/captured GeoCatches and saved/liked GeoCatches to hunt 
 */
 import React from 'react';
-import "./footer.css"
+import "./footer.css";
+import { GoGitBranch } from "react-icons/go";
 
 const Footer = () => {
   return (
@@ -15,12 +16,6 @@ const Footer = () => {
           {/* Columns */}
           <div>
             <h4>GeoCatch</h4>
-            <ul className='list-unstyled'>
-              <li>Canada</li>
-            </ul>
-          </div>
-          <div className='col'>
-            <h4>Authors</h4>
             <ul className='list-unstyled'>
               <li>Nathan Howes</li>
               <li>Rakibul Islam</li>
@@ -39,7 +34,8 @@ const Footer = () => {
         <hr />
         <div className='row'>
           <p className='col-sm'>
-            &copy;(2022 GeoCatch | All rights reserved | Terms of Service | Privacy)
+            <GoGitBranch/>
+            2022 GeoCatch | All rights reserved | Terms of Service | Privacy
           </p>
         </div>
       </div>
