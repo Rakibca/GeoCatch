@@ -3,97 +3,104 @@ The photo upload updates the image database and the map database with a new mark
 Photo upload should be able to be found on map and active GeoCatches after upload and sync */
 
 import React, {useState, useEffect} from 'react';
-// import { useStudentContext } from '../utils/StudentContext';
 import EXIF from 'exif-js';
 import '../../index.css';
-import {ADD_IMAGE} from '../../utils/mutations';
+import {ADD_POST} from '../../utils/mutations';
 import {useMutation} from '@apollo/client';
-import ImageMeta from './ImageMeta';
+import { readFile } from 'fs';
 
 export default function PhotoUpload() {
 
+  const [newTitle, setNewTitle] = useState('');
+  const [newLatitude, setNewLatitude] = useState(0);
+  const [newLongitude, setNewLongitude] = useState(0);
+  const [newImage, setNewImage] = useState(null);
 
-  const [addImage, {
+  const [addPost, {
       error
     }
-  ] = useMutation(ADD_IMAGE);
+  ] = useMutation(ADD_POST);
 
 
+function parseData(data) {
+  let latdegrees = (data.GPSLatitude[0].numerator) / (data.GPSLatitude[0].denominator);
+  let latminutes = (data.GPSLatitude[1].numerator) / (data.GPSLatitude[1].denominator);
+  let latseconds = (data.GPSLatitude[2].numerator) / (data.GPSLatitude[2].denominator);
 
-//   function waitForElm(selector) {
-//     return new Promise(resolve => {
-//         if (document.querySelector(selector)) {
-//             return resolve(document.querySelector(selector));
-//         }
+  let latitude = latdegrees + (latminutes / 60) + (latseconds / 3600);
 
-//         const observer = new MutationObserver(mutations => {
-//             if (document.querySelector(selector)) {
-//                 resolve(document.querySelector(selector));
-//                 observer.disconnect();
-//             }
-//         });
+  if (data.GPSLatitudeRef === "S") {
+    latitude = -latitude
+  }
 
-//         observer.observe(document.body, {
-//             childList: true,
-//             subtree: true
-//         });
-//     });
-// }
+  let longdegrees = (data.GPSLongitude[0].numerator) / (data.GPSLongitude[0].denominator);
+  let longminutes = (data.GPSLongitude[1].numerator) / (data.GPSLongitude[1].denominator);
+  let longseconds = (data.GPSLongitude[2].numerator) / (data.GPSLongitude[2].denominator);
+
+  let longitude = longdegrees + (longminutes / 60) + (longseconds / 3600);
+
+  if (data.GPSLongitudeRef === "W") {
+    longitude = -longitude
+  }
+
+  console.log(latitude + ", " + longitude)
+
+  return [latitude, longitude]
+}
 
 
+const handleChange = async ({
 
-// function getExif(img1) {
+  target: {
+    files: [file]
+  }
+}) => {
+  if (file && file.name) {
+    const exifData = await new Promise(resolve =>{
+    EXIF.getData(file, function(){
+      resolve(EXIF.getAllTags(this))
+    })
+  })
 
-//     EXIF.getData(img1, function() {
-//       let myData = this;
+  let data = (exifData)
 
-//       console.log(myData.exifdata)
+  console.log(data);
+  let location = parseData(data);
+  console.log(location)
+  console.log(file)
 
-//       // let latdegrees = (exifdata.GPSLatitude[0].numerator) / (exifdata.GPSLatitude[0].denominator);
-//       // let latminutes = (exifdata.GPSLatitude[1].numerator) / (exifdata.GPSLatitude[1].denominator);
-//       // let latseconds = (exifdata.GPSLatitude[2].numerator) / (exifdata.GPSLatitude[2].denominator);
+  setNewLongitude(location[1]);
+  setNewLatitude(location[0])
 
-//       // let latitude = latdegrees + (latminutes / 60) + (latseconds / 3600);
+  setNewImage(file);
 
-//       // if (exifdata.GPSLatitudeRef === "S") {
-//       //   latitude = -latitude
-//       // }
-
-//       // let longdegrees = (exifdata.GPSLongitude[0].numerator) / (exifdata.GPSLongitude[0].denominator);
-//       // let longminutes = (exifdata.GPSLongitude[1].numerator) / (exifdata.GPSLongitude[1].denominator);
-//       // let longseconds = (exifdata.GPSLongitude[2].numerator) / (exifdata.GPSLongitude[2].denominator);
-
-//       // let longitude = longdegrees + (longminutes / 60) + (longseconds / 3600);
-
-//       // if (exifdata.GPSLongitudeRef === "W") {
-//       //   longitude = -longitude
-//       // }
-//       // console.log(latitude + ", " + longitude)
-
-//       // return [latitude, longitude];
-
-//     })
-//   }
-
+  }
+}
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log(newLatitude)
+    console.log(newLongitude)
+    let location = [newLatitude, newLongitude];
+
+
+
+
 
     // On form submit, perform mutation and pass in form data object as arguments
     // It is important that the object fields are match the defined parameters in `ADD_THOUGHT` mutation
     try {
-      const {data} = addImage({
+      const {data} = addPost({
         variables: {
-          newImage,
-          newLatitude, newLongitude,
+          pic,
+          location,
           newTitle
         }
       });
 
 
-      console.log(newImage);
-      console.log(newLatitude);
-      console.log(newLongitude);
+      console.log(pic);
+      console.log(location);
       console.log(newTitle);
       //window.location.reload();
     } catch (err) {
@@ -101,51 +108,33 @@ export default function PhotoUpload() {
     }
   };
 
-  // const { students, addStudent, removeStudent, majors } = useStudentContext();
-
-  const [newTitle, setNewTitle] = useState('');
-  const [newLatitude, setNewLatitude] = useState();
-  const [newLongitude, setNewLongitude] = useState();
-  const [newImage, setNewImage] = useState(null);
-  // getExif(document.getElementById("the-img"));
-  
-  // useEffect(() => {
-  //   getExif(document.getElementById("the-img"));
-  // }, [newImage]);
-
-  // const imgInput = document.querySelector("image_input");
-  // let uploadedImage = "";
-  // const display = document.querySelector("display");
-
-  // if (imgInput) {
-
-  // imgInput.addEventListener("change", function() {
-  //   const reader = new FileReader();
-  //   reader.addEventListener("load", () => {
-  //     uploadedImage = reader.result;
-  //     display.style.backgroundImage = `url(${uploadedImage})`;
-  //   });
-  //   reader.readAsDataURL(this.files[0]);
-  //   setNewImage(uploadedImage);
-  //   let location = getExif(uploadedImage);
-
-  //   setNewLatitude(location[0])
-  //   setNewLongitude(location[1]);
-
-  // })  };
-
+ 
   return (<div>
     <form onSubmit={handleFormSubmit}>
       <h4>Upload a photo:</h4>
 
-      <ImageMeta setLat={setNewLatitude} setLong={setNewLongitude}/>
+      <input
+      type="file"
+      id="file"
+      accept="image/*"
+      capture="environment"
+      onChange={handleChange}
+    />
+    <br/>
+    {newImage && (
+    <div>
+        <img alt="not found" width={"500px"} src={URL.createObjectURL(newImage)} />
+        <br />
+   
+        </div>
+             )}
 
       <div className="photo-upload">
         <label>Title:</label>
         <input onChange={(e) => setNewTitle(e.target.value)} placeholder="Title" type="text" value={newTitle}/>
-        <label>latitude:</label>
+        <label>Latitude:</label>
         <input onChange={(e) => setNewLatitude(e.target.value)} placeholder="Enter latitude" type="number" value={newLatitude}/>
-        <label>longitude:</label>
+        <label>Longitude:</label>
         <input onChange={(e) => setNewLongitude(e.target.value)} placeholder="Enter longitude" type="number" value={newLongitude}/>
 
         <button type="submit">

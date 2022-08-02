@@ -5,8 +5,7 @@ const Catch = require('./Catch');
 
 const postSchema = new Schema({
   image: {
-    data: Buffer,
-    contentType: String
+    type: String
   },
   user:       {
     type: Schema.Types.ObjectId,

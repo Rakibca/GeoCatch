@@ -6,11 +6,22 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    posts: [Image]
-    catches: [Image]
+    posts: [Post]
+    catches: [Catch]
   }
 
-  type Image {
+  type Post {
+    _id: ID
+    image: String
+    title: String
+    location: [Float]
+    dateTaken: String
+    user: User
+    catches: [Catch]
+
+  }
+
+  type Catch {
     _id: ID
     image: String
     title: String
@@ -25,9 +36,9 @@ const typeDefs = gql`
   }
 
   type Query {
-    images: [Image]
-    image(_id: ID!): Image
-    imageArea(latitude: Float!, longitude: Float!, radius: Float!): [Image]
+    posts: [Post]
+    post(_id: ID!): Post
+    postArea(latitude: Float!, longitude: Float!, radius: Float!): [Post]
     user(_id: ID!): User
     me: User
   }
@@ -36,9 +47,9 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String, email: String, password: String): User
     deleteUser(_id: ID!): User
-    addImage(image: String!, location: [Float]!, title: String ): Image
-    updateImage(_id: ID!, image: String, location: [Float], title: String): Image
-    deleteImage(_id: ID!): Image
+    addPost(image: String!, location: [Float]!, title: String ): Post
+    updatePost(_id: ID!, image: String, location: [Float], title: String): Post
+    deletePost(_id: ID!): Post
 
     login(email: String!, password: String!): Auth
   }

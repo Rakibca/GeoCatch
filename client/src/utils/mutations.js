@@ -11,9 +11,9 @@ export const LOGIN = gql`
   }
 `;
 
-export const ADD_IMAGE = gql`
-  mutation addImage($image: String!, $location: [Float]!, $title: String) {
-    addImage(image: $image, location: $location, title: $title) {
+export const ADD_POST = gql`
+  mutation addPOST($image: String!, $location: [Float]!, $title: String) {
+    addPost(image: $image, location: $location, title: $title) {
       _id
     image
     title
@@ -27,9 +27,9 @@ export const ADD_IMAGE = gql`
   }
 `;
 
-export const UPDATE_IMAGE = gql`
-  mutation updateImage($_id:ID!, $image: String, $location: [Float], $title: String) {
-    updateImage(_id: $_id, image: $image, location: $location, title: $title) {
+export const UPDATE_POST = gql`
+  mutation updatePost($_id:ID!, $image: String, $location: [Float], $title: String) {
+    updatePost(_id: $_id, image: $image, location: $location, title: $title) {
       _id
     image
     title
@@ -43,9 +43,9 @@ export const UPDATE_IMAGE = gql`
   }
 `;
 
-export const DELETE_IMAGE = gql`
-  mutation deleteImage($_id:ID!) {
-    deleteImage(_id: $_id) {
+export const DELETE_POST = gql`
+  mutation deletePost($_id:ID!) {
+    deletePost(_id: $_id) {
       _id
 
     }

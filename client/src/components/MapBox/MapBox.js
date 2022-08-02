@@ -16,14 +16,13 @@ import {QUERY_IMAGES} from '../../utils/queries';
 
 export default function MapBox() {
 
-  const {loading, data} = useQuery(QUERY_IMAGES);
-  let images = data
-    ?.images || [];
+  const { loading, data } = useQuery(QUERY_IMAGES);
+  let posts = data?.posts || [];
 
   var myGeoJSON = {};
   myGeoJSON.type = "FeatureCollection";
   myGeoJSON.features = [];
-  for (let i = 0; i < images.length; i++) {
+  for (let i = 0; i<posts.length;i++) {
     myGeoJSON.features[i] = {
       type: "Feature",
       properties: {
@@ -31,10 +30,7 @@ export default function MapBox() {
       },
       geometry: {
         type: "Point",
-        coordinates: [
-          images[i].location[1],
-          images[i].location[0]
-        ]
+        coordinates: [posts[i].location[1], posts[i].location[0]]
       }
     }
   }

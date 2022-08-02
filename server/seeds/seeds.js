@@ -1,14 +1,14 @@
 const db = require('../config/connection');
-const { Image } = require('../models');
+const { Post } = require('../models');
 const { User } = require('../models');
 
-const imageData = require('./imageData.json');
+const postData = require('./postData.json');
 const userData = require('./userData.json');
 
 db.once('open', async () => {
-  await Image.deleteMany({});
+  await Post.deleteMany({});
 
-  const images = await Image.insertMany(imageData);
+  const posts = await Post.insertMany(postData);
 
   console.log('Images seeded!');
 

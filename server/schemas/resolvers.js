@@ -1,26 +1,26 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Image } = require('../models');
+const { User, Post, Catch } = require('../models');
 const { signToken } = require('../utils/auth');
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
-    imageArea: async (parent, { latitude, longitude, radius }) => {
+    postArea: async (parent, { latitude, longitude, radius }) => {
 
-      return await Image.find( {location: { $geoWithin: { $center: [ [latitude, longitude], radius/1000]}}});
+      return await Post.find( {location: { $geoWithin: { $center: [ [latitude, longitude], radius/1000]}}});
     },
-    images: async () => {
-      return await Image.find({}).populate('users');
+    posts: async () => {
+      return await Post.find({}).populate('catches');
     },
-    image: async (parent, { _id }) => {
-      return await Image.findById(_id);
+    post: async (parent, { _id }) => {
+      return await Post.findById(_id).populate('catches');
     },
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate('images');
+        const user = await User.findById(context.user._id).populate('posts', 'catches');
 
-        user.images.sort((a, b) => b.dateTaken - a.dateTaken);
-
+        user.posts.sort((a, b) => b.dateTaken - a.dateTaken);
+        user.catches.sort((a, b) => b.dateTaken - a.dateTaken);
         return user;
       }
 
@@ -77,13 +77,13 @@ const resolvers = {
 
       return { token, user };
     },
-    addImage: async (parent, { imageURL, location, title }, context) => {
+    addPost: async (parent, { image, location, title }, context) => {
 
       if (context.user) {
-        const image = await Image.create({imageURL, location, title});
-        await User.findByIdAndUpdate(context.user._id, { $push: { posts: image } });
+        const post = await Post.create({image, location, title});
+        await User.findByIdAndUpdate(context.user._id, { $push: { posts: post } });
 
-        return image;
+        return post;
       }
 
       throw new AuthenticationError('Not logged in');
@@ -95,14 +95,12 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    updateImage: async (parent, args, context) => {
+    updatePost: async (parent, args, context) => {
  
       if (context.user) {
-  
-        const image = await Image.findByIdAndUpdate(args);
-        await User.findByIdAndUpdate(context.user._id, { $push: { images: image } });
-
-        return image;
+ 
+        const post = await Post.findByIdAndUpdate(args);
+        return post;
       }
 
       throw new AuthenticationError('Not logged in');
@@ -114,10 +112,10 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    deleteImage: async (parent, args, context) => {
+    deletePost: async (parent, args, context) => {
       if (context.user) {
-        const image = await Image.findByIdAndDelete(args, { new: true });
-        return await User.findByIdAndUpdate(context.user._id, { $pull: { images: args } });
+        const post = await Post.findByIdAndDelete(args, { new: true });
+        return await User.findByIdAndUpdate(context.user._id, { $pull: { posts: args } });
 
       }
 

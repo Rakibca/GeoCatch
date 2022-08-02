@@ -1,4 +1,5 @@
 const User = require('./User');
-const Image = require('./Image');
+const Post = require('./Post');
+const Catch = require('./Catch');
 
-module.exports = { User, Image };
+module.exports = { User, Post, Catch };

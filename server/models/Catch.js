@@ -27,6 +27,6 @@ const catchSchema = new Schema({
 
 });
 
-const Image = model('Image', imageSchema);
+const Catch = model('Catch', catchSchema);
 
-module.exports = Image;
+module.exports = Catch;
