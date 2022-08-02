@@ -27,8 +27,7 @@ export default function MapBox() {
     myGeoJSON.features[i] = {
       type: "Feature",
       properties: {
-        ID: i + 1,
-        photoTaken: "yes"
+        id: i + 1
       },
       geometry: {
         type: "Point",
@@ -39,6 +38,100 @@ export default function MapBox() {
       }
     }
   }
+
+  // Data showing potential sites where photo taken
+  var photos = {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "image": "Cat.jpg",
+          "user": "62e2daeda656ec21bcc08559",
+          "title": "GeoCatch title 1"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-79.395380, 43.663790]
+        }
+      }, {
+        "type": "Feature",
+        "properties": {
+          "image": "dog.jpg",
+          "user": "62e2daeda656ec21bcc0855a",
+          "title": "GeoCatch title 2"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-79.433020, 43.675820]
+        }
+      }, {
+        "type": "Feature",
+        "properties": {
+          "image": "bird.jpg",
+          "user": "62e2daeda656ec21bcc0855b",
+          "title": "GeoCatch title 3"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-79.380699, 43.654438]
+        }
+      }, {
+        "type": "Feature",
+        "properties": {
+          "image": "house.jpg",
+          "user": "62e2daeda656ec21bcc0855c",
+          "title": "GeoCatch title 4"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-79.389144, 43.641780]
+        }
+      }, {
+        "type": "Feature",
+        "properties": {
+          "image": "waterfall.jpg",
+          "user": "62e2daeda656ec21bcc0855c",
+          "title": "GeoCatch title 5"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-79.625062, 43.682342]
+        }
+      }
+    ]
+  };
+
+  // buildLocationList(photos);
+  //
+  // function buildLocationList(data) {
+  //    Iterate through the list of phtots
+  //   for (var i = 0; i < data.features.length; i++) {
+  //     var currentFeature = data.features[i];
+  //      Shorten data.feature.properties to just 'prop' so we are not
+  //      writing this long form again and again.
+  //     var prop = currentFeature.properties;
+  //      Select the location listing container in the HTML and append a div
+  //      with the class 'item' for each photo
+  //     var listings = document.getElementById('listings');
+  //     var listing = listings.appendChild(document.createElement('div'));
+  //     listing.className = 'item';
+  //     listing.id = 'listing-' + i;
+  //
+  //      Create a new link with the class 'title' for each photo
+  //      and fill it with the title of the GeoCatch location
+  //     var link = listing.appendChild(document.createElement('a'));
+  //     link.href = '#';
+  //     link.className = 'title';
+  //     link.dataPosition = i;
+  //     link.innerHTML = prop.title;
+  //
+  //      Create a new div with the class 'details' for each photo
+  //      and fill it with the image
+  //     var details = listing.appendChild(document.createElement('div'));
+  //     details.innerHTML = prop.image;
+  //   }
+  // }
 
   useEffect(() => {
     mapboxgl.accessToken = 'pk.eyJ1IjoicmFraWJjYSIsImEiOiJjbDY5YzZmcGQwcjlnM2tyenJneG9lZTU2In0.e1P3M69Z9tvm0uMWghC1xA';
@@ -52,80 +145,17 @@ export default function MapBox() {
 
     //const marker1 = new mapboxgl.Marker().setLngLat([-79.07584417094174, 43.08912611480924]).addTo(map);
 
-    // Data showing potential sites where photo taken
-    var photos = {
-      "type": "FeatureCollection",
-      "features": [
-        {
-          "type": "Feature",
-          "properties": {
-            "photoTaken": "yes",
-            "image": "Cat.jpg",
-            "user": "62e2daeda656ec21bcc08559",
-            "title": "GeoCatch me if you can!",
-            "location": [-79.395380, 43.663790]
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-79.395380, 43.663790]
-          }
-        }, {
-          "type": "Feature",
-          "properties": {
-            "photoTaken": "yes",
-            "image": "dog.jpg",
-            "user": "62e2daeda656ec21bcc0855a",
-            "title": "GeoCatch me if you can 2!",
-            "location": [-79.433020, 43.675820]
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-79.433020, 43.675820]
-          }
-        }, {
-          "type": "Feature",
-          "properties": {
-            "photoTaken": "yes",
-            "image": "bird.jpg",
-            "user": "62e2daeda656ec21bcc0855b",
-            "title": "GeoCatch me if you can 3!",
-            "location": [-79.380699, 43.654438]
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-79.380699, 43.654438]
-          }
-        }, {
-          "type": "Feature",
-          "properties": {
-            "photoTaken": "yes",
-            "image": "house.jpg",
-            "user": "62e2daeda656ec21bcc0855c",
-            "title": "GeoCatch me if you can 4!",
-            "location": [-79.389144, 43.641780]
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-79.389144, 43.641780]
-          }
-        }, {
-          "type": "Feature",
-          "properties": {
-            "photoTaken": "yes",
-            "image": "waterfall.jpg",
-            "user": "62e2daeda656ec21bcc0855c",
-            "title": "GeoCatch me if you can 5!",
-            "location": [-79.625062, 43.682342]
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-79.625062, 43.682342]
-          }
-        }
-      ]
-    };
+    // add markers to map
+    for (const feature of photos.features) {
+      // create a HTML element for each location
+      const el = document.createElement('div');
+      el.className = 'marker';
+      // create a marker for each feature and add to the map
+      new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).setPopup(new mapboxgl.Popup({offset: 25}). // add popups
+          setHTML(`<h3>${feature.properties.title}</h3><p>${feature.properties.image}</p>`)).addTo(map);
+    }
 
-    /* Assign a unique ID to each store */
+    //Assign a unique ID to each store
     photos.features.forEach(function(photo, i) {
       photo.properties.id = i;
     });
@@ -196,18 +226,15 @@ export default function MapBox() {
     //Click event goes here!
     map.on('click', function(e) {
       var eventLngLat = [e.lngLat.lng, e.lngLat.lat];
-      console.log(eventLngLat)
-      let radius = 5000
+      console.log(eventLngLat);
+      let radius = 5000;
       var searchRadius = makeRadius(eventLngLat, radius);
       map.getSource('search-radius').setData(searchRadius);
       var featuresInBuffer = spatialJoin(photos, searchRadius);
       //var featuresInBuffer = spatialJoin(myGeoJSON, searchRadius);
       map.getSource('photo-area').setData(turf.featureCollection(featuresInBuffer));
-
-      buildLocationList(photos);
-
       //console.log(turf.featureCollection(featuresInBuffer));
-      //console.log(featuresInBuffer.length);
+      console.log(featuresInBuffer);
       if (featuresInBuffer.length > 0) {
         alert(`There are ${featuresInBuffer.length} geocatches within ${radius / 1000} km!`);
       } else {
@@ -224,58 +251,26 @@ export default function MapBox() {
 
     //spatialJoin function goes here!
     function spatialJoin(sourceGeoJSON, filterFeature) {
-      console.log(sourceGeoJSON)
+      //console.log(sourceGeoJSON)
       // Loop through all the features in the source geojson and return the ones that
       // are inside the filter feature (buffered radius) and are confirmed photo taken sites
       var joined = sourceGeoJSON.features.filter(function(feature) {
-        return turf.booleanPointInPolygon(feature, filterFeature) && feature.properties.photoTaken === 'yes';
+        return turf.booleanPointInPolygon(feature, filterFeature);
       });
       return joined;
     }
   })
 
-  function buildLocationList(photos) {
-    for (const photo of photos.features) {
-      /* Add a new site listing section to the sidebar. */
-      const listings = document.getElementById('listings');
-      const listing = listings.appendChild(document.createElement('div'));
-      /* Assign a unique `id` to the listing. */
-      listing.id = `listing-${photo.properties.id}`;
-      /* Assign the `item` class to each listing for styling. */
-      listing.className = 'item';
-
-      /* Add details to the individual listing. */
-      const image = listing.appendChild(document.createElement('div'));
-      image.innerHTML = `Photo: ${photo.properties.image}`;
-      const user = listing.appendChild(document.createElement('div'));
-      user.innerHTML = `User: ${photo.properties.user}`;
-      const title = listing.appendChild(document.createElement('div'));
-      title.innerHTML = `Title: ${photo.properties.title}`;
-      const location = listing.appendChild(document.createElement('div'));
-      location.innerHTML = `Location: ${photo.properties.location}`;
-
-      // const link = listing.appendChild(document.createElement('a'));
-      // link.href = '#';
-      // link.className = 'title';
-      // link.id = `link-${photo.properties.id}`;
-      // link.innerHTML = `${photo.properties.title}`;
-    }
-  }
-
   return (<div>
     <div>
       <div class='sidebar'>
         <div class='heading'>
-          <h1>Our locations</h1>
+          <h1>GeoCatch Locations</h1>
         </div>
         <div id='listings' class='listings'></div>
       </div>
-
       <div id="map"></div>
       <div id="instructions">
-        <p>
-          <strong>GeoCatch Game</strong>
-        </p>
         <p>
           <strong>Click on the map. You will be alerted if you are within 5 Km of a photo taken location</strong>
         </p>

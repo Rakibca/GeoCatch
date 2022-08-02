@@ -8,7 +8,7 @@ import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
 import Geocatch from './pages/Geocatch/Geocatch';
 import Login from './components/Login/Login';
-import Signup from './pages/Signup/Signup';
+import Signup from './components/Signup/Signup';
 import Home from './pages/Home/Home';
 // import PhotoUpload from './components/PhotoUpload/PhotoUpload';
 import Profile from './pages/Profile/Profile';
@@ -52,34 +52,34 @@ function App() {
         <div className="content-wrap">
       <Routes>
 
-        <Route 
-                path="/" 
-                element={<Home />} 
+        <Route
+                path="/"
+                element={<Home />}
               />
               {/* Define a route that will take in variable data */}
-        <Route 
-                path="/me" 
-                element={<Profile />} 
+        <Route
+                path="/me"
+                element={<Profile />}
               />
-                            <Route 
-                path="/login" 
-                element={<Login />} 
-              />
-
-        <Route 
-                path="/signup" 
-                element={<Signup />} 
-              />
-                      <Route 
-                path="/upload" 
-                element={<PhotoUpload />} 
+                            <Route
+                path="/login"
+                element={<Login />}
               />
 
-        <Route 
-                path="/geocatches/:geocatchId" 
-                element={<Geocatch />} 
+        <Route
+                path="/signup"
+                element={<Signup />}
               />
-        <Route 
+                      <Route
+                path="/upload"
+                element={<PhotoUpload />}
+              />
+
+        <Route
+                path="/geocatches/:geocatchId"
+                element={<Geocatch />}
+              />
+        <Route
                 path="/users/:userId"
                 element={<Profile />}
               />
