@@ -98,25 +98,24 @@ let imageURL;
     console.log(newLatitude)
     console.log(newLongitude)
     let location = [newLatitude, newLongitude];
-    imageURL = "tester"
 
-    // let formData = new FormData();
-    // formData.append('image', newImage);
-    // formData.append('album', 'IGz16LwsI5wKtZ7');
-    // await fetch('https://api.imgur.com/3/image', {
-    //   method: 'POST',
-    //   headers: new Headers({ Authorization: 'Client-ID d8752bc55bea5ea'}),
+    let formData = new FormData();
+    formData.append('image', newImage);
+    formData.append('album', 'IGz16LwsI5wKtZ7');
+    await fetch('https://api.imgur.com/3/upload', {
+      method: 'POST',
+      headers: new Headers({ Authorization: 'Client-ID d8752bc55bea5ea'}),
       
-    //   body: formData
-    //   }).then(response => {
-    //   if (response.ok) {
-    //     alert('Image uploaded'); console.log(response.JSON)
-    //     return imageURL = response.JSON;      
-    //   }
-    //   }).catch(error => {
-    //   console.error(JSON.stringify(error));
-    //   alert('Upload failed: ' + error);
-    //   });
+      body: formData
+      }).then(response => {
+      if (response.ok) {
+        alert('Image uploaded'); console.log(response.JSON)
+        return imageURL = response.data.link;      
+      }
+      }).catch(error => {
+      console.error(JSON.stringify(error));
+      alert('Upload failed: ' + error);
+      });
        
     
     try {
