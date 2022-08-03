@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
-import { useMutation } from '@apollo/client';
-import EXIF from 'exif-js';
+// import React, { useRef, useState } from 'react';
+// import { useMutation } from '@apollo/client';
+// import EXIF from 'exif-js';
 
-import { ADD_POST } from '../../utils/mutations';
+// import { ADD_POST } from '../../utils/mutations';
 
-const CatchForm = ({ parent }) => {
+// const CatchForm = ({ parent }) => {
 
 //   const [addPost, { error }] = useMutation(ADD_POST);
 
@@ -90,8 +90,8 @@ const CatchForm = ({ parent }) => {
 
 //       });
 
-  return (
-      <div>
+  // return (
+  //     <div>
                 {/* <form
               onSubmit={handleFormSubmit}
     >
@@ -129,8 +129,8 @@ const CatchForm = ({ parent }) => {
             </button>
           </div>
           </form> */}
-      </div>
-      );
-}
+//       </div>
+//       );
+// }
 
-export default CatchForm;
+// export default CatchForm;

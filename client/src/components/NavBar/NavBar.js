@@ -76,7 +76,7 @@ export default function NavBar() {
               <MenuList>
                 <MenuItem>
                   <Link to="/">
-                    <ReactBootStrap.NavDropdown.Item href="/">Home</ReactBootStrap.NavDropdown.Item>
+                    <ReactBootStrap.NavDropdown.Item>Home</ReactBootStrap.NavDropdown.Item>
                   </Link>
                 </MenuItem>
                 
@@ -84,13 +84,13 @@ export default function NavBar() {
                 <div>
                 <MenuItem>
                   <Link to="/signup">
-                    <ReactBootStrap.NavDropdown.Item href="/signup">Signup</ReactBootStrap.NavDropdown.Item>
+                    <ReactBootStrap.NavDropdown.Item>Signup</ReactBootStrap.NavDropdown.Item>
                   </Link>
                 </MenuItem>
                 
                 <MenuItem>
                   <Link to="/login">
-                    <ReactBootStrap.NavDropdown.Item href="/login">Login</ReactBootStrap.NavDropdown.Item>
+                    <ReactBootStrap.NavDropdown.Item>Login</ReactBootStrap.NavDropdown.Item>
                   </Link>
                 </MenuItem>
                 </div>
@@ -100,13 +100,13 @@ export default function NavBar() {
                 <div>
                 <MenuItem>
                   <Link to="/subscribe">
-                  <ReactBootStrap.NavDropdown.Item href="/subscribe">Subscription</ReactBootStrap.NavDropdown.Item>
+                  <ReactBootStrap.NavDropdown.Item>Subscription</ReactBootStrap.NavDropdown.Item>
                   </Link>
                 </MenuItem>
              
                 <MenuItem>
                   <Link to="/upload">
-                    <ReactBootStrap.NavDropdown.Item href="/upload">GeoCatch Uploads</ReactBootStrap.NavDropdown.Item>
+                    <ReactBootStrap.NavDropdown.Item>GeoCatch Uploads</ReactBootStrap.NavDropdown.Item>
                   </Link>
                 </MenuItem>
                 <MenuDivider />

@@ -1,11 +1,12 @@
 import React from 'react';
 import {ChakraProvider} from '@chakra-ui/react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
 import Geocatch from './components/Geocatch/Geocatch';
 import CatchForm from './components/CatchForm/CatchForm';
 import Login from './components/Login/Login';
-import Signup from './components/Signup/Signup';
+import SignupForm from './components/SignupForm/SignupForm';
 import Home from './pages/Home/Home';
 import Profile from './pages/Profile/Profile';
 import PhotoUpload from './components/PhotoUpload/PhotoUpload';
@@ -15,7 +16,6 @@ import './App.css';
 
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -53,7 +53,7 @@ function App() {
               />
               {/* Define a route that will take in variable data */}
         <Route
-                path="/me"
+                path="/profile"
                 element={<Profile />}
               />
                             <Route
@@ -63,9 +63,9 @@ function App() {
 
         <Route
                 path="/signup"
-                element={<Signup />}
+                element={<SignupForm />}
               />
-                      <Route
+        <Route
                 path="/upload"
                 element={<PhotoUpload />}
               />
