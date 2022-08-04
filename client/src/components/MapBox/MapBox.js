@@ -236,11 +236,11 @@ export default function MapBox() {
 
   return (<div>
     <div>
-      <div class='sidebar'>
-        <div class='heading'>
+      <div className='sidebar'>
+        <div className='heading'>
           <h1>GeoCatch Game Instructions</h1>
         </div>
-        <div class="rules">
+        <div className="rules">
           <div>
             <p>Signup / Login to play the game.</p>
           </div>

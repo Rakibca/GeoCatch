@@ -12,6 +12,7 @@ import * as ReactBootStrap from "react-bootstrap";
 import './navbar.css';
 import Auth from '../../utils/auth';
 import Logout from '../Logout/Logout';
+import { Link } from 'react-router-dom';
 
 import { ReactNode } from 'react';
 import {
@@ -19,7 +20,6 @@ import {
   Flex,
   Avatar,
   HStack,
-  Link,
   IconButton,
   Button,
   Menu,
@@ -55,7 +55,7 @@ export default function NavBar() {
           />
           <HStack spacing={8} alignItems={'center'}>
           <Link to="/">
-            <ReactBootStrap.Navbar.Brand href="/">GeoCatch: Who Will You Catch?</ReactBootStrap.Navbar.Brand>
+            <ReactBootStrap.Navbar.Brand>GeoCatch: Who Will You Catch?</ReactBootStrap.Navbar.Brand>
           </Link>
           </HStack>
           <Flex alignItems={'center'}>
@@ -74,44 +74,44 @@ export default function NavBar() {
                 />
               </MenuButton>
               <MenuList>
+              <Link to="/">
                 <MenuItem>
-                  <Link to="/">
-                    <ReactBootStrap.NavDropdown.Item>Home</ReactBootStrap.NavDropdown.Item>
-                  </Link>
-                </MenuItem>
-                
+                    Home
+                  </MenuItem>
+                </Link>
                 {!Auth.loggedIn() ? (
                 <div>
+                 <Link to="/signup">
                 <MenuItem>
-                  <Link to="/signup">
-                    <ReactBootStrap.NavDropdown.Item>Signup</ReactBootStrap.NavDropdown.Item>
+
+                    Signup
+                    </MenuItem>
                   </Link>
-                </MenuItem>
                 
-                <MenuItem>
                   <Link to="/login">
-                    <ReactBootStrap.NavDropdown.Item>Login</ReactBootStrap.NavDropdown.Item>
+                <MenuItem>
+
+                    Login
+                    </MenuItem>
                   </Link>
-                </MenuItem>
+
                 </div>
 ):("")}  
 
                 {Auth.loggedIn() ? (
                 <div>
-                <MenuItem>
-                  <Link to="/subscribe">
-                  <ReactBootStrap.NavDropdown.Item>Subscription</ReactBootStrap.NavDropdown.Item>
-                  </Link>
+                                    <Link to="/subscribe">
+                <MenuItem>Subscription
+
                 </MenuItem>
-             
-                <MenuItem>
-                  <Link to="/upload">
-                    <ReactBootStrap.NavDropdown.Item>GeoCatch Uploads</ReactBootStrap.NavDropdown.Item>
-                  </Link>
+                </Link>   
+                <Link to="/upload">
+                <MenuItem>GeoCatch Uploads
+
                 </MenuItem>
+                </Link>
                 <MenuDivider />
-                <MenuItem>
-                  <ReactBootStrap.NavDropdown.Item onClick={logout}><Logout /></ReactBootStrap.NavDropdown.Item>
+                <MenuItem onClick={logout}>Logout
                 </MenuItem>
                 </div>
 ):("")}  
@@ -124,51 +124,3 @@ export default function NavBar() {
   );
 }
 
-// const NavBar = () => {
-//   const logout = (event) => {
-//     event.preventDefault();
-//     Auth.logout();
-//   };
-//   return(
-//       <div className="background">
-//           <ReactBootStrap.Navbar collapseOnSelect expand="xl" bg="warning" variant="light">
-//           <Link to="/">
-//         <ReactBootStrap.Navbar.Brand href="/">GeoCatch</ReactBootStrap.Navbar.Brand>
-//         </Link>
-
-//         <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
-//         <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
-//           <ReactBootStrap.Nav className="mr-auto"> 
-//           <Link to="/map">
-//           <ReactBootStrap.Nav.Link href="#map">GeoCatch Map</ReactBootStrap.Nav.Link>
-//           </Link>
-//           {Auth.loggedIn() ? (
-// <div>
-//           <Link to="/upload">
-//           <ReactBootStrap.Nav.Link href="#upload">GeoCatch Upload</ReactBootStrap.Nav.Link>
-//           </Link>
-//           <Link to="/me">
-//           <ReactBootStrap.Nav.Link href="#profile">Profile</ReactBootStrap.Nav.Link>
-//           </Link>
-//           </div>
-// ):(<span />)}
-//             <ReactBootStrap.NavDropdown title="User" id="collasible-nav-dropdown">
-//             <Link to="/signup">
-//               <ReactBootStrap.NavDropdown.Item href="#signup">Signup</ReactBootStrap.NavDropdown.Item>
-//               </Link>
-//               <Link to="/login">
-//               <ReactBootStrap.NavDropdown.Item href="#login">Login</ReactBootStrap.NavDropdown.Item>
-//               </Link>
-
-//               <ReactBootStrap.NavDropdown.Item onClick={logout}>Logout</ReactBootStrap.NavDropdown.Item>
-//               <ReactBootStrap.NavDropdown.Divider />
-//               <ReactBootStrap.NavDropdown.Item href="#subscribe">Subscribe</ReactBootStrap.NavDropdown.Item>
-//             </ReactBootStrap.NavDropdown>
-//           </ReactBootStrap.Nav>
-//           <ReactBootStrap.Nav>
-//           </ReactBootStrap.Nav>
-//         </ReactBootStrap.Navbar.Collapse>
-//         </ReactBootStrap.Navbar>
-//       </div>
-//   )
-// }
