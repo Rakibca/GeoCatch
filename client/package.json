@@ -22,7 +22,6 @@
     "cloudinary-react": "^1.8.1",
     "dotenv": "^16.0.1",
     "express": "^4.17.2",
-    "geocatch": "file:..",
     "graphql": "^16.3.0",
     "jwt-decode": "^2.2.0",
     "mapbox-gl": "^2.9.2",
