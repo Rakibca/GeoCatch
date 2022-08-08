@@ -9,170 +9,160 @@ import './photoupload.css';
 import {ADD_POST} from '../../utils/mutations';
 import {QUERY_POSTS, QUERY_POST} from '../../utils/queries';
 import {useMutation, useQuery} from '@apollo/client';
+import { Image } from 'cloudinary-react';
+import { AdvancedImage } from '@cloudinary/react';
+import { Cloudinary } from "@cloudinary/url-gen";
+import { fill } from "@cloudinary/url-gen/actions/resize";
+import Axios from 'axios'
 
 export default function PhotoUpload() {
 
-  const [newTitle, setNewTitle] = useState('');
-  const [newLatitude, setNewLatitude] = useState(0);
-  const [newLongitude, setNewLongitude] = useState(0);
-  const [newImage, setNewImage] = useState(null);
+const [newTitle, setNewTitle] = useState('');
+const [newLatitude, setNewLatitude] = useState(0);
+const [newLongitude, setNewLongitude] = useState(0);
+const [newImage, setNewImage] = useState(null);
 
-  const [addPost, {
-      error
-    }
-  ] = useMutation(ADD_POST);
+const [addPost, {
+  error
+}
+] = useMutation(ADD_POST);
 
 
-    console.log("query")
+console.log("query")
 
-  const { loading, data } = useQuery(QUERY_POSTS);
-  console.log(data)
+const { loading, data } = useQuery(QUERY_POSTS);
+console.log(data)
 
-  const { loading2, data2 } = useQuery(QUERY_POST, {
-    // Pass the `postId` URL parameter into query to retrieve this data
-    variables: {_id: "62e994308efbc82c8c2d7db3" },
-  });
-  console.log(data2)
-  
 function parseData(data) {
-  let latdegrees = (data.GPSLatitude[0].numerator) / (data.GPSLatitude[0].denominator);
-  let latminutes = (data.GPSLatitude[1].numerator) / (data.GPSLatitude[1].denominator);
-  let latseconds = (data.GPSLatitude[2].numerator) / (data.GPSLatitude[2].denominator);
+let latdegrees = (data.GPSLatitude[0].numerator) / (data.GPSLatitude[0].denominator);
+let latminutes = (data.GPSLatitude[1].numerator) / (data.GPSLatitude[1].denominator);
+let latseconds = (data.GPSLatitude[2].numerator) / (data.GPSLatitude[2].denominator);
 
-  let latitude = latdegrees + (latminutes / 60) + (latseconds / 3600);
+let latitude = latdegrees + (latminutes / 60) + (latseconds / 3600);
 
-  if (data.GPSLatitudeRef === "S") {
-    latitude = -latitude
-  }
+if (data.GPSLatitudeRef === "S") {
+latitude = -latitude
+}
 
-  let longdegrees = (data.GPSLongitude[0].numerator) / (data.GPSLongitude[0].denominator);
-  let longminutes = (data.GPSLongitude[1].numerator) / (data.GPSLongitude[1].denominator);
-  let longseconds = (data.GPSLongitude[2].numerator) / (data.GPSLongitude[2].denominator);
+let longdegrees = (data.GPSLongitude[0].numerator) / (data.GPSLongitude[0].denominator);
+let longminutes = (data.GPSLongitude[1].numerator) / (data.GPSLongitude[1].denominator);
+let longseconds = (data.GPSLongitude[2].numerator) / (data.GPSLongitude[2].denominator);
 
-  let longitude = longdegrees + (longminutes / 60) + (longseconds / 3600);
+let longitude = longdegrees + (longminutes / 60) + (longseconds / 3600);
 
-  if (data.GPSLongitudeRef === "W") {
-    longitude = -longitude
-  }
+if (data.GPSLongitudeRef === "W") {
+longitude = -longitude
+}
 
-  console.log(latitude + ", " + longitude)
+console.log(latitude + ", " + longitude)
 
-  return [latitude, longitude]
+return [latitude, longitude]
 }
 
 
 const handleChange = async ({
 
-  target: {
-    files: [file]
-  }
+target: {
+files: [file]
+}
 }) => {
-  if (file && file.name) {
-    const exifData = await new Promise(resolve =>{
-    EXIF.getData(file, function(){
-      resolve(EXIF.getAllTags(this))
-    })
-  })
+if (file && file.name) {
+const exifData = await new Promise(resolve =>{
+EXIF.getData(file, function(){
+  resolve(EXIF.getAllTags(this))
+})
+})
 
-  let data = (exifData)
+let data = (exifData)
 
-  console.log(data);
-  let location = parseData(data);
-  console.log(location)
-  console.log(file)
+console.log(data);
+let location = parseData(data);
+console.log(location)
+console.log(file)
 
-  setNewLongitude(location[1]);
-  setNewLatitude(location[0])
+setNewLongitude(location[1]);
+setNewLatitude(location[0])
 
-  setNewImage(file);
+setNewImage(file);
 
-  }
+}
 }
 
 let imageURL;
 
-   
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    console.log(newLatitude)
-    console.log(newLongitude)
-    let location = [newLatitude, newLongitude];
-
-    let formData = new FormData();
-    formData.append('image', newImage);
-    formData.append('album', 'IGz16LwsI5wKtZ7');
-    await fetch('https://api.imgur.com/3/upload', {
-      method: 'POST',
-      headers: new Headers({ Authorization: 'Client-ID d8752bc55bea5ea'}),
-      
-      body: formData
-      }).then(response => {
-      if (response.ok) {
-        alert('Image uploaded'); console.log(response.JSON)
-        return imageURL = response.data.link;      
-      }
-      }).catch(error => {
-      console.error(JSON.stringify(error));
-      alert('Upload failed: ' + error);
-      });
-       
-    
-    try {
-      const {data} = addPost({
-        variables: {
-          image: imageURL,
-          location: location,
-          title: newTitle
-        }
-      });
 
 
-      console.log(imageURL);
-      console.log(location);
-      console.log(newTitle);
-      //window.location.reload();
-    } catch (err) {
-      console.error(err);
+const handleFormSubmit = async (event) => {
+event.preventDefault();
+console.log(newLatitude)
+console.log(newLongitude)
+let location = [newLatitude, newLongitude];
+
+let formData = new FormData();
+formData.append('file', newImage);
+formData.append("upload_preset", "syzduuoq")
+await Axios.post("https://api.cloudinary.com/v1_1/dahwzxpwp/image/upload", formData)
+.then ((res) => {
+    console.log(res.data.secure_url)
+    imageURL = res.data.secure_url; 
+})
+
+
+try {
+  const {data} = addPost({
+    variables: {
+      image: imageURL,
+      location: location,
+      title: newTitle
     }
-  };
+  });
 
- 
-  return (<div>
-    <form onSubmit={handleFormSubmit}>
-      <h4>Upload a photo:</h4>
 
-      <input
-      type="file"
-      id="file"
-      accept="image/*"
-      capture="environment"
-      onChange={handleChange}
-    />
-    <br/>
-    {newImage && (
-    <div className="imagedisplay">
-        <img className="imagedisplay" alt="not found" width={"500px"} src={URL.createObjectURL(newImage)} />
-        <br />
+  console.log(imageURL);
+  console.log(location);
+  console.log(newTitle);
+  //window.location.reload();
+} catch (err) {
+  console.error(err);
+}
+};
+
+
+return (<div>
+<form onSubmit={handleFormSubmit}>
+  <h4>Upload a photo:</h4>
+
+  <input
+  type="file"
+  id="file"
+  accept="image/*"
+  capture="environment"
+  onChange={handleChange}
+/>
+<br/>
+{newImage && (
+<div className="imagedisplay">
+    <img className="imagedisplay" alt="not found" width={"500px"} src={URL.createObjectURL(newImage)} />
+    <br />
+
+    </div>
+         )}
+
+  <div className="photo-upload">
+    <label className="catchlabel">Title:</label>
+    <input className="inputbox" onChange={(e) => setNewTitle(e.target.value)} placeholder="Title" type="text" value={newTitle}/>
+    <label className="catchlabel">Latitude:</label>
+    <input className="inputbox" onChange={(e) => setNewLatitude(e.target.value)} placeholder="Enter latitude" type="number" value={newLatitude}/>
+    <label className="catchlabel">Longitude:</label>
+    <input className="inputbox" onChange={(e) => setNewLongitude(e.target.value)} placeholder="Enter longitude" type="number" value={newLongitude}/>
+
+    <button className="boxbutton" type="submit">
+
+      Add Geocatch
+    </button>
    
-        </div>
-             )}
-
-      <div className="photo-upload">
-        <label className="catchlabel">Title:</label>
-        <input className="inputbox" onChange={(e) => setNewTitle(e.target.value)} placeholder="Title" type="text" value={newTitle}/>
-        <label className="catchlabel">Latitude:</label>
-        <input className="inputbox" onChange={(e) => setNewLatitude(e.target.value)} placeholder="Enter latitude" type="number" value={newLatitude}/>
-        <label className="catchlabel">Longitude:</label>
-        <input className="inputbox" onChange={(e) => setNewLongitude(e.target.value)} placeholder="Enter longitude" type="number" value={newLongitude}/>
-
-        <button className="boxbutton" type="submit">
-  
-          Add Geocatch
-        </button>
-       
-      </div>
-    </form>
-    {/* <button onClick={query}>Click this</button> */}
-  </div>);
+  </div>
+</form>
+{/* <button onClick={query}>Click this</button> */}
+</div>);
 }
