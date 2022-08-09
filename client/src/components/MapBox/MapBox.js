@@ -13,6 +13,7 @@ import '../../index.css';
 import MapList from '.././MapList/MapList';
 import {useQuery} from '@apollo/client';
 import {QUERY_POSTS} from '../../utils/queries';
+import { Link } from 'react-router-dom';
 
 export default function MapBox() {
 

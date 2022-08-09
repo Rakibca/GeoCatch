@@ -7,6 +7,7 @@ User profile includes:
 
 import React, { useRef, useState } from 'react';
 // import { useStudentContext } from '../utils/StudentContext';
+import { Link } from 'react-router-dom';
 
 import '../../index.css';
 import { UPDATE_IMAGE, DELETE_IMAGE, ADD_IMAGE } from '../../utils/mutations';
@@ -57,7 +58,10 @@ return (
     <div className="my-5">
       <CatchList catches={post.catches} />
     </div>
-    <a href= "/catchform">Upload a new catch!</a>
+    <Link to={`/geocatches/${_id}/catchform`}>
+    <p> Upload a new catch!</p>
+                </Link>
+
 
   </div>
 );
