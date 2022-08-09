@@ -3,12 +3,7 @@ const dateFormat = require('../utils/dateFormat');
 
 const catchSchema = new Schema({
   image: {
-    data: Buffer,
-    contentType: String
-  },
-  user:       {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
+    type: String
   },
   title: {
     type: String,

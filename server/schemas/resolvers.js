@@ -5,22 +5,23 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    postArea: async (parent, { latitude, longitude, radius }) => {
 
-      return await Post.find( {location: { $geoWithin: { $center: [ [latitude, longitude], radius/1000]}}});
-    },
     posts: async () => {
-      console.log("here")
+      console.log("queryposts")
       return await Post.find({});
     },
     post: async (parent, { _id }) => {
 
       console.log("querypost")
-      return await Post.findOne({_id: _id});
+      return await Post.findById(_id).populate('catches');
+    },
+    postArea: async (parent, { latitude, longitude, radius }) => {
+
+      return await Post.find( {location: { $geoWithin: { $center: [ [latitude, longitude], radius/1000]}}});
     },
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate('posts', 'catches');
+        const user = await User.findById(context.user._id);
 
         user.posts.sort((a, b) => b.dateTaken - a.dateTaken);
         user.catches.sort((a, b) => b.dateTaken - a.dateTaken);
@@ -119,12 +120,28 @@ const resolvers = {
     },
     deletePost: async (parent, args, context) => {
       if (context.user) {
-        const post = await Post.findByIdAndDelete(args, { new: true });
-        return await User.findByIdAndUpdate(context.user._id, { $pull: { posts: args } });
-
-      }
+        const post = await Post.findByIdAndDelete(args);
+        // return await User.findByIdAndUpdate(context.user._id, { $pull: { posts: args } }
+      
+        return post;
+      };
 
       throw new AuthenticationError('Not logged in');
+    },
+
+    addCatch: async (parent, { _id, image, location, title }, context) => {
+
+      console.log("addCatch");
+
+      // if (context.user) {
+        const catch1 = await Catch.create({image, location, title});
+        console.log(catch1);
+        const post = await Post.findByIdAndUpdate(_id, { $push: { catches: catch1._id } });
+        console.log(post);
+        return post;
+      // }
+
+      // throw new AuthenticationError('Not logged in');
     },
 
     login: async (parent, { email, password }) => {

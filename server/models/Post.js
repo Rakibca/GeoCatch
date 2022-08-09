@@ -1,8 +1,6 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const Catch = require('./Catch');
-
 const postSchema = new Schema({
   image: {
     type: String
