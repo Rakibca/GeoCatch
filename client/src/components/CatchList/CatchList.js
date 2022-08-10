@@ -23,7 +23,7 @@ const CatchList = ({ catches }) => {
 
               <div className="p-3 bg-dark text-light">
                 <h5 className="card-header">
-                  {catch1.user} found you!
+                  {catch1.user} found you! 
                   <span style={{ fontSize: '0.825rem' }}>
                     on {catch1.dateTaken}
                   </span>

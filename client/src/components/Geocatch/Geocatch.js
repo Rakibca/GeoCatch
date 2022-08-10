@@ -59,7 +59,7 @@ function removePost() {
         console.error(err);
       }
     }
-}
+
 
 return (
   <div className="my-3">
