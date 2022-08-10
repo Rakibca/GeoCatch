@@ -136,7 +136,8 @@ const resolvers = {
       // if (context.user) {
         const catch1 = await Catch.create({image, location, title});
         console.log(catch1);
-        const post = await Post.findByIdAndUpdate(_id, { $push: { catches: catch1._id } });
+        console.log(_id);
+        const post = await Post.findByIdAndUpdate(_id, { $push: { catches: catch1._id } }, {new: true, useFindandModify: false});
         console.log(post);
         return post;
       // }
