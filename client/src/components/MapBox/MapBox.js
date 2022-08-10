@@ -14,6 +14,21 @@ import MapList from '.././MapList/MapList';
 import {useQuery} from '@apollo/client';
 import {QUERY_POSTS} from '../../utils/queries';
 import { Link } from 'react-router-dom';
+// 1. Import the utilities
+import { extendTheme } from '@chakra-ui/react';
+
+// 2. Update the breakpoints as key-value pairs
+const breakpoints = {
+  sm: '30em',
+  md: '48em',
+  lg: '62em',
+  xl: '80em',
+  '2xl': '96em',
+}
+
+// 3. Extend the theme
+const theme = extendTheme({ breakpoints })
+
 
 export default function MapBox() {
 
@@ -237,31 +252,34 @@ export default function MapBox() {
 
   return (<div>
     <div>
-      <div className='sidebar'>
-        <div className='heading'>
-          <h1>GeoCatch Game Instructions</h1>
+      <div className='sidebar font-bold' bgGradient='linear(to-r, #0078AA, #F2DF3A)'>
+        <div className='heading' bgGradient='linear(to-r, #0078AA, #F2DF3A)'>
+          <h1 class="text-xs sm:text-small md:text-base lg:text-lg xl:text-xl">Instructions</h1>
         </div>
-        <div className="rules">
+        <div className="rules" class="text-xs sm:text-small md:text-base lg:text-lg xl:text-xl">
           <div>
-            <p>Signup / Login to play the game.</p>
+            <p>1. Login to GeoCatch</p>
           </div>
+          <br />
           <div>
-            <p>Create a GeoCatch: browse to upload a photo from your computer.</p>
+            <p>2. Upload a GeoCatch</p>
           </div>
+          <br />
           <div>
-            <p>In the map choose a GeoCatch area within 5 Km radius.</p>
+            <p>3. Travel to a GeoCatch</p>
           </div>
+          <br />
           <div>
-            <p>Click on that point in the map. A marker and popup will indicate you are near.</p>
+            <p>4. Respond to a GeoCatch</p>
+          </div>
+          <br />
+          <div>
+            <p>5. Click on the map to be alerted if you are within 5km of a GeoCatch</p>
           </div>
         </div>
       </div>
-      <div id="map"></div>
-      <div id="instructions">
-        <p>
-          <strong>Click on the map. You will be alerted if you are within 5 Km of a photo taken location</strong>
-        </p>
-      </div>
+      <div class="absolute" id="map"></div>
     </div>
-  </div>);
+  </div>
+  );
 }

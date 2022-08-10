@@ -133,13 +133,14 @@ try {
 };
 
 
-return (<div>
+return (
+<div class="text-sm md:text-base lg:text-lg xl:text-xl font-bold">
   <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials!
         </Alert>
         <Form.Group>
-          <Form.Label htmlFor='file'>Upload a photo</Form.Label>
+          <Form.Label htmlFor='file'>Upload a Photo!</Form.Label>
           <Form.Control
             type='file'
             id="file"
@@ -175,7 +176,7 @@ return (<div>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='latitude'>Latitude:</Form.Label>
+          <Form.Label htmlFor='latitude'>Latitude (East-West):</Form.Label>
           <Form.Control
             type='number'
             placeholder='Enter latitude'
@@ -188,7 +189,7 @@ return (<div>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='longitude'>Longitude:</Form.Label>
+          <Form.Label htmlFor='longitude'>Longitude (North-South):</Form.Label>
           <Form.Control
             type='number'
             placeholder='Enter longitude'
