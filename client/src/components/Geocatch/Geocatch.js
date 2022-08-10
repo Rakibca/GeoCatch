@@ -8,10 +8,9 @@ User profile includes:
 import React, { useRef, useState } from 'react';
 // import { useStudentContext } from '../utils/StudentContext';
 import { Link } from 'react-router-dom';
-import { Button, Alert, Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 import '../../index.css';
-import { UPDATE_IMAGE, DELETE_IMAGE, ADD_IMAGE } from '../../utils/mutations';
 import { useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
@@ -30,9 +29,6 @@ const { _id } = useParams();
 const [deletePost, {  error}] = useMutation(DELETE_POST);
 const [show, setShow] = useState(false);
 
-const handleClose = () => setShow(false);
-const handleShow = () => setShow(true);
-
 const { loading, data } = useQuery(QUERY_POST, {
   // Pass the `postId` URL parameter into query to retrieve this data
   variables: {_id: _id },
@@ -46,7 +42,8 @@ if (loading) {
 }
 
 function removePost() {
-
+  let deleted = window.confirm("Are you sure you would like to delete this post?");
+    if (deleted ===true) {
       try {
         const {data} = deletePost({
           variables: {
@@ -54,11 +51,12 @@ function removePost() {
           }
         });
       
-        <Link to='/' />
+        window.location.href = "/"
       } catch (err) {
         console.error(err);
       }
     }
+}
 
 
 return (
@@ -74,8 +72,8 @@ return (
       </span>
     </h3>
     <div className="imagedisplay">
-      <a href={post.image}></a>
-        <img className="imagedisplay" alt="not found" width={"60%"} src={post.image} />
+      <a href={post.image}>
+        <img className="imagedisplay" alt="not found" width={"60%"} src={post.image} /></a>
         <br />
            </div>
 
@@ -86,26 +84,11 @@ return (
           Delete Geocatch
         </Button>):("")}
 
-        <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Deleting Geocatch</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure you want to delete this Geocatch post?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="danger" onClick={removePost}>
-            Yes, delete post
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
     <div className="my-5">
       <CatchList catches={post.catches} />
     </div>
     <Link to={`/geocatches/${_id}/catchform`}>
-    <p> Upload a new catch!</p>
+    <p className="bg-success text-light"> Upload a new catch!</p>
                 </Link>
 
 

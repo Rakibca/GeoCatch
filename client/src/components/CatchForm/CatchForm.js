@@ -155,7 +155,7 @@ console.log(data)
       try {
         const {data} = addCatch({
           variables: {
-            id: _id,
+            _id: _id,
             image: imageURL,
             location: location,
             title: newTitle
