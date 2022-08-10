@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Link } from "react-router-dom";
 
-const MapList = ({ props }) => {
+const MapList = ({ posts }) => {
 
-  let { images } = props
+  console.log(posts);
 
   return (
     <div>
@@ -15,19 +15,24 @@ const MapList = ({ props }) => {
         Geocatches in the area
       </h3>
       <div className="flex-row my-4">
-        {images && images.map((image) => (
+        {posts && posts.map((post) => (
 
-            <div key={image._id} className="col-12 mb-3 pb-3">
+            <div key={post._id} className="col-12 mb-3 pb-3">
 
               <div className="p-3 bg-dark text-light">
                 <h5 className="card-header">
-Can you find {image.user}?
+Can you find this spot?
                   <span style={{ fontSize: '0.825rem' }}>
-                    Taken on {image.dateTaken}
+                    Taken on {post.dateTaken}
                   </span>
                 </h5>
-                <Link to={`/geocatches/${image._id}`}>View geocatch.</Link>
-                <p className="card-body">{image.title}</p>
+                <div className="imagedisplay card-body bg-secondary">
+      <a href={post.image}>
+        <img className="imagedisplay" alt="not found" width={"20%"} src={post.image} /></a>
+        <br />
+           </div>
+                <Link to={`/geocatches/${post._id}`}>View geocatch.</Link>
+                <p className="card-body">{post.title}</p>
               </div>
               </div>
           ))}

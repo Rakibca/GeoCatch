@@ -16,6 +16,7 @@ import {QUERY_POSTS} from '../../utils/queries';
 import { Link } from 'react-router-dom';
 // 1. Import the utilities
 import { extendTheme } from '@chakra-ui/react';
+import { Modal, Button } from 'react-bootstrap';
 
 // 2. Update the breakpoints as key-value pairs
 const breakpoints = {
@@ -31,6 +32,11 @@ const theme = extendTheme({ breakpoints })
 
 
 export default function MapBox() {
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const {loading, data} = useQuery(QUERY_POSTS);
   let posts = data
@@ -57,6 +63,8 @@ export default function MapBox() {
       }
     }
   }
+
+ 
 
   // Data showing potential sites where photo taken
   var photos = {
@@ -141,7 +149,11 @@ export default function MapBox() {
       // create a marker for each feature and add to the map
       console.log(feature.properties.user)
       new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).setPopup(new mapboxgl.Popup({offset: 25}). // add popups
-          setHTML(`<a href="/geocatches/${feature.properties.user}"><h3>${feature.properties.title}</h3></a><a href=${feature.properties.image}><img src=${feature.properties.image} /></a>`)).addTo(map);
+
+          setHTML(`<h3>${feature.properties.title}</h3><a href=${feature.properties.image}><img src=${feature.properties.image} /></a>`)).addTo(map).getElement().addEventListener('click', () => {
+            <Link to={'/geocatches/' + feature.properties.user}/> 
+window.location=('/geocatches/' + feature.properties.user)
+})
     }
 
     //Assign a unique ID to each store
@@ -225,11 +237,29 @@ export default function MapBox() {
       //console.log(turf.featureCollection(featuresInBuffer));
       console.log(featuresInBuffer);
       if (featuresInBuffer.length > 0) {
-        alert(`There are ${featuresInBuffer.length} geocatches within ${radius / 1000} km!`);
+ return (      <Modal show={show} onHide={handleClose}>
+  <Modal.Header closeButton>
+    <Modal.Title>Modal heading</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>There are ${featuresInBuffer} geocatches in your area!</Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={handleClose}>
+      Close
+    </Button>
+    <Link to={{pathname: "/maplist", state: featuresInBuffer}}>
+    <Button variant="primary">
+      Go to list
+    </Button>
+    </Link>
+  </Modal.Footer>
+</Modal>)
       } else {
         alert(`There are no geocatches in the area yet!`);
       }
+
     });
+
+ 
 
     //makeRadius function goes here!
     function makeRadius(lngLatArray, radiusInMeters) {
@@ -254,7 +284,7 @@ export default function MapBox() {
     <div>
       <div className='sidebar font-bold' bgGradient='linear(to-r, #0078AA, #F2DF3A)'>
         <div className='heading' bgGradient='linear(to-r, #0078AA, #F2DF3A)'>
-          <h1 class="text-xs sm:text-small md:text-base lg:text-lg xl:text-xl">Instructions</h1>
+          <h1 className="text-xs sm:text-small md:text-base lg:text-lg xl:text-xl">Instructions</h1>
         </div>
         <div className="rules" class="text-xs sm:text-small md:text-base lg:text-lg xl:text-xl">
           <div>
@@ -278,7 +308,10 @@ export default function MapBox() {
           </div>
         </div>
       </div>
-      <div class="absolute" id="map"></div>
+      <div className="absolute" id="map"></div>
+
+
+
     </div>
   </div>
   );
