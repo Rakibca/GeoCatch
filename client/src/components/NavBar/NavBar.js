@@ -44,18 +44,11 @@ export default function NavBar() {
 
   return (
     <ReactBootStrap.Nav>
-      <Box w='100%' h='200px' bgGradient='linear(to-r, #0078AA, #F2DF3A)' px={4}>
+      <Box w='100%' h='100%' bgGradient='linear(to-r, #0078AA, #F2DF3A)' px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <IconButton
-            size={'md'}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
-            onClick={isOpen ? onClose : onOpen}
-          />
           <HStack spacing={8} alignItems={'center'}>
           <Link to="/">
-            <ReactBootStrap.Navbar.Brand>GeoCatch: Who Will You Catch?</ReactBootStrap.Navbar.Brand>
+            <ReactBootStrap.Navbar.Brand class="text-2xl">GeoCatch</ReactBootStrap.Navbar.Brand>
           </Link>
           </HStack>
           <Flex alignItems={'center'}>
@@ -100,8 +93,8 @@ export default function NavBar() {
 
                 {Auth.loggedIn() ? (
                 <div>
-                                    <Link to="/subscribe">
-                <MenuItem>Subscription
+                                    <Link to="/profile">
+                <MenuItem>Profile
 
                 </MenuItem>
                 </Link>   

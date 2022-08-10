@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Link} from "react-router-dom";
 
-const CatchList = ({ catches = [] }) => {
+const CatchList = ({ catches }) => {
   console.log(catches);
   if (!catches.length) {
     return <h3>None yet...</h3>;
@@ -16,24 +16,23 @@ const CatchList = ({ catches = [] }) => {
       >
         Catches
       </h3>
-      {/* <div className="flex-row my-4">
-        {catches && catches.map((catch) => (
+       <div className="flex-row my-4">
+        {catches && catches.map((catch1) => (
 
-            <div key={catch._id} className="col-12 mb-3 pb-3">
+            <div key={catch1._id} className="col-12 mb-3 pb-3">
 
               <div className="p-3 bg-dark text-light">
                 <h5 className="card-header">
-                  {catch.user} found you!
+                  {catch1.user} found you! 
                   <span style={{ fontSize: '0.825rem' }}>
-                    on {catch.dateTaken}
+                    on {catch1.dateTaken}
                   </span>
                 </h5>
-                <Link to={`/geocatches/${catch.parent._id}`}>View geocatch.</Link>
-                <p className="card-body">{catch.title}</p>
+                <p className="card-body">{catch1.title}</p>
               </div>
               </div>
           ))}
-      </div> */}
+      </div> 
       </div>
   );
 };

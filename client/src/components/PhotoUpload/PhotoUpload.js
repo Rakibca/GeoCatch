@@ -2,7 +2,7 @@
 The photo upload updates the image database and the map database with a new marker
 Photo upload should be able to be found on map and active GeoCatches after upload and sync */
 
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import EXIF from 'exif-js';
 import '../../index.css';
 import './photoupload.css';
@@ -14,6 +14,8 @@ import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from "@cloudinary/url-gen";
 import { fill } from "@cloudinary/url-gen/actions/resize";
 import Axios from 'axios'
+import { Form, Button, Alert } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export default function PhotoUpload() {
 
@@ -21,6 +23,8 @@ const [newTitle, setNewTitle] = useState('');
 const [newLatitude, setNewLatitude] = useState(0);
 const [newLongitude, setNewLongitude] = useState(0);
 const [newImage, setNewImage] = useState(null);
+const [validated] = useState(false);
+const [showAlert, setShowAlert] = useState(false);
 
 const [addPost, {
   error
@@ -121,24 +125,34 @@ try {
   console.log(imageURL);
   console.log(location);
   console.log(newTitle);
-  //window.location.reload();
+  alert("Geocatch added successfully!");
+  <Link to="/" />
 } catch (err) {
   console.error(err);
 }
 };
 
 
-return (<div>
-<form onSubmit={handleFormSubmit}>
-  <h4>Upload a photo:</h4>
+return (
+<div class="text-sm md:text-base lg:text-lg xl:text-xl font-bold">
+  <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+          Something went wrong with your login credentials!
+        </Alert>
+        <Form.Group>
+          <Form.Label htmlFor='file'>Upload a Photo!</Form.Label>
+          <Form.Control
+            type='file'
+            id="file"
+            accept="image/*"
+            capture="environment"
+            name='file'
+            onChange={handleChange}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Photo is required!</Form.Control.Feedback>
+        </Form.Group>
 
-  <input
-  type="file"
-  id="file"
-  accept="image/*"
-  capture="environment"
-  onChange={handleChange}
-/>
 <br/>
 {newImage && (
 <div className="imagedisplay">
@@ -148,21 +162,55 @@ return (<div>
     </div>
          )}
 
-  <div className="photo-upload">
-    <label className="catchlabel">Title:</label>
-    <input className="inputbox" onChange={(e) => setNewTitle(e.target.value)} placeholder="Title" type="text" value={newTitle}/>
-    <label className="catchlabel">Latitude:</label>
-    <input className="inputbox" onChange={(e) => setNewLatitude(e.target.value)} placeholder="Enter latitude" type="number" value={newLatitude}/>
-    <label className="catchlabel">Longitude:</label>
-    <input className="inputbox" onChange={(e) => setNewLongitude(e.target.value)} placeholder="Enter longitude" type="number" value={newLongitude}/>
+<Form.Group>
+          <Form.Label htmlFor='title'>Title:</Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Look where I am...'
+            name='title'
+            onChange={(e) => setNewTitle(e.target.value)} 
+            value={newTitle}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Title is required!</Form.Control.Feedback>
+        </Form.Group>
 
-    <button className="boxbutton" type="submit">
+        <Form.Group>
+          <Form.Label htmlFor='latitude'>Latitude (East-West):</Form.Label>
+          <Form.Control
+            type='number'
+            placeholder='Enter latitude'
+            name='latitude'
+            onChange={(e) => setNewLatitude(e.target.value)}
+            value={newLatitude}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Latitude is required!</Form.Control.Feedback>
+        </Form.Group>
 
-      Add Geocatch
-    </button>
+        <Form.Group>
+          <Form.Label htmlFor='longitude'>Longitude (North-South):</Form.Label>
+          <Form.Control
+            type='number'
+            placeholder='Enter longitude'
+            name='longitude'
+            onChange={(e) => setNewLongitude(e.target.value)}
+            value={newLongitude}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Longitude is required!</Form.Control.Feedback>
+        </Form.Group>
+
+        <Button
+          disabled={!(newLatitude && newTitle && newLongitude && newImage)}
+          type='submit'
+          variant='success'>
+          Add Geocatch
+        </Button>
+
+
+    </Form>
    
   </div>
-</form>
-{/* <button onClick={query}>Click this</button> */}
-</div>);
+);
 }

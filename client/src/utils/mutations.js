@@ -23,6 +23,25 @@ export const ADD_POST = gql`
   }
 `;
 
+export const ADD_CATCH = gql`
+  mutation addCatch($id: ID!, $image: String!, $location: [Float]!, $title: String) {
+    addCatch(_id: $id, image: $image, location: $location, title: $title) {
+      _id
+    image
+    title
+    location
+    dateTaken
+    catches {
+      _id
+    image
+    title
+    location
+    dateTaken
+    }
+    }
+  }
+`;
+
 export const UPDATE_POST = gql`
   mutation updatePost($_id:ID!, $image: String, $location: [Float], $title: String) {
     updatePost(_id: $_id, image: $image, location: $location, title: $title) {

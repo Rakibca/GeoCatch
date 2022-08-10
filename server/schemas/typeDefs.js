@@ -26,7 +26,6 @@ const typeDefs = gql`
     title: String
     location: [Float]
     dateTaken: String
-    user: User
   }
 
   type Auth {
@@ -49,6 +48,7 @@ const typeDefs = gql`
     addPost(image: String!, location: [Float]!, title: String ): Post
     updatePost(_id: ID!, image: String, location: [Float], title: String): Post
     deletePost(_id: ID!): Post
+    addCatch(_id: ID!, image: String!, location: [Float]!, title: String ): Post
 
     login(email: String!, password: String!): Auth
   }

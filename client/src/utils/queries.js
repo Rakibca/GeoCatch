@@ -8,8 +8,15 @@ export const QUERY_POST = gql`
     title
     location
     dateTaken
-  }
+    catches {
+      _id
+      image
+      title
+      location
+      dateTaken
+    }
 }
+  }
 `;
 
 export const QUERY_ME = gql`
