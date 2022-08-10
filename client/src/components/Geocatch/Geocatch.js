@@ -8,7 +8,7 @@ User profile includes:
 import React, { useRef, useState } from 'react';
 // import { useStudentContext } from '../utils/StudentContext';
 import { Link } from 'react-router-dom';
-import { Button, Alert } from 'react-bootstrap';
+import { Button, Alert, Modal } from 'react-bootstrap';
 
 import '../../index.css';
 import { UPDATE_IMAGE, DELETE_IMAGE, ADD_IMAGE } from '../../utils/mutations';
