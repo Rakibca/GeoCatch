@@ -149,10 +149,13 @@ console.log(data)
           imageURL = res.data.secure_url; 
       })
       
+      console.log({_id});
+
            
       try {
         const {data} = addCatch({
           variables: {
+            id: _id,
             image: imageURL,
             location: location,
             title: newTitle
