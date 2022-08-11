@@ -149,7 +149,7 @@ console.log(data)
           imageURL = res.data.secure_url; 
       })
       
-      console.log({data._id});
+      console.log(data._id);
 
            
       try {
