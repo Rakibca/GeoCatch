@@ -33,10 +33,8 @@ const theme = extendTheme({ breakpoints })
 
 export default function MapBox() {
 
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+let lat;
+let lon;
 
   const {loading, data} = useQuery(QUERY_POSTS);
   let posts = data
@@ -150,10 +148,7 @@ export default function MapBox() {
       console.log(feature.properties.user)
       new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).setPopup(new mapboxgl.Popup({offset: 25}). // add popups
 
-          setHTML(`<h3>${feature.properties.title}</h3><a href=${feature.properties.image}><img src=${feature.properties.image} /></a>`)).addTo(map).getElement().addEventListener('click', () => {
-            <Link to={'/geocatches/' + feature.properties.user}/> 
-window.location=('/geocatches/' + feature.properties.user)
-})
+          setHTML(`<h3>${feature.properties.title}</h3><a href=${feature.properties.image}><img src=${feature.properties.image} /></a>`)).addTo(map)
     }
 
     //Assign a unique ID to each store
@@ -227,6 +222,10 @@ window.location=('/geocatches/' + feature.properties.user)
     //Click event goes here!
     map.on('click', function(e) {
       var eventLngLat = [e.lngLat.lng, e.lngLat.lat];
+      lat = e.lngLat.lat;
+      lon = e.lngLat.lng;
+      document.getElementById("longitude").textContent = e.lngLat.lng;
+      document.getElementById("latitude").textContent = e.lngLat.lat;
       console.log(eventLngLat);
       let radius = 5000;
       var searchRadius = makeRadius(eventLngLat, radius);
@@ -237,22 +236,7 @@ window.location=('/geocatches/' + feature.properties.user)
       //console.log(turf.featureCollection(featuresInBuffer));
       console.log(featuresInBuffer);
       if (featuresInBuffer.length > 0) {
- return (      <Modal show={show} onHide={handleClose}>
-  <Modal.Header closeButton>
-    <Modal.Title>Modal heading</Modal.Title>
-  </Modal.Header>
-  <Modal.Body>There are ${featuresInBuffer} geocatches in your area!</Modal.Body>
-  <Modal.Footer>
-    <Button variant="secondary" onClick={handleClose}>
-      Close
-    </Button>
-    <Link to={{pathname: "/maplist", state: featuresInBuffer}}>
-    <Button variant="primary">
-      Go to list
-    </Button>
-    </Link>
-  </Modal.Footer>
-</Modal>)
+        alert(`There are ${featuresInBuffer.length} geocatches in 5 km! Click the link in the sidebar to view!`) 
       } else {
         alert(`There are no geocatches in the area yet!`);
       }
@@ -306,13 +290,26 @@ window.location=('/geocatches/' + feature.properties.user)
           <div>
             <p>5. Click on the map to be alerted if you are within 5km of a GeoCatch</p>
           </div>
+          <br />
+          <div>
+        <h4>Location Search:</h4>
+        <p className= "label1" id="latitude"> </p>
+        <p className= "label1" id="longitude"> </p>
+
+        <br />
+
+        <Link to={`/maplist`}>Click HERE to view the geocatches in this area!</Link>
+
+              </div>
+
+
         </div>
       </div>
+      
       <div className="absolute" id="map"></div>
 
+   </div>
 
-
-    </div>
   </div>
   );
 }

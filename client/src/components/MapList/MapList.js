@@ -1,8 +1,14 @@
 import React from 'react';
+import {useQuery} from '@apollo/client';
+import {QUERY_POSTS} from '../../utils/queries';
 
 import { Link } from "react-router-dom";
 
-const MapList = ({ posts }) => {
+const MapList = () => {
+
+  const {loading, data} = useQuery(QUERY_POSTS);
+  let posts = data
+    ?.posts || [];
 
   console.log(posts);
 

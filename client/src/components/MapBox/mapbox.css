@@ -1,12 +1,15 @@
 #map {
         width:100%;
         z-index: 1;
-        top: 0; 
-        bottom: 0;
+
         border-color: #0078AA;
         border-bottom: 1.5px;
 }
 
 .rules {
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.label1 {
+        z-index: 2500;
 }
