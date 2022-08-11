@@ -129,7 +129,7 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
 
-    addCatch: async (parent, { id, image, location, title }, context) => {
+    addCatch: async (parent, { _id, image, location, title }, context) => {
 
       console.log("addCatch");
 
@@ -137,7 +137,7 @@ const resolvers = {
         const catch1 = await Catch.create({image, location, title});
         console.log(catch1);
         console.log(_id);
-        const post = await Post.findByIdAndUpdate(id, { $push: { catches: catch1._id } }, {new: true, useFindandModify: false});
+        const post = await Post.findByIdAndUpdate(_id, { $push: { catches: catch1._id } }, {new: true, useFindandModify: false});
         console.log(post);
         return post;
       // }
