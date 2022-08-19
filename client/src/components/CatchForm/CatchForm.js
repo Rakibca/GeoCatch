@@ -28,11 +28,11 @@ const [showAlert, setShowAlert] = useState(false);
   }
 ] = useMutation(ADD_CATCH);
 
-const { _id } = useParams();
+const stuff = useParams();
 
 const { loading, data } = useQuery(QUERY_POST, {
 
-  variables: {_id: _id},
+  variables: {_id: stuff._id},
 });
 console.log(data)
 
@@ -149,13 +149,13 @@ console.log(data)
           imageURL = res.data.secure_url; 
       })
       
-      console.log({_id});
+      console.log(stuff._id);
 
            
       try {
-        const {data} = addCatch({
+        const {data2} = addCatch({
           variables: {
-            _id: _id,
+            id: stuff._id,
             image: imageURL,
             location: location,
             title: newTitle

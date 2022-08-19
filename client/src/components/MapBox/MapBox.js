@@ -16,6 +16,7 @@ import {QUERY_POSTS} from '../../utils/queries';
 import { Link } from 'react-router-dom';
 // 1. Import the utilities
 import { extendTheme } from '@chakra-ui/react';
+import { Modal, Button } from 'react-bootstrap';
 
 // 2. Update the breakpoints as key-value pairs
 const breakpoints = {
@@ -31,6 +32,9 @@ const theme = extendTheme({ breakpoints })
 
 
 export default function MapBox() {
+
+let lat;
+let lon;
 
   const {loading, data} = useQuery(QUERY_POSTS);
   let posts = data
@@ -57,6 +61,8 @@ export default function MapBox() {
       }
     }
   }
+
+ 
 
   // Data showing potential sites where photo taken
   var photos = {
@@ -141,7 +147,8 @@ export default function MapBox() {
       // create a marker for each feature and add to the map
       console.log(feature.properties.user)
       new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).setPopup(new mapboxgl.Popup({offset: 25}). // add popups
-          setHTML(`<a href="/geocatches/${feature.properties.user}"><h3>${feature.properties.title}</h3></a><a href=${feature.properties.image}><img src=${feature.properties.image} /></a>`)).addTo(map);
+
+          setHTML(`<h3>${feature.properties.title}</h3><a href=${feature.properties.image}><img src=${feature.properties.image} /></a>`)).addTo(map)
     }
 
     //Assign a unique ID to each store
@@ -215,6 +222,10 @@ export default function MapBox() {
     //Click event goes here!
     map.on('click', function(e) {
       var eventLngLat = [e.lngLat.lng, e.lngLat.lat];
+      lat = e.lngLat.lat;
+      lon = e.lngLat.lng;
+      document.getElementById("longitude").textContent = e.lngLat.lng;
+      document.getElementById("latitude").textContent = e.lngLat.lat;
       console.log(eventLngLat);
       let radius = 5000;
       var searchRadius = makeRadius(eventLngLat, radius);
@@ -225,11 +236,14 @@ export default function MapBox() {
       //console.log(turf.featureCollection(featuresInBuffer));
       console.log(featuresInBuffer);
       if (featuresInBuffer.length > 0) {
-        alert(`There are ${featuresInBuffer.length} geocatches within ${radius / 1000} km!`);
+        alert(`There are ${featuresInBuffer.length} geocatches in 5 km! Click the link in the sidebar to view!`) 
       } else {
         alert(`There are no geocatches in the area yet!`);
       }
+
     });
+
+ 
 
     //makeRadius function goes here!
     function makeRadius(lngLatArray, radiusInMeters) {
@@ -254,7 +268,7 @@ export default function MapBox() {
     <div>
       <div className='sidebar font-bold' bgGradient='linear(to-r, #0078AA, #F2DF3A)'>
         <div className='heading' bgGradient='linear(to-r, #0078AA, #F2DF3A)'>
-          <h1 class="text-xs sm:text-small md:text-base lg:text-lg xl:text-xl">Instructions</h1>
+          <h1 className="text-xs sm:text-small md:text-base lg:text-lg xl:text-xl">Instructions</h1>
         </div>
         <div className="rules" class="text-xs sm:text-small md:text-base lg:text-lg xl:text-xl">
           <div>
@@ -276,10 +290,26 @@ export default function MapBox() {
           <div>
             <p>5. Click on the map to be alerted if you are within 5km of a GeoCatch</p>
           </div>
+          <br />
+          <div>
+        <h4>Location Search:</h4>
+        <p className= "label1" id="latitude"> </p>
+        <p className= "label1" id="longitude"> </p>
+
+        <br />
+
+        <Link to={`/maplist`}>Click HERE to view the geocatches in this area!</Link>
+
+              </div>
+
+
         </div>
       </div>
-      <div class="absolute" id="map"></div>
-    </div>
+      
+      <div className="absolute" id="map"></div>
+
+   </div>
+
   </div>
   );
 }

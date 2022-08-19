@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
 import Geocatch from './components/Geocatch/Geocatch';
+import MapList from './components/MapList/MapList';
 import CatchForm from './components/CatchForm/CatchForm';
 import Login from './components/Login/Login';
 import SignupForm from './components/SignupForm/SignupForm';
@@ -81,6 +82,11 @@ function App() {
         <Route
                 path="/users/:userId"
                 element={<Profile />}
+              />
+
+<Route
+                path="/maplist"
+                element={<MapList />}
               />
         </Routes>
         </div>

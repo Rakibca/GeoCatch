@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 const CatchList = ({ catches }) => {
   console.log(catches);
   if (!catches.length) {
-    return <h3>None yet...</h3>;
+    return <h3>No catches yet...</h3>;
   }
 
   return (
