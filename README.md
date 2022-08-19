@@ -6,17 +6,11 @@
 
 ## Description
 
-A location-based photo game where you can challenge other users to locate where you took a photo. A second user must take a separate photo in the first photo's area and try to get as close as possible to the GeoCatch photo challenge original post.
+The GeoCatch app tries to blend active phone use, physical activity, and photography passions into a gameified adventure photo game. GeoCatch is a location-based photo game where you can challenge other users to locate where you took a photo. A second user must take a separate photo in the first photo's area and try to get as close as possible to the GeoCatch photo challenge original post.
 
-We felt as though many active applications were coming to life as the sedentary existence of phones and technologies can be viewed as unhealthy. A phenomenon such as Pokemon Go shows that there are many people who enjoy using their phones to be active. 
+We felt the need to push our full-stack skills and toolkit. Adding Mapbox, Chakra, and Turf to our list of skills felt especially challenging and enriching. We learned that React has plenty of single-page purposes, modals are useful, geospatial data and geojsons are super cool, and that we can apply our full-stack technologies and skills towards any project, so long as we appropriately plan for the complex logic and design standards. We dipped into new technologies: Exif.js to extract photo metadata, Multer to parse the metadata, and Turf.js to work on maps with geojson data. The difficulties we learn from were parsing geojson into MongoDB database collections in order to represent the data on MapBox and front-end templates.
 
-We felt the need to push our full-stack skills and toolkit. Adding Mapbox, Chakra, and Turf to our list of skills felt especially challenging and enriching. 
-
-This app tries to blend active phone use, physical activity, and photography passions into a gameified adventure photo game. A real-life Pokemon Snap, if you will.
-
-We learned that React has plenty of single-page purposes, modals are useful, geospatial data and geojsons are super cool, and that we can apply our full-stack technologies and skills towards any project, so long as we appropriately plan for the complex logic and design standards. We dipped into new technologies: Exif.js to extract photo metadata, Multer to parse the metadata, and Turf.js to work on maps with geojson data. The difficulties we learn from were parsing geojson into MongoDB database collections in order to represent the data on MapBox and front-end templates.
-
-## Table of Contents (Optional)
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -41,11 +35,11 @@ GitHub repository link can be [found here](https://github.com/tdickson96/GeoCatc
 
 ## Usage
 
-![demo](assets/images/demo.png)
-![demo](assets/images/demo.png)
-![demo](assets/images/demo.png)
-![demo](assets/images/demo.png)
-![demo](assets/images/demo.png)
+![demo](assets/images/demo1.png)
+![demo](assets/images/demo2.png)
+![demo](assets/images/demo3.png)
+![demo](assets/images/demo3.png)
+![demo](assets/images/demo4.png)
 
 ## Features
 
@@ -62,7 +56,9 @@ GitHub repository link can be [found here](https://github.com/tdickson96/GeoCatc
 ## Credits
 
 Nathan Howes
+
 Rakibul Islam
+
 Trent Dickson
 
 ## License
